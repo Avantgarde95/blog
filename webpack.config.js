@@ -1,4 +1,5 @@
 const path = require('path');
+const highlight = require('highlight.js');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -32,7 +33,9 @@ module.exports = (env, argv) => {
             },
             extensions: [
                 '.ts', '.tsx', '.js',
-                '.png', '.jpg', '.svg'
+                '.png', '.jpg', '.svg',
+                '.css',
+                '.md'
             ]
         },
         module: {
@@ -45,6 +48,24 @@ module.exports = (env, argv) => {
                     test: /\.(png|jpg|svg)$/,
                     use: {loader: 'url-loader', options: {esModule: false, limit: 2048}}
                 },
+                {
+                    test: /\.css$/,
+                    use: [{loader: 'style-loader'}, {loader: 'css-loader'}]
+                },
+                {
+                    test: /\.md$/,
+                    use: [{loader: 'html-loader'}, {
+                        loader: 'markdown-loader', options: {
+                            highlight: (code, lang) => {
+                                if (!lang || ['text', 'literal', 'nohighlight'].includes(lang)) {
+                                    return `<pre class="hljs">${code}</pre>`;
+                                } else {
+                                    return `<span class="hljs">${highlight.highlight(lang, code).value}</span>`;
+                                }
+                            }
+                        }
+                    }]
+                }
             ]
         },
         plugins: [
