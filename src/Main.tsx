@@ -18,6 +18,7 @@ const App = () => (
     <div>
         <Article html={Welcome}/>
         <Article html={Test}/>
+        <div id={'disqus_thread'}/>
     </div>
 );
 
