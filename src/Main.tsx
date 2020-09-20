@@ -23,9 +23,9 @@ const AppRoutes = (
         path: path, element: (
             <div>
                 <Article html={html}/>
-                <DiscussionEmbed shortname={title} config={{
-                    url: path,
-                    identifier: path,
+                <DiscussionEmbed shortname={'Avantgarde95'} config={{
+                    url: `https://avantgarde95.github.io/blog${path}`,
+                    identifier: title,
                     title: title
                 }}/>
             </div>
@@ -37,10 +37,9 @@ const App = () => (
     <BrowserRouter>
         <Global styles={{}}/>
         <AppRoutes routes={[
-            {title: 'Welcome', path: '/', html: Welcome},
+            {title: 'Welcome', path: '/welcome', html: Welcome},
             {title: 'Test', path: '/test', html: Test}
         ]}/>
-        <DiscussionEmbed shortname={'Welcome'} config={{}}/>
     </BrowserRouter>
 );
 
