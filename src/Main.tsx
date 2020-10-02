@@ -7,7 +7,7 @@ import {render} from 'react-dom';
 import {BrowserRouter, useRoutes} from 'react-router-dom';
 import {Header} from './Header';
 import {Post} from './Post';
-import {ThemeProvider} from './Common';
+import {ThemeProvider} from './Theme';
 
 require('highlight.js/styles/monokai-sublime');
 
