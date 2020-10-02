@@ -19,7 +19,8 @@ module.exports = (env, argv) => {
         output: {
             path: getAbsolutePath(outDir),
             publicPath: outDir + '/',
-            filename: '[name].[contenthash].js'
+            filename: '[name].[contenthash].js',
+            chunkFilename: '[name].[contenthash].js'
         },
         optimization: {
             splitChunks: {

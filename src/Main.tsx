@@ -1,27 +1,33 @@
+///<reference path="Type.d.ts"/>
 /** @jsx jsx */
 
 import './Polyfill';
 
 import {jsx} from '@emotion/core';
 import {render} from 'react-dom';
-import {BrowserRouter, useRoutes} from 'react-router-dom';
+import {HashRouter, useRoutes} from 'react-router-dom';
 import {Header} from './Header';
-import {Post} from './Post';
+import {Article, Post} from './Post';
 import {ThemeProvider} from './Theme';
 
 require('highlight.js/styles/monokai-sublime');
 
-const articles = [
-    {path: 'welcome', title: 'Welcome', html: require('./article/Welcome')},
-    {path: 'test', title: 'Test', html: require('./article/Test')}
+const articles: Article[] = [
+    {path: 'welcome', title: 'Welcome', loader: () => import('./article/Welcome.md')},
+    {path: 'test', title: 'Test', loader: () => import('./article/Test.md')}
 ];
 
-const AppRoutes = () => useRoutes(articles.map(article =>
-    ({path: article.path, element: <Post {...article}/>})
-));
+const AppRoutes = () => useRoutes([
+    {path: '/', element: null},
+    ...articles.map(article => (
+        {path: article.path, element: <Post article={article}/>}
+    ))
+]);
 
+// TODO: Find out why routing is strange on IE.
+// TODO: Find out why BrowserRouter does not work on IE.
 const App = () => (
-    <BrowserRouter>
+    <HashRouter>
         <ThemeProvider lightColor={'#00c7d6'} darkColor={'#007b84'}>
             <div css={{
                 boxSizing: 'border-box',
@@ -33,7 +39,7 @@ const App = () => (
                 <AppRoutes/>
             </div>
         </ThemeProvider>
-    </BrowserRouter>
+    </HashRouter>
 );
 
 const temporaryElements = document.getElementsByClassName('Temporary');

@@ -1,3 +1,5 @@
+require('promise-polyfill/src/polyfill');
+
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith.
 
 if (!String.prototype.startsWith) {

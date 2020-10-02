@@ -1,10 +1,11 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "esnext",
         "target": "es3",
         "sourceMap": true,
         "strict": true,
-        "jsx": "react"
+        "jsx": "react",
+        "moduleResolution": "node"
     },
     "exclude": [
         "node_modules"
