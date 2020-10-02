@@ -2,44 +2,37 @@
 
 import './Polyfill';
 
-import {Global, jsx} from '@emotion/core';
+import {jsx} from '@emotion/core';
 import {render} from 'react-dom';
-import {DiscussionEmbed} from 'disqus-react';
 import {BrowserRouter, useRoutes} from 'react-router-dom';
+import {Header} from './Header';
+import {Post} from './Post';
+import {ThemeProvider} from './Common';
 
 require('highlight.js/styles/monokai-sublime');
 
-const Welcome = require('./article/Welcome');
-const Test = require('./article/Test');
+const articles = [
+    {path: 'welcome', title: 'Welcome', html: require('./article/Welcome')},
+    {path: 'test', title: 'Test', html: require('./article/Test')}
+];
 
-const Article = ({html = ''}) => (
-    <div dangerouslySetInnerHTML={{__html: html}}/>
-);
-
-const AppRoutes = (
-    {routes = [] as { title: string, path: string, html: string }[]}
-) => useRoutes(routes.map(({title, path, html}, index) => (
-    {
-        path: path, element: (
-            <div>
-                <Article html={html}/>
-                <DiscussionEmbed shortname={'Avantgarde95'} config={{
-                    url: `https://avantgarde95.github.io/blog${path}`,
-                    identifier: title,
-                    title: title
-                }}/>
-            </div>
-        )
-    }
-)));
+const AppRoutes = () => useRoutes(articles.map(article =>
+    ({path: article.path, element: <Post {...article}/>})
+));
 
 const App = () => (
     <BrowserRouter>
-        <Global styles={{}}/>
-        <AppRoutes routes={[
-            {title: 'Welcome', path: '/welcome', html: Welcome},
-            {title: 'Test', path: '/test', html: Test}
-        ]}/>
+        <ThemeProvider lightColor={'#00c7d6'} darkColor={'#007b84'}>
+            <div css={{
+                boxSizing: 'border-box',
+                width: '100%',
+                height: '100%',
+                padding: '1.5rem'
+            }}>
+                <Header/>
+                <AppRoutes/>
+            </div>
+        </ThemeProvider>
     </BrowserRouter>
 );
 
