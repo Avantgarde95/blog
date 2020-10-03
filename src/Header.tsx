@@ -84,8 +84,6 @@ const SearchButton = () => {
 
 export const Header = () => {
     const theme = useContext(ThemeContext);
-    const navigate = useNavigate();
-
     const onWideScreen = '@media (min-width: 769px)';
 
     return (

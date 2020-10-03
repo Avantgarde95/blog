@@ -51,7 +51,7 @@ const ArticleHTML = ({html = ''}) => {
                 borderBottom: `1px solid ${theme.darkColor}`,
                 color: theme.defaultColor,
                 '& h1': {
-                    paddingBottom: '0.3rem',
+                    paddingBottom: '0.5rem',
                     borderBottom: `1px solid ${theme.darkColor}`,
                     fontSize: '1.8rem'
                 },
@@ -97,7 +97,6 @@ const Category = ({category = ''}) => {
 };
 
 export const Post = ({article = {} as Article}) => {
-    const theme = useContext(ThemeContext);
     const [html, setHTML] = useState<string | null>(null);
 
     useEffect(() => {

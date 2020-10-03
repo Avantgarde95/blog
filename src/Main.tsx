@@ -10,11 +10,12 @@ import {Header} from './Header';
 import {Post} from './Post';
 import {ThemeProvider} from './Theme';
 import {articles} from './Articles';
+import {Preview} from './Preview';
 
 require('highlight.js/styles/monokai-sublime');
 
 const AppRoutes = () => useRoutes([
-    {path: '/', element: null},
+    {path: '/', element: <Preview articles={articles}/>},
     ...articles.map(article => (
         {path: article.path, element: <Post article={article}/>}
     ))
