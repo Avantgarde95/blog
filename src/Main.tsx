@@ -5,17 +5,13 @@ import './Polyfill';
 
 import {jsx} from '@emotion/core';
 import {render} from 'react-dom';
-import {HashRouter, useRoutes} from 'react-router-dom';
+import {BrowserRouter, useRoutes} from 'react-router-dom';
 import {Header} from './Header';
-import {Article, Post} from './Post';
+import {Post} from './Post';
 import {ThemeProvider} from './Theme';
+import {articles} from './Articles';
 
 require('highlight.js/styles/monokai-sublime');
-
-const articles: Article[] = [
-    {path: 'welcome', title: 'Welcome', load: () => import('./article/Welcome.md')},
-    {path: 'test', title: 'Test', load: () => import('./article/Test.md')}
-];
 
 const AppRoutes = () => useRoutes([
     {path: '/', element: null},
@@ -24,10 +20,8 @@ const AppRoutes = () => useRoutes([
     ))
 ]);
 
-// TODO: Find out why routing is strange on IE.
-// TODO: Find out why BrowserRouter does not work on IE.
 const App = () => (
-    <HashRouter>
+    <BrowserRouter>
         <ThemeProvider
             defaultColor={'#ffffff'}
             lightColor={'#00f6ff'}
@@ -44,7 +38,7 @@ const App = () => (
                 <AppRoutes/>
             </div>
         </ThemeProvider>
-    </HashRouter>
+    </BrowserRouter>
 );
 
 const temporaryElements = document.getElementsByClassName('Temporary');

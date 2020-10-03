@@ -6,12 +6,7 @@ import {DiscussionEmbed} from 'disqus-react';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
-
-export interface Article {
-    path: string;
-    title: string;
-    load: () => Promise<{ default: string }>;
-}
+import {Article} from './Articles';
 
 const loadingAnimation = keyframes({
     '0%': {
@@ -24,6 +19,82 @@ const loadingAnimation = keyframes({
         opacity: 0
     }
 });
+
+const Loading = () => {
+    const theme = useContext(ThemeContext);
+
+    return (
+        <div css={{
+            paddingBottom: '1rem',
+            marginTop: '1rem',
+            marginBottom: '1rem',
+            borderBottom: `1px solid ${theme.darkColor}`,
+            fontSize: '1.3rem',
+            color: theme.defaultColor
+        }}>
+            Loading...&nbsp;
+            <Icon css={{
+                animation: `${loadingAnimation} 0.5s infinite`
+            }} definition={faClock}/>
+        </div>
+    );
+};
+
+const ArticleHTML = ({html = ''}) => {
+    const theme = useContext(ThemeContext);
+
+    return (
+        <div
+            css={{
+                paddingBottom: '1rem',
+                marginBottom: '0.5rem',
+                borderBottom: `1px solid ${theme.darkColor}`,
+                color: theme.defaultColor,
+                '& h1': {
+                    paddingBottom: '0.3rem',
+                    borderBottom: `1px solid ${theme.darkColor}`,
+                    fontSize: '1.8rem'
+                },
+                '& h2': {
+                    fontSize: '1.3rem'
+                },
+                '& h3': {
+                    fontSize: '1rem'
+                },
+                '& .hljs': {
+                    border: `1px solid ${theme.darkColor}`,
+                    background: 'none'
+                }
+            }}
+            dangerouslySetInnerHTML={{__html: html}}
+        />
+    );
+};
+
+const Category = ({category = ''}) => {
+    const theme = useContext(ThemeContext);
+
+    return (
+        <div css={{
+            marginBottom: '1rem',
+            color: theme.defaultColor
+        }}>
+            Category:&nbsp;
+            <a
+                css={{
+                    cursor: 'pointer',
+                    color: theme.darkColor,
+                    '&:hover, &:active, &:focus': {
+                        color: theme.lightColor
+                    }
+                }}
+                href={'#'}
+            >
+                {category}
+            </a>
+        </div>
+    );
+};
 
 export const Post = ({article = {} as Article}) => {
     const theme = useContext(ThemeContext);
@@ -41,42 +112,8 @@ export const Post = ({article = {} as Article}) => {
 
     return (
         <div>
-            {
-                (html === null) ? (
-                    <div css={{
-                        marginTop: '1rem',
-                        marginBottom: '1rem',
-                        fontSize: '1.3rem',
-                        color: theme.defaultColor
-                    }}>
-                        Loading...&nbsp;
-                        <Icon css={{
-                            animation: `${loadingAnimation} 0.5s infinite`
-                        }} definition={faClock}/>
-                    </div>
-                ) : (
-                    <div
-                        css={{
-                            marginBottom: '1.5rem',
-                            color: theme.defaultColor,
-                            '& h1': {
-                                fontSize: '1.8rem'
-                            },
-                            '& h2': {
-                                fontSize: '1.3rem'
-                            },
-                            '& h3': {
-                                fontSize: '1rem'
-                            },
-                            '& .hljs': {
-                                border: `1px solid ${theme.darkColor}`,
-                                background: 'none'
-                            }
-                        }}
-                        dangerouslySetInnerHTML={{__html: html}}
-                    />
-                )
-            }
+            {(html === null) ? <Loading/> : <ArticleHTML html={html}/>}
+            <Category category={article.category}/>
             <DiscussionEmbed shortname={'Avantgarde95'} config={{
                 url: `https://avantgarde95.github.io/blog${article.path}`,
                 identifier: article.title,
