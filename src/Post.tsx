@@ -33,7 +33,7 @@ export const Post = ({article = {} as Article}) => {
         article.load().then(result => {
             setTimeout(() => {
                 setHTML(result.default);
-            }, 5000);
+            }, 2000); // TODO: Remove setTimeout() after testing.
         }).catch(() => {
             setHTML('Failed to load the article!');
         });
@@ -46,7 +46,7 @@ export const Post = ({article = {} as Article}) => {
                     <div css={{
                         marginTop: '1rem',
                         marginBottom: '1rem',
-                        fontSize: '1.2rem',
+                        fontSize: '1.3rem',
                         color: theme.defaultColor
                     }}>
                         Loading...&nbsp;
@@ -58,7 +58,20 @@ export const Post = ({article = {} as Article}) => {
                     <div
                         css={{
                             marginBottom: '1.5rem',
-                            color: theme.defaultColor
+                            color: theme.defaultColor,
+                            '& h1': {
+                                fontSize: '1.8rem'
+                            },
+                            '& h2': {
+                                fontSize: '1.3rem'
+                            },
+                            '& h3': {
+                                fontSize: '1rem'
+                            },
+                            '& .hljs': {
+                                border: `1px solid ${theme.darkColor}`,
+                                background: 'none'
+                            }
                         }}
                         dangerouslySetInnerHTML={{__html: html}}
                     />

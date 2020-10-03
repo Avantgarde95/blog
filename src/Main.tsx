@@ -28,8 +28,13 @@ const AppRoutes = () => useRoutes([
 // TODO: Find out why BrowserRouter does not work on IE.
 const App = () => (
     <HashRouter>
-        <ThemeProvider lightColor={'#00c7d6'} darkColor={'#007b84'}>
+        <ThemeProvider
+            defaultColor={'#ffffff'}
+            lightColor={'#00f6ff'}
+            darkColor={'#00d3dc'}
+        >
             <div css={{
+                overflowY: 'auto',
                 boxSizing: 'border-box',
                 width: '100%',
                 height: '100%',
