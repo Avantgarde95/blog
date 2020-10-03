@@ -15,6 +15,7 @@ const TitleButton = () => {
         <button
             css={{
                 cursor: 'pointer',
+                padding: 0,
                 fontFamily: 'inherit',
                 fontSize: '1.5rem',
                 border: 'none',
@@ -106,7 +107,6 @@ export const Header = () => {
                 boxSizing: 'border-box',
                 display: 'block',
                 marginBottom: '1rem',
-                paddingLeft: '0.5rem',
                 [onWideScreen]: {
                     display: 'inline-block',
                     width: '50%',

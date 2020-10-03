@@ -13,8 +13,8 @@ import {ThemeProvider} from './Theme';
 require('highlight.js/styles/monokai-sublime');
 
 const articles: Article[] = [
-    {path: 'welcome', title: 'Welcome', loader: () => import('./article/Welcome.md')},
-    {path: 'test', title: 'Test', loader: () => import('./article/Test.md')}
+    {path: 'welcome', title: 'Welcome', load: () => import('./article/Welcome.md')},
+    {path: 'test', title: 'Test', load: () => import('./article/Test.md')}
 ];
 
 const AppRoutes = () => useRoutes([
