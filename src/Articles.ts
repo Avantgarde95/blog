@@ -1,4 +1,6 @@
-export type Category = 'Computer' | 'Music' | 'Misc';
+export const categories = ['Computer', 'Music', 'Misc'] as const;
+
+export type Category = (typeof categories)[number];
 
 export interface Article {
     path: string;

@@ -26,7 +26,7 @@ const PostButton = ({article = {} as Article}) => {
                 }
             }}
             onClick={() => {
-                navigate(article.path, {replace: true});
+                navigate(`/post/${article.path}`, {replace: true});
             }}
         >{article.title}</button>
     );

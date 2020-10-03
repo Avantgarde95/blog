@@ -5,20 +5,43 @@ import './Polyfill';
 
 import {jsx} from '@emotion/core';
 import {render} from 'react-dom';
-import {BrowserRouter, useRoutes} from 'react-router-dom';
+import {BrowserRouter, Outlet, useRoutes} from 'react-router-dom';
 import {Header} from './Header';
 import {Post} from './Post';
 import {ThemeProvider} from './Theme';
-import {articles} from './Articles';
+import {articles, categories} from './Articles';
 import {Preview} from './Preview';
 
 require('highlight.js/styles/monokai-sublime');
 
+const Default = () => <Preview articles={articles}/>;
+
 const AppRoutes = () => useRoutes([
-    {path: '/', element: <Preview articles={articles}/>},
-    ...articles.map(article => (
-        {path: article.path, element: <Post article={article}/>}
-    ))
+    {path: '/', element: <Default/>},
+    {
+        path: 'category',
+        element: <Outlet/>,
+        children: [
+            {path: '/', element: <Default/>},
+            ...categories.map(category => (
+                {
+                    path: category.toLowerCase(),
+                    element: <Preview articles={articles.filter(article => article.category === category)}/>
+                }
+            ))
+        ]
+    },
+    {
+        path: 'post',
+        element: <Outlet/>,
+        children: [
+            {path: '/', element: <Default/>},
+            ...articles.map(article => (
+                {path: article.path, element: <Post article={article}/>}
+            ))
+        ]
+    },
+    {path: '*', element: <div>Wrong URL!</div>}
 ]);
 
 const App = () => (
