@@ -121,7 +121,7 @@ export const Post = ({article = {} as Article}) => {
             {(html === null) ? <Loading/> : <ArticleHTML title={article.title} html={html}/>}
             <Category category={article.category}/>
             <DiscussionEmbed shortname={'Avantgarde95'} config={{
-                url: `https://avantgarde95.github.io/blog${article.path}`,
+                url: `https://avantgarde95.github.io/blog/${article.path}`,
                 identifier: article.title,
                 title: article.title
             }}/>
