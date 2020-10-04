@@ -101,9 +101,7 @@ const PostPart = ({article = {} as Article}) => {
 
     useEffect(() => {
         article.load().then(result => {
-            setTimeout(() => {
-                setHTMLPart(getAbbreviation(getTextFromHTML(result.default), 100));
-            }, 2000); // TODO: Remove setTimeout() after testing.
+            setHTMLPart(getAbbreviation(getTextFromHTML(result.default), 100));
         }).catch(() => {
             setHTMLPart('Failed to load the article!');
         });

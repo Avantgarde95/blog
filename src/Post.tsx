@@ -110,9 +110,7 @@ export const Post = ({article = {} as Article}) => {
 
     useEffect(() => {
         article.load().then(result => {
-            setTimeout(() => {
-                setHTML(result.default);
-            }, 2000); // TODO: Remove setTimeout() after testing.
+            setHTML(result.default);
         }).catch(() => {
             setHTML('Failed to load the article!');
         });
