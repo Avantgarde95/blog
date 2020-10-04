@@ -104,7 +104,7 @@ export const Header = () => {
             <div css={{
                 boxSizing: 'border-box',
                 display: 'block',
-                marginBottom: '1rem',
+                marginBottom: '2rem',
                 [onWideScreen]: {
                     display: 'inline-block',
                     width: '50%',

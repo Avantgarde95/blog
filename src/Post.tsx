@@ -26,10 +26,10 @@ const Loading = () => {
     return (
         <div css={{
             paddingBottom: '1rem',
-            marginTop: '1rem',
             marginBottom: '1rem',
             borderBottom: `1px solid ${theme.darkColor}`,
             fontSize: '1.3rem',
+            fontWeight: 'bold',
             color: theme.defaultColor
         }}>
             Loading...&nbsp;
@@ -40,34 +40,43 @@ const Loading = () => {
     );
 };
 
-const ArticleHTML = ({html = ''}) => {
+const ArticleHTML = ({title = '', html = ''}) => {
     const theme = useContext(ThemeContext);
 
     return (
-        <div
-            css={{
-                paddingBottom: '1rem',
-                marginBottom: '0.5rem',
+        <div css={{
+            paddingBottom: '1rem',
+            marginBottom: '0.5rem',
+            borderBottom: `1px solid ${theme.darkColor}`,
+            color: theme.defaultColor,
+        }}>
+            <div css={{
+                paddingBottom: '0.5rem',
                 borderBottom: `1px solid ${theme.darkColor}`,
-                color: theme.defaultColor,
-                '& h1': {
-                    paddingBottom: '0.5rem',
-                    borderBottom: `1px solid ${theme.darkColor}`,
-                    fontSize: '1.8rem'
-                },
-                '& h2': {
-                    fontSize: '1.3rem'
-                },
-                '& h3': {
-                    fontSize: '1rem'
-                },
-                '& .hljs': {
-                    border: `1px solid ${theme.darkColor}`,
-                    background: 'none'
-                }
-            }}
-            dangerouslySetInnerHTML={{__html: html}}
-        />
+                fontSize: '1.8rem',
+                fontWeight: 'bold'
+            }}>
+                {title}
+            </div>
+            <div
+                css={{
+                    '& h1': {
+                        fontSize: '1.5rem'
+                    },
+                    '& h2': {
+                        fontSize: '1.3rem'
+                    },
+                    '& h3': {
+                        fontSize: '1rem'
+                    },
+                    '& .hljs': {
+                        border: `1px solid ${theme.darkColor}`,
+                        background: 'none'
+                    }
+                }}
+                dangerouslySetInnerHTML={{__html: html}}
+            />
+        </div>
     );
 };
 
@@ -111,7 +120,7 @@ export const Post = ({article = {} as Article}) => {
 
     return (
         <div>
-            {(html === null) ? <Loading/> : <ArticleHTML html={html}/>}
+            {(html === null) ? <Loading/> : <ArticleHTML title={article.title} html={html}/>}
             <Category category={article.category}/>
             <DiscussionEmbed shortname={'Avantgarde95'} config={{
                 url: `https://avantgarde95.github.io/blog${article.path}`,

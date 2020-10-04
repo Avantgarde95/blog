@@ -1,14 +1,12 @@
-# Test
-
-## About
-### 한글
+# About
+## 한글
 안녕하세요! 제 블로그에 방문하신 것을 환영합니다!
 
-### English
+## English
 Hello! Welcome to my blog!
 
-## Details
-### Table
+# Details
+## Table
 
 |Name|Age|Height|
 |---|---|---|
@@ -16,10 +14,11 @@ Hello! Welcome to my blog!
 |Paul|30|180|
 |Cindy|27|175|
 
-### Code
-
+## Code
+### Bash
 ```$ ./py -3 run.py```
 
+### Python
 ```python
 import math
 
@@ -27,6 +26,7 @@ x = 3.5
 print('sqrt(%f) = %f', x, math.sqrt(x)) 
 ```
 
+### JavaScript
 ```javascript
 function add(x, y) {
     return x + y;

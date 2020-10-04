@@ -1,10 +1,12 @@
 /** @jsx jsx */
 
-import {jsx} from '@emotion/core';
-import {useContext} from 'react';
+import {jsx, keyframes} from '@emotion/core';
+import {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
 import {Article} from './Articles';
+import {Icon} from './Icon';
 
 const PostButton = ({article = {} as Article}) => {
     const theme = useContext(ThemeContext);
@@ -28,7 +30,9 @@ const PostButton = ({article = {} as Article}) => {
             onClick={() => {
                 navigate(`/post/${article.path}`, {replace: true});
             }}
-        >{article.title}</button>
+        >
+            {article.title}
+        </button>
     );
 };
 
@@ -49,11 +53,77 @@ const PostDate = ({date = {} as Date}) => {
     );
 };
 
+const loadingAnimation = keyframes({
+    '0%': {
+        opacity: 0
+    },
+    '50%': {
+        opacity: 1
+    },
+    '100%': {
+        opacity: 0
+    }
+});
+
+const Loading = () => {
+    const theme = useContext(ThemeContext);
+
+    return (
+        <div css={{
+            fontWeight: 'bold',
+            color: theme.defaultColor
+        }}>
+            Loading...&nbsp;
+            <Icon css={{
+                animation: `${loadingAnimation} 0.5s infinite`
+            }} definition={faClock}/>
+        </div>
+    );
+};
+
+function getTextFromHTML(html: string) {
+    const element = document.createElement('div');
+    element.innerHTML = html;
+    return element.innerText;
+}
+
+function getAbbreviation(value: string, maxLength: number) {
+    if (value.length <= maxLength) {
+        return value;
+    } else {
+        return value.substr(0, maxLength) + '...';
+    }
+}
+
+const PostPart = ({article = {} as Article}) => {
+    const theme = useContext(ThemeContext);
+    const [htmlPart, setHTMLPart] = useState<string | null>(null);
+
+    useEffect(() => {
+        article.load().then(result => {
+            setTimeout(() => {
+                setHTMLPart(getAbbreviation(getTextFromHTML(result.default), 100));
+            }, 2000); // TODO: Remove setTimeout() after testing.
+        }).catch(() => {
+            setHTMLPart('Failed to load the article!');
+        });
+    });
+
+    return (
+        <div css={{
+            color: theme.defaultColor
+        }}>
+            {(htmlPart === null) ? <Loading/> : htmlPart}
+        </div>
+    );
+};
+
 const Category = ({category = ''}) => {
     const theme = useContext(ThemeContext);
 
     return (
         <div css={{
+            marginTop: '0.5rem',
             marginBottom: '1rem',
             color: theme.defaultColor
         }}>
@@ -78,9 +148,7 @@ export const Preview = ({articles = [] as Article[]}) => {
     const theme = useContext(ThemeContext);
 
     return (
-        <div css={{
-            marginTop: '1rem'
-        }}>
+        <div>
             {articles.map(article => (
                 <div css={{
                     paddingBottom: '0.5rem',
@@ -89,6 +157,7 @@ export const Preview = ({articles = [] as Article[]}) => {
                 }}>
                     <PostButton article={article}/>
                     <PostDate date={article.date}/>
+                    <PostPart article={article}/>
                     <Category category={article.category}/>
                 </div>
             ))}
