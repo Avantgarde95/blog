@@ -49,7 +49,7 @@ const PostDate = ({date = {} as Date}) => {
             fontSize: '1rem',
             color: theme.defaultColor
         }}>
-            {year}:{month}:{day}
+            {year}.{month}.{day}
         </span>
     );
 };

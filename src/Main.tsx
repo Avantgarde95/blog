@@ -10,6 +10,7 @@ import {PostPage} from './PostPage';
 import {ThemeProvider} from './Theme';
 import {categories, posts} from './Posts';
 import {PreviewPage} from './PreviewPage';
+import {CategoryWidget} from './CategoryWidget';
 
 const DefaultPage = () => <PreviewPage articles={posts}/>;
 
@@ -59,6 +60,7 @@ const App = () => (
                 padding: '1.5rem'
             }}>
                 <Header/>
+                <CategoryWidget categories={categories} posts={posts}/>
                 <AppRoutes/>
             </div>
         </ThemeProvider>
