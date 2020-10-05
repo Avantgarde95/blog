@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import {jsx} from '@emotion/core';
-import {useContext} from 'react';
+import {Fragment, useContext, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {faSearch} from '@fortawesome/free-solid-svg-icons/faSearch';
 import {ThemeContext} from './Theme';
@@ -35,51 +35,52 @@ const TitleButton = () => {
     );
 };
 
-const SearchInput = () => {
+// TODO: Fix the bug - The webpage freezes when we click the search button multiple times.
+const Search = () => {
     const theme = useContext(ThemeContext);
+    const [query, setQuery] = useState('');
+    const navigate = useNavigate();
 
     return (
-        <input
-            css={{
-                fontFamily: 'inherit',
-                fontSize: '1rem',
-                color: theme.defaultColor,
-                backgroundColor: 'rgba(0, 0, 0, 0)',
-                outline: 'none',
-                border: `solid 1px ${theme.darkColor}`,
-                borderRadius: 0,
-                '&:hover, &:active, &:focus': {
-                    border: `solid 1px ${theme.lightColor}`,
-                }
-            }}
-            type={'text'}
-            placeholder={'Search'}
-        />
-    );
-};
-
-const SearchButton = () => {
-    const theme = useContext(ThemeContext);
-
-    return (
-        <button
-            css={{
-                cursor: 'pointer',
-                fontFamily: 'inherit',
-                fontSize: '1rem',
-                border: 'none',
-                color: theme.darkColor,
-                backgroundColor: 'rgba(0, 0, 0, 0)',
-                '&:hover, &:active, &:focus': {
-                    color: theme.lightColor
-                }
-            }}
-            onClick={() => {
-
-            }}
-        >
-            <Icon definition={faSearch}/>
-        </button>
+        <Fragment>
+            <input
+                css={{
+                    fontFamily: 'inherit',
+                    fontSize: '1rem',
+                    color: theme.defaultColor,
+                    backgroundColor: 'rgba(0, 0, 0, 0)',
+                    outline: 'none',
+                    border: `solid 1px ${theme.darkColor}`,
+                    borderRadius: 0,
+                    '&:hover, &:active, &:focus': {
+                        border: `solid 1px ${theme.lightColor}`,
+                    }
+                }}
+                type={'text'}
+                placeholder={'Search'}
+                onChange={event => {
+                    setQuery(event.target.value);
+                }}
+            />
+            <button
+                css={{
+                    cursor: 'pointer',
+                    fontFamily: 'inherit',
+                    fontSize: '1rem',
+                    border: 'none',
+                    color: theme.darkColor,
+                    backgroundColor: 'rgba(0, 0, 0, 0)',
+                    '&:hover, &:active, &:focus': {
+                        color: theme.lightColor
+                    }
+                }}
+                onClick={() => {
+                    navigate(`/search/${query}`, {replace: true});
+                }}
+            >
+                <Icon definition={faSearch}/>
+            </button>
+        </Fragment>
     );
 };
 
@@ -112,8 +113,7 @@ export const Header = () => {
                     textAlign: 'right'
                 }
             }}>
-                <SearchInput/>
-                <SearchButton/>
+                <Search/>
             </div>
         </div>
     );
