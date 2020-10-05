@@ -5,10 +5,10 @@ import {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
-import {Article} from './Articles';
+import {Post} from './Posts';
 import {Icon} from './Icon';
 
-const PostButton = ({article = {} as Article}) => {
+const TitleButton = ({article = {} as Post}) => {
     const theme = useContext(ThemeContext);
     const navigate = useNavigate();
 
@@ -96,15 +96,15 @@ function getAbbreviation(value: string, maxLength: number) {
     }
 }
 
-const PostPart = ({article = {} as Article}) => {
+const Preview = ({article = {} as Post}) => {
     const theme = useContext(ThemeContext);
-    const [htmlPart, setHTMLPart] = useState<string | null>(null);
+    const [preview, setPreview] = useState<string | null>(null);
 
     useEffect(() => {
         article.load().then(result => {
-            setHTMLPart(getAbbreviation(getTextFromHTML(result.default), 100));
+            setPreview(getAbbreviation(getTextFromHTML(result.default), 100));
         }).catch(() => {
-            setHTMLPart('Failed to load the article!');
+            setPreview('Failed to load the article!');
         });
     });
 
@@ -112,7 +112,7 @@ const PostPart = ({article = {} as Article}) => {
         <div css={{
             color: theme.defaultColor
         }}>
-            {(htmlPart === null) ? <Loading/> : htmlPart}
+            {(preview === null) ? <Loading/> : preview}
         </div>
     );
 };
@@ -152,7 +152,7 @@ const Category = ({category = ''}) => {
     );
 };
 
-export const Preview = ({articles = [] as Article[]}) => {
+export const PreviewPage = ({articles = [] as Post[]}) => {
     const theme = useContext(ThemeContext);
 
     return (
@@ -163,9 +163,9 @@ export const Preview = ({articles = [] as Article[]}) => {
                     marginBottom: '1.5rem',
                     borderBottom: `1px solid ${theme.darkColor}`,
                 }}>
-                    <PostButton article={article}/>
+                    <TitleButton article={article}/>
                     <PostDate date={article.date}/>
-                    <PostPart article={article}/>
+                    <Preview article={article}/>
                     <Category category={article.category}/>
                 </div>
             ))}

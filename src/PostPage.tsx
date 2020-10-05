@@ -7,7 +7,7 @@ import {DiscussionEmbed} from 'disqus-react';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
-import {Article} from './Articles';
+import {Post} from './Posts';
 
 const loadingAnimation = keyframes({
     '0%': {
@@ -41,7 +41,7 @@ const Loading = () => {
     );
 };
 
-const ArticleHTML = ({title = '', html = ''}) => {
+const Content = ({title = '', html = ''}) => {
     const theme = useContext(ThemeContext);
 
     return (
@@ -114,7 +114,7 @@ const Category = ({category = ''}) => {
     );
 };
 
-export const Post = ({article = {} as Article}) => {
+export const PostPage = ({article = {} as Post}) => {
     const [html, setHTML] = useState<string | null>(null);
 
     useEffect(() => {
@@ -127,7 +127,7 @@ export const Post = ({article = {} as Article}) => {
 
     return (
         <div>
-            {(html === null) ? <Loading/> : <ArticleHTML title={article.title} html={html}/>}
+            {(html === null) ? <Loading/> : <Content title={article.title} html={html}/>}
             <Category category={article.category}/>
             <DiscussionEmbed shortname={'Avantgarde95'} config={{
                 url: `https://avantgarde95.github.io/blog/${article.path}`,
