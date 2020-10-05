@@ -35,7 +35,6 @@ module.exports = (env, argv) => {
             extensions: [
                 '.ts', '.tsx', '.js',
                 '.png', '.jpg', '.svg',
-                '.css',
                 '.md'
             ]
         },
@@ -48,10 +47,6 @@ module.exports = (env, argv) => {
                 {
                     test: /\.(png|jpg|svg)$/,
                     use: {loader: 'url-loader', options: {esModule: false, limit: 2048}}
-                },
-                {
-                    test: /\.css$/,
-                    use: [{loader: 'style-loader'}, {loader: 'css-loader'}]
                 },
                 {
                     test: /\.md$/,

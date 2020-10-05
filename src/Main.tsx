@@ -12,8 +12,6 @@ import {ThemeProvider} from './Theme';
 import {articles, categories} from './Articles';
 import {Preview} from './Preview';
 
-require('highlight.js/styles/monokai-sublime');
-
 const Default = () => <Preview articles={articles}/>;
 
 const AppRoutes = () => useRoutes([
