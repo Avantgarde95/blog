@@ -11,6 +11,7 @@ import {ThemeProvider} from './Theme';
 import {categories, posts} from './Posts';
 import {PreviewPage} from './PreviewPage';
 import {CategoryWidget} from './CategoryWidget';
+import {SearchPage} from './SearchPage';
 
 const DefaultPage = () => <PreviewPage posts={posts}/>;
 
@@ -41,6 +42,10 @@ const AppRoutes = () => useRoutes([
             {path: '/', element: <DefaultPage/>},
             ...postPaths
         ]
+    },
+    {
+        path: 'search/:query',
+        element: <SearchPage posts={posts}/>
     },
     {path: '*', element: <div>Wrong URL!</div>}
 ]);
