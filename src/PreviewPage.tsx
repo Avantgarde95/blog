@@ -157,18 +157,22 @@ export const PreviewPage = ({posts = [] as Post[]}) => {
 
     return (
         <div>
-            {posts.map(post => (
-                <div css={{
-                    paddingBottom: '0.5rem',
-                    marginBottom: '1.5rem',
-                    borderBottom: `1px solid ${theme.darkColor}`,
-                }}>
-                    <TitleButton post={post}/>
-                    <PostDate date={post.date}/>
-                    <Preview post={post}/>
-                    <Category category={post.category}/>
-                </div>
-            ))}
+            {
+                (posts.length === 0)
+                    ? <span css={{color: theme.defaultColor}}>No posts!</span>
+                    : posts.map(post => (
+                        <div css={{
+                            paddingBottom: '0.5rem',
+                            marginBottom: '1.5rem',
+                            borderBottom: `1px solid ${theme.darkColor}`,
+                        }}>
+                            <TitleButton post={post}/>
+                            <PostDate date={post.date}/>
+                            <Preview post={post}/>
+                            <Category category={post.category}/>
+                        </div>
+                    ))
+            }
         </div>
     );
 };

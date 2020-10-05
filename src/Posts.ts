@@ -22,7 +22,7 @@ export const posts: Post[] = [
         path: 'test1',
         title: 'Test1',
         date: new Date('2020-10-03'),
-        category: 'Music',
+        category: 'Computer',
         load: () => import('./post/Test1.md')
     },
     {
