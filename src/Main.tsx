@@ -12,16 +12,16 @@ import {categories, posts} from './Posts';
 import {PreviewPage} from './PreviewPage';
 import {CategoryWidget} from './CategoryWidget';
 
-const DefaultPage = () => <PreviewPage articles={posts}/>;
+const DefaultPage = () => <PreviewPage posts={posts}/>;
 
 const categoryPaths = categories.map(category => ({
     path: category.toLowerCase(),
-    element: <PreviewPage articles={posts.filter(article => article.category === category)}/>
+    element: <PreviewPage posts={posts.filter(post => post.category === category)}/>
 }));
 
-const postPaths = posts.map(article => ({
-    path: article.path,
-    element: <PostPage article={article}/>
+const postPaths = posts.map(post => ({
+    path: post.path,
+    element: <PostPage post={post}/>
 }));
 
 const AppRoutes = () => useRoutes([

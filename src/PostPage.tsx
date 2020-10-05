@@ -41,43 +41,63 @@ const Loading = () => {
     );
 };
 
-const Content = ({title = '', html = ''}) => {
+const Title = ({title = ''}) => {
     const theme = useContext(ThemeContext);
 
     return (
-        <div css={{
-            paddingBottom: '1rem',
-            marginBottom: '0.5rem',
-            borderBottom: `1px solid ${theme.darkColor}`,
+        <span css={{
             color: theme.defaultColor,
+            fontSize: '1.8rem',
+            fontWeight: 'bold'
         }}>
-            <div css={{
-                paddingBottom: '0.5rem',
+            {title}
+        </span>
+    );
+}
+
+const PostDate = ({date = {} as Date}) => {
+    const theme = useContext(ThemeContext);
+    const year = date.getFullYear().toString().padStart(4, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+
+    return (
+        <span css={{
+            marginLeft: '0.5rem',
+            fontSize: '1rem',
+            color: theme.defaultColor
+        }}>
+            {year}.{month}.{day}
+        </span>
+    );
+};
+
+const Content = ({html = ''}) => {
+    const theme = useContext(ThemeContext);
+
+    return (
+        <div
+            css={{
+                paddingBottom: '1rem',
+                marginBottom: '0.5rem',
                 borderBottom: `1px solid ${theme.darkColor}`,
-                fontSize: '1.8rem',
-                fontWeight: 'bold'
-            }}>
-                {title}
-            </div>
-            <div
-                css={{
-                    '& h1': {
-                        fontSize: '1.5rem'
-                    },
-                    '& h2': {
-                        fontSize: '1.3rem'
-                    },
-                    '& h3': {
-                        fontSize: '1rem'
-                    },
-                    '& .hljs': {
-                        border: `1px solid ${theme.darkColor}`,
-                        background: 'none'
-                    }
-                }}
-                dangerouslySetInnerHTML={{__html: html}}
-            />
-        </div>
+                color: theme.defaultColor,
+                '& h1': {
+                    fontSize: '1.5rem'
+                },
+                '& h2': {
+                    fontSize: '1.3rem'
+                },
+                '& h3': {
+                    fontSize: '1rem'
+                },
+                '& .hljs': {
+                    border: `1px solid ${theme.darkColor}`,
+                    background: 'none'
+                }
+            }}
+            dangerouslySetInnerHTML={{__html: html}}
+        />
     );
 };
 
@@ -114,25 +134,33 @@ const Category = ({category = ''}) => {
     );
 };
 
-export const PostPage = ({article = {} as Post}) => {
+export const PostPage = ({post = {} as Post}) => {
+    const theme = useContext(ThemeContext);
     const [html, setHTML] = useState<string | null>(null);
 
     useEffect(() => {
-        article.load().then(result => {
+        post.load().then(result => {
             setHTML(result.default);
         }).catch(() => {
-            setHTML('Failed to load the article!');
+            setHTML('Failed to load the post!');
         });
     });
 
     return (
         <div>
-            {(html === null) ? <Loading/> : <Content title={article.title} html={html}/>}
-            <Category category={article.category}/>
+            <div css={{
+                paddingBottom: '0.5rem',
+                borderBottom: `1px solid ${theme.darkColor}`,
+            }}>
+                <Title title={post.title}/>
+                <PostDate date={post.date}/>
+            </div>
+            {(html === null) ? <Loading/> : <Content html={html}/>}
+            <Category category={post.category}/>
             <DiscussionEmbed shortname={'Avantgarde95'} config={{
-                url: `https://avantgarde95.github.io/blog/${article.path}`,
-                identifier: article.title,
-                title: article.title
+                url: `https://avantgarde95.github.io/blog/${post.path}`,
+                identifier: post.title,
+                title: post.title
             }}/>
         </div>
     );

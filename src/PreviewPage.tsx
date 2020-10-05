@@ -8,7 +8,7 @@ import {ThemeContext} from './Theme';
 import {Post} from './Posts';
 import {Icon} from './Icon';
 
-const TitleButton = ({article = {} as Post}) => {
+const TitleButton = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
     const navigate = useNavigate();
 
@@ -29,10 +29,10 @@ const TitleButton = ({article = {} as Post}) => {
                 }
             }}
             onClick={() => {
-                navigate(`/post/${article.path}`, {replace: true});
+                navigate(`/post/${post.path}`, {replace: true});
             }}
         >
-            {article.title}
+            {post.title}
         </button>
     );
 };
@@ -96,15 +96,15 @@ function getAbbreviation(value: string, maxLength: number) {
     }
 }
 
-const Preview = ({article = {} as Post}) => {
+const Preview = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
     const [preview, setPreview] = useState<string | null>(null);
 
     useEffect(() => {
-        article.load().then(result => {
+        post.load().then(result => {
             setPreview(getAbbreviation(getTextFromHTML(result.default), 100));
         }).catch(() => {
-            setPreview('Failed to load the article!');
+            setPreview('Failed to load the post!');
         });
     });
 
@@ -152,21 +152,21 @@ const Category = ({category = ''}) => {
     );
 };
 
-export const PreviewPage = ({articles = [] as Post[]}) => {
+export const PreviewPage = ({posts = [] as Post[]}) => {
     const theme = useContext(ThemeContext);
 
     return (
         <div>
-            {articles.map(article => (
+            {posts.map(post => (
                 <div css={{
                     paddingBottom: '0.5rem',
                     marginBottom: '1.5rem',
                     borderBottom: `1px solid ${theme.darkColor}`,
                 }}>
-                    <TitleButton article={article}/>
-                    <PostDate date={article.date}/>
-                    <Preview article={article}/>
-                    <Category category={article.category}/>
+                    <TitleButton post={post}/>
+                    <PostDate date={post.date}/>
+                    <Preview post={post}/>
+                    <Category category={post.category}/>
                 </div>
             ))}
         </div>
