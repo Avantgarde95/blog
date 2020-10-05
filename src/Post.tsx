@@ -2,6 +2,7 @@
 
 import {jsx, keyframes} from '@emotion/core';
 import {useContext, useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {DiscussionEmbed} from 'disqus-react';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
@@ -82,6 +83,7 @@ const ArticleHTML = ({title = '', html = ''}) => {
 
 const Category = ({category = ''}) => {
     const theme = useContext(ThemeContext);
+    const navigate = useNavigate();
 
     return (
         <div css={{
@@ -89,18 +91,25 @@ const Category = ({category = ''}) => {
             color: theme.defaultColor
         }}>
             Category:&nbsp;
-            <a
+            <button
                 css={{
                     cursor: 'pointer',
+                    padding: '0',
+                    fontSize: '1rem',
+                    fontFamily: 'inherit',
+                    border: 'none',
                     color: theme.darkColor,
+                    backgroundColor: 'rgba(0, 0, 0, 0)',
                     '&:hover, &:active, &:focus': {
                         color: theme.lightColor
                     }
                 }}
-                href={'#'}
+                onClick={() => {
+                    navigate(`/category/${category}`, {replace: true});
+                }}
             >
                 {category}
-            </a>
+            </button>
         </div>
     );
 };

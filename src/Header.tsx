@@ -17,6 +17,7 @@ const TitleButton = () => {
                 cursor: 'pointer',
                 padding: 0,
                 fontFamily: 'inherit',
+                fontWeight: 'bold',
                 fontSize: '1.8rem',
                 border: 'none',
                 color: theme.darkColor,

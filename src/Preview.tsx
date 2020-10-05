@@ -19,6 +19,7 @@ const PostButton = ({article = {} as Article}) => {
                 padding: '0',
                 marginBottom: '0.5rem',
                 fontFamily: 'inherit',
+                fontWeight: 'bold',
                 fontSize: '1.8rem',
                 border: 'none',
                 color: theme.darkColor,
@@ -118,6 +119,7 @@ const PostPart = ({article = {} as Article}) => {
 
 const Category = ({category = ''}) => {
     const theme = useContext(ThemeContext);
+    const navigate = useNavigate();
 
     return (
         <div css={{
@@ -126,18 +128,26 @@ const Category = ({category = ''}) => {
             color: theme.defaultColor
         }}>
             Category:&nbsp;
-            <a
+
+            <button
                 css={{
                     cursor: 'pointer',
+                    padding: '0',
+                    fontSize: '1rem',
+                    fontFamily: 'inherit',
+                    border: 'none',
                     color: theme.darkColor,
+                    backgroundColor: 'rgba(0, 0, 0, 0)',
                     '&:hover, &:active, &:focus': {
                         color: theme.lightColor
                     }
                 }}
-                href={'#'}
+                onClick={() => {
+                    navigate(`/category/${category}`, {replace: true});
+                }}
             >
                 {category}
-            </a>
+            </button>
         </div>
     );
 };
