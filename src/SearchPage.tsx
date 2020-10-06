@@ -62,7 +62,7 @@ export const SearchPage = ({posts = [] as Post[]}) => {
 
             setPostsToPreview(matchingPosts);
         });
-    });
+    }, [postsToPreview]);
 
     return (postsToPreview === null) ? <Searching/> : <PreviewPage posts={postsToPreview}/>;
 };
