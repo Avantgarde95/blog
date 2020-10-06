@@ -19,24 +19,31 @@ export const posts: Post[] = [
         load: () => import('./post/Welcome.md')
     },
     {
-        path: 'test1',
-        title: 'Test1',
+        path: 'markdowntest',
+        title: 'Markdown test',
         date: new Date('2020-10-03'),
         category: 'Computer',
-        load: () => import('./post/Test1.md')
+        load: () => import('./post/MarkdownTest.md')
     },
     {
-        path: 'test2',
-        title: 'Test2',
+        path: 'myguitars',
+        title: 'My Guitars',
         date: new Date('2020-10-04'),
-        category: 'Computer',
-        load: () => import('./post/Test2.md')
+        category: 'Music',
+        load: () => import('./post/MyGuitars.md')
     },
     {
-        path: 'test3',
-        title: 'Test3',
+        path: 'busantrip',
+        title: 'Busan trip',
+        date: new Date('2020-10-05'),
+        category: 'Misc',
+        load: () => import('./post/BusanTrip.md')
+    },
+    {
+        path: 'sieve',
+        title: 'Sieve of Eratosthenes',
         date: new Date('2020-10-05'),
         category: 'Computer',
-        load: () => import('./post/Test3.md')
+        load: () => import('./post/Sieve.md')
     }
 ];
