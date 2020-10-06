@@ -106,7 +106,7 @@ const Preview = ({post = {} as Post}) => {
         }).catch(() => {
             setPreview('Failed to load the post!');
         });
-    });
+    }, [preview]);
 
     return (
         <div css={{

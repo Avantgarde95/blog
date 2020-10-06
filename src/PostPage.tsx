@@ -144,7 +144,7 @@ export const PostPage = ({post = {} as Post}) => {
         }).catch(() => {
             setHTML('Failed to load the post!');
         });
-    });
+    }, [html]);
 
     return (
         <div>
