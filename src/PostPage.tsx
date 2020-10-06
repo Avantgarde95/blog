@@ -91,6 +91,13 @@ const Content = ({html = ''}) => {
                 '& h3': {
                     fontSize: '1rem'
                 },
+                '& a': {
+                    cursor: 'pointer',
+                    color: theme.darkColor,
+                    '&:hover, &:active, &:focus': {
+                        color: theme.lightColor
+                    }
+                },
                 '& .hljs': {
                     border: `1px solid ${theme.darkColor}`,
                     background: 'none'

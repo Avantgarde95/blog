@@ -1,7 +1,7 @@
 [에라토스테네스의 체](https://ko.wikipedia.org/wiki/에라토스테네스의_체) 구현하기  
 Implementation of [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
 
-### Code
+## Code
 Python 3
 
 ```python
@@ -16,8 +16,8 @@ def getPrimes(n):
     return [p for p in range(2, n + 1) if isPrime[p - 2]]
 ```
 
-### Example
-#### Input
+## Example
+### Input
 ```python
 print(getPrimes(1))
 print(getPrimes(2))
