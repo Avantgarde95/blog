@@ -3,11 +3,12 @@
 import './Polyfill';
 
 import {jsx} from '@emotion/core';
+import {useContext} from 'react';
 import {render} from 'react-dom';
-import {BrowserRouter, Outlet, useRoutes} from 'react-router-dom';
+import {BrowserRouter, useRoutes} from 'react-router-dom';
 import {Header} from './Header';
 import {PostPage} from './PostPage';
-import {ThemeProvider} from './Theme';
+import {ThemeContext, ThemeProvider} from './Theme';
 import {categories, posts} from './Posts';
 import {PreviewPage} from './PreviewPage';
 import {CategoryWidget} from './CategoryWidget';
@@ -15,39 +16,23 @@ import {SearchPage} from './SearchPage';
 
 const DefaultPage = () => <PreviewPage posts={posts}/>;
 
-const categoryPaths = categories.map(category => ({
-    path: category.toLowerCase(),
-    element: <PreviewPage posts={posts.filter(post => post.category === category)}/>
-}));
-
-const postPaths = posts.map(post => ({
-    path: post.path,
-    element: <PostPage post={post}/>
-}));
+const NotFoundPage = () => {
+    const theme = useContext(ThemeContext);
+    return <div css={{color: theme.defaultColor}}>Wrong URL!</div>;
+};
 
 const AppRoutes = () => useRoutes([
     {path: '/', element: <DefaultPage/>},
-    {
-        path: 'category',
-        element: <Outlet/>,
-        children: [
-            {path: '/', element: <DefaultPage/>},
-            ...categoryPaths
-        ]
-    },
-    {
-        path: 'post',
-        element: <Outlet/>,
-        children: [
-            {path: '/', element: <DefaultPage/>},
-            ...postPaths
-        ]
-    },
-    {
-        path: 'search/:query',
-        element: <SearchPage posts={posts}/>
-    },
-    {path: '*', element: <div>Wrong URL!</div>}
+    ...posts.map(post => ({
+        path: `post/${post.path}`,
+        element: <PostPage post={post}/>
+    })),
+    ...categories.map(category => ({
+        path: `category/${category.toLowerCase()}`,
+        element: <PreviewPage posts={posts.filter(post => post.category === category)}/>
+    })),
+    {path: 'search/:query', element: <SearchPage posts={posts}/>},
+    {path: '*', element: <NotFoundPage/>}
 ]);
 
 const App = () => (
