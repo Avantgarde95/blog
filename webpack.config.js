@@ -4,6 +4,12 @@ const {Renderer} = require('marked');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+function parseYouTubeURL(url) {
+    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[7].length === 11) ? match[7] : null;
+}
+
 class PostRenderer extends Renderer {
     constructor(options) {
         super(options);
@@ -22,8 +28,14 @@ class PostRenderer extends Renderer {
     }
 
     link(href, title, text) {
-        const out = super.link(href, title, text);
-        return '<a target="_blank" rel="noopener noreferrer" ' + out.substr(2);
+        const youTubeID = parseYouTubeURL(href);
+
+        if (youTubeID === null) {
+            const out = super.link(href, title, text);
+            return `<a target="_blank" rel="noopener noreferrer" ${out.substr(2)}`;
+        } else {
+            return `<iframe width="560" height="315" frameBorder="0" allowFullScreen="true" src="https://www.youtube.com/embed/${youTubeID}"></iframe>`;
+        }
     }
 }
 
