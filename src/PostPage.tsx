@@ -98,6 +98,23 @@ const Content = ({html = ''}) => {
                         color: theme.lightColor
                     }
                 },
+                '& table': {
+                    borderCollapse: 'collapse',
+                    border: `1px solid ${theme.darkColor}`,
+                    '& th, & td': {
+                        padding: '0.5rem',
+                        border: `1px solid ${theme.darkColor}`
+                    }
+                },
+                '& img': {
+                    border: `1px solid ${theme.darkColor}`
+                },
+                '& iframe': {
+                    border: `1px solid ${theme.darkColor}`,
+                    '&:hover, &:active, &:focus': {
+                        border: `1px solid ${theme.lightColor}`
+                    }
+                },
                 '& .hljs': {
                     border: `1px solid ${theme.darkColor}`,
                     background: 'none'
