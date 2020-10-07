@@ -35,14 +35,19 @@ class PostRenderer extends Renderer {
             return `<a target="_blank" rel="noopener noreferrer" ${out.substr(2)}`;
         } else {
             return (
-                '<div class="YouTubeOuterContainer">'
-                + '<div class="YouTubeInnerContainer">'
-                + `<iframe class="YouTube" width="560" height="315" frameBorder="0" allowFullScreen="true" src="https://www.youtube.com/embed/${youTubeID}">`
+                '<div class="PostYouTubeOuterContainer">'
+                + '<div class="PostYouTubeInnerContainer">'
+                + `<iframe class="PostYouTube" width="560" height="315" frameBorder="0" allowFullScreen="true" src="https://www.youtube.com/embed/${youTubeID}">`
                 + '</iframe>'
                 + '</div>'
                 + '</div>'
             );
         }
+    }
+
+    image(href, title, text) {
+        const out = super.image(href, title, text);
+        return `<img class="PostImage"${out.substr(4)}`;
     }
 }
 

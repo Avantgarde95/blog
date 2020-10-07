@@ -1,13 +1,15 @@
 /** @jsx jsx */
 
 import {jsx, keyframes} from '@emotion/core';
-import {useContext, useEffect, useState} from 'react';
+import {createRef, useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {DiscussionEmbed} from 'disqus-react';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
 import {Post} from './Posts';
+
+const Luminous = require('luminous-lightbox').Luminous;
 
 const loadingAnimation = keyframes({
     '0%': {
@@ -74,6 +76,19 @@ const PostDate = ({date = {} as Date}) => {
 
 const Content = ({html = ''}) => {
     const theme = useContext(ThemeContext);
+    const ref = createRef<HTMLDivElement>();
+
+    useEffect(() => {
+        const root = ref.current;
+
+        if (root !== null) {
+            const images = root.querySelectorAll('.PostImage');
+
+            for (let i = 0; i < images.length; i++) {
+                new Luminous(images[i], {sourceAttribute: 'src'});
+            }
+        }
+    });
 
     return (
         <div
@@ -106,20 +121,24 @@ const Content = ({html = ''}) => {
                         border: `1px solid ${theme.darkColor}`
                     }
                 },
-                '& img': {
+                '& .PostImage': {
+                    cursor: 'zoom-in',
                     maxWidth: '100%',
-                    border: `1px solid ${theme.darkColor}`
+                    border: `1px solid ${theme.darkColor}`,
+                    '&:hover, &:active, &:focus': {
+                        border: `1px solid ${theme.lightColor}`
+                    }
                 },
-                '& .YouTubeOuterContainer': {
+                '& .PostYouTubeOuterContainer': {
                     width: '100%',
                     maxWidth: '560px'
                 },
-                '& .YouTubeInnerContainer': {
+                '& .PostYouTubeInnerContainer': {
                     position: 'relative',
                     height: 0,
                     paddingBottom: '56.25%'
                 },
-                '& .YouTube': {
+                '& .PostYouTube': {
                     position: 'absolute',
                     top: 0,
                     left: 0,
@@ -135,6 +154,7 @@ const Content = ({html = ''}) => {
                     background: 'none'
                 }
             }}
+            ref={ref}
             dangerouslySetInnerHTML={{__html: html}}
         />
     );
