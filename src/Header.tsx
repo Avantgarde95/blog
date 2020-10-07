@@ -35,7 +35,6 @@ const TitleButton = () => {
     );
 };
 
-// TODO: Fix the bug - The webpage freezes when we click the search button multiple times.
 const Search = () => {
     const theme = useContext(ThemeContext);
     const [query, setQuery] = useState('');
@@ -106,7 +105,8 @@ export const Header = () => {
             <div css={{
                 boxSizing: 'border-box',
                 display: 'block',
-                marginBottom: '2rem',
+                //marginBottom: '2rem',
+                marginBottom: '1rem',
                 [onWideScreen]: {
                     display: 'inline-block',
                     width: '50%',
@@ -114,6 +114,14 @@ export const Header = () => {
                 }
             }}>
                 <Search/>
+            </div>
+            <div css={{
+                color: theme.defaultColor,
+                marginBottom: '1rem'
+            }}>
+                블로그 - 아직 개발중입니다!
+                <br/>
+                Blog - Still in development!
             </div>
         </div>
     );
