@@ -34,7 +34,14 @@ class PostRenderer extends Renderer {
             const out = super.link(href, title, text);
             return `<a target="_blank" rel="noopener noreferrer" ${out.substr(2)}`;
         } else {
-            return `<iframe width="560" height="315" frameBorder="0" allowFullScreen="true" src="https://www.youtube.com/embed/${youTubeID}"></iframe>`;
+            return (
+                '<div class="YouTubeOuterContainer">'
+                + '<div class="YouTubeInnerContainer">'
+                + `<iframe class="YouTube" width="560" height="315" frameBorder="0" allowFullScreen="true" src="https://www.youtube.com/embed/${youTubeID}">`
+                + '</iframe>'
+                + '</div>'
+                + '</div>'
+            );
         }
     }
 }

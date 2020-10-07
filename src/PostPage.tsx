@@ -107,9 +107,24 @@ const Content = ({html = ''}) => {
                     }
                 },
                 '& img': {
+                    maxWidth: '100%',
                     border: `1px solid ${theme.darkColor}`
                 },
-                '& iframe': {
+                '& .YouTubeOuterContainer': {
+                    width: '100%',
+                    maxWidth: '560px'
+                },
+                '& .YouTubeInnerContainer': {
+                    position: 'relative',
+                    height: 0,
+                    paddingBottom: '56.25%'
+                },
+                '& .YouTube': {
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
                     border: `1px solid ${theme.darkColor}`,
                     '&:hover, &:active, &:focus': {
                         border: `1px solid ${theme.lightColor}`
