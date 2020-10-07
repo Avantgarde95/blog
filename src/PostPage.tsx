@@ -8,6 +8,7 @@ import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
 import {Post} from './Posts';
+import {PathContext} from './Path';
 
 const Luminous = require('luminous-lightbox').Luminous;
 
@@ -162,6 +163,7 @@ const Content = ({html = ''}) => {
 
 const Category = ({category = ''}) => {
     const theme = useContext(ThemeContext);
+    const {navigateBasename} = useContext(PathContext);
     const navigate = useNavigate();
 
     return (
@@ -184,7 +186,7 @@ const Category = ({category = ''}) => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`/category/${category.toLowerCase()}`, {replace: true});
+                    navigate(`${navigateBasename}/category/${category.toLowerCase()}`, {replace: true});
                 }}
             >
                 {category}

@@ -5,9 +5,11 @@ import {useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Category, Post} from './Posts';
 import {ThemeContext} from './Theme';
+import {PathContext} from './Path';
 
 const Category = ({category = {} as Category, postCount = 0}) => {
     const theme = useContext(ThemeContext);
+    const {navigateBasename} = useContext(PathContext);
     const navigate = useNavigate();
 
     return (
@@ -27,7 +29,7 @@ const Category = ({category = {} as Category, postCount = 0}) => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`/category/${category}`, {replace: true});
+                    navigate(`${navigateBasename}/category/${category}`, {replace: true});
                 }}
             >
                 {category}

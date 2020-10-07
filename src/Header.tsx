@@ -6,9 +6,11 @@ import {useNavigate} from 'react-router-dom';
 import {faSearch} from '@fortawesome/free-solid-svg-icons/faSearch';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
+import {PathContext} from './Path';
 
 const TitleButton = () => {
     const theme = useContext(ThemeContext);
+    const {navigateBasename} = useContext(PathContext);
     const navigate = useNavigate();
 
     return (
@@ -27,7 +29,7 @@ const TitleButton = () => {
                 }
             }}
             onClick={() => {
-                navigate('/', {replace: true});
+                navigate(`${navigateBasename}/`, {replace: true});
             }}
         >
             Hunmin Park (Avantgarde95)
@@ -37,6 +39,7 @@ const TitleButton = () => {
 
 const Search = () => {
     const theme = useContext(ThemeContext);
+    const {navigateBasename} = useContext(PathContext);
     const [query, setQuery] = useState('');
     const navigate = useNavigate();
 
@@ -74,7 +77,7 @@ const Search = () => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`/search/${query}`, {replace: true});
+                    navigate(`${navigateBasename}/search/${query}`, {replace: true});
                 }}
             >
                 <Icon definition={faSearch}/>

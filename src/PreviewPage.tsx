@@ -7,9 +7,11 @@ import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
 import {Post} from './Posts';
 import {Icon} from './Icon';
+import {PathContext} from './Path';
 
 const TitleButton = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
+    const {navigateBasename} = useContext(PathContext);
     const navigate = useNavigate();
 
     return (
@@ -29,7 +31,7 @@ const TitleButton = ({post = {} as Post}) => {
                 }
             }}
             onClick={() => {
-                navigate(`/post/${post.path}`, {replace: true});
+                navigate(`${navigateBasename}/post/${post.path}`, {replace: true});
             }}
         >
             {post.title}
@@ -119,6 +121,7 @@ const Preview = ({post = {} as Post}) => {
 
 const Category = ({category = ''}) => {
     const theme = useContext(ThemeContext);
+    const {navigateBasename} = useContext(PathContext);
     const navigate = useNavigate();
 
     return (
@@ -143,7 +146,7 @@ const Category = ({category = ''}) => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`/category/${category.toLowerCase()}`, {replace: true});
+                    navigate(`${navigateBasename}/category/${category.toLowerCase()}`, {replace: true});
                 }}
             >
                 {category}
