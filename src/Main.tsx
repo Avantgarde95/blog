@@ -42,7 +42,7 @@ const AppRoutes = () => {
 
 const App = () => (
     <BrowserRouter>
-        <PathProvider basename={'blog'}>
+        <PathProvider basename={null}>
             <ThemeProvider
                 defaultColor={'#ffffff'}
                 lightColor={'#00f6ff'}
