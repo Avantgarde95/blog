@@ -3,11 +3,11 @@
 import {jsx} from '@emotion/core';
 import {useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {Category, Post} from './Posts';
+import {Post} from './Posts';
 import {ThemeContext} from './Theme';
 import {PathContext} from './Path';
 
-const Category = ({category = {} as Category, postCount = 0}) => {
+const RecentPost = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
     const {basename} = useContext(PathContext);
     const navigate = useNavigate();
@@ -29,18 +29,20 @@ const Category = ({category = {} as Category, postCount = 0}) => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`${basename}category/${category}`, {replace: true});
+                    navigate(`${basename}post/${post.path}`, {replace: true});
                 }}
             >
-                {category}
+                {post.title}
             </button>
-            &nbsp;({postCount})
         </div>
     );
 };
 
-export const CategoryWidget = ({categories = [] as readonly Category[], posts = [] as Post[]}) => {
+export const RecentPostsWidget = ({posts = [] as Post[]}) => {
     const theme = useContext(ThemeContext);
+    const sortedPosts = posts.slice(0);
+
+    sortedPosts.sort((post1, post2) => (-post1.date.getTime() + post2.date.getTime()));
 
     return (
         <div css={{
@@ -52,14 +54,9 @@ export const CategoryWidget = ({categories = [] as readonly Category[], posts = 
             <div css={{
                 fontWeight: 'bold'
             }}>
-                Category
+                Recent posts
             </div>
-            {categories.map(category => (
-                <Category
-                    category={category}
-                    postCount={posts.filter(post => post.category === category).length}
-                />
-            ))}
+            {sortedPosts.slice(0, 3).map(post => <RecentPost post={post}/>)}
         </div>
     );
-}
+};

@@ -14,6 +14,7 @@ import {PreviewPage} from './PreviewPage';
 import {CategoryWidget} from './CategoryWidget';
 import {SearchPage} from './SearchPage';
 import {PathContext, PathProvider} from './Path';
+import {RecentPostsWidget} from './RecentPostsWidget';
 
 const DefaultPage = () => <PreviewPage posts={posts}/>;
 
@@ -57,6 +58,7 @@ const App = () => (
                 }}>
                     <Header/>
                     <CategoryWidget categories={categories} posts={posts}/>
+                    <RecentPostsWidget posts={posts}/>
                     <AppRoutes/>
                 </div>
             </ThemeProvider>
