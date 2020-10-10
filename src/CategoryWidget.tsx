@@ -9,7 +9,7 @@ import {PathContext} from './Path';
 
 const Category = ({category = {} as Category, postCount = 0}) => {
     const theme = useContext(ThemeContext);
-    const {navigateBasename} = useContext(PathContext);
+    const {basename} = useContext(PathContext);
     const navigate = useNavigate();
 
     return (
@@ -29,7 +29,7 @@ const Category = ({category = {} as Category, postCount = 0}) => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`${navigateBasename}/category/${category}`, {replace: true});
+                    navigate(`${basename}category/${category}`, {replace: true});
                 }}
             >
                 {category}

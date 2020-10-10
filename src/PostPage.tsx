@@ -163,7 +163,7 @@ const Content = ({html = ''}) => {
 
 const Category = ({category = ''}) => {
     const theme = useContext(ThemeContext);
-    const {navigateBasename} = useContext(PathContext);
+    const {basename} = useContext(PathContext);
     const navigate = useNavigate();
 
     return (
@@ -186,7 +186,7 @@ const Category = ({category = ''}) => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`${navigateBasename}/category/${category.toLowerCase()}`, {replace: true});
+                    navigate(`${basename}category/${category.toLowerCase()}`, {replace: true});
                 }}
             >
                 {category}

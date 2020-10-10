@@ -10,7 +10,7 @@ import {PathContext} from './Path';
 
 const TitleButton = () => {
     const theme = useContext(ThemeContext);
-    const {navigateBasename} = useContext(PathContext);
+    const {basename} = useContext(PathContext);
     const navigate = useNavigate();
 
     return (
@@ -29,7 +29,7 @@ const TitleButton = () => {
                 }
             }}
             onClick={() => {
-                navigate(`${navigateBasename}/`, {replace: true});
+                navigate(basename, {replace: true});
             }}
         >
             Hunmin Park (Avantgarde95)
@@ -39,7 +39,7 @@ const TitleButton = () => {
 
 const Search = () => {
     const theme = useContext(ThemeContext);
-    const {navigateBasename} = useContext(PathContext);
+    const {basename} = useContext(PathContext);
     const [query, setQuery] = useState('');
     const navigate = useNavigate();
 
@@ -77,7 +77,7 @@ const Search = () => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`${navigateBasename}/search/${query}`, {replace: true});
+                    navigate(`${basename}search/${query}`, {replace: true});
                 }}
             >
                 <Icon definition={faSearch}/>

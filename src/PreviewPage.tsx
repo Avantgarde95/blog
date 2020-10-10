@@ -11,7 +11,7 @@ import {PathContext} from './Path';
 
 const TitleButton = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
-    const {navigateBasename} = useContext(PathContext);
+    const {basename} = useContext(PathContext);
     const navigate = useNavigate();
 
     return (
@@ -31,7 +31,7 @@ const TitleButton = ({post = {} as Post}) => {
                 }
             }}
             onClick={() => {
-                navigate(`${navigateBasename}/post/${post.path}`, {replace: true});
+                navigate(`${basename}post/${post.path}`, {replace: true});
             }}
         >
             {post.title}
@@ -121,7 +121,7 @@ const Preview = ({post = {} as Post}) => {
 
 const Category = ({category = ''}) => {
     const theme = useContext(ThemeContext);
-    const {navigateBasename} = useContext(PathContext);
+    const {basename} = useContext(PathContext);
     const navigate = useNavigate();
 
     return (
@@ -146,7 +146,7 @@ const Category = ({category = ''}) => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`${navigateBasename}/category/${category.toLowerCase()}`, {replace: true});
+                    navigate(`${basename}category/${category.toLowerCase()}`, {replace: true});
                 }}
             >
                 {category}

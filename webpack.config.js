@@ -111,7 +111,8 @@ module.exports = (env, argv) => {
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
                 template: getAbsolutePath(srcDir, 'index.html'),
-                filename: getAbsolutePath('index.html')
+                filename: getAbsolutePath('index.html'),
+                base: isDebugMode ? '/' : '/blog/'
             })
         ]
     };

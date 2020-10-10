@@ -23,7 +23,7 @@ const NotFoundPage = () => {
 };
 
 const AppRoutes = () => {
-    const {routesBasename} = useContext(PathContext);
+    const {basename} = useContext(PathContext);
 
     return useRoutes([
         {path: '/', element: <DefaultPage/>},
@@ -37,12 +37,12 @@ const AppRoutes = () => {
         })),
         {path: 'search/:query', element: <SearchPage posts={posts}/>},
         {path: '*', element: <NotFoundPage/>}
-    ], routesBasename);
+    ], basename);
 }
 
 const App = () => (
     <BrowserRouter>
-        <PathProvider basename={'blog'}>
+        <PathProvider basename={document.getElementsByTagName('base')[0].getAttribute('href')!}>
             <ThemeProvider
                 defaultColor={'#ffffff'}
                 lightColor={'#00f6ff'}
