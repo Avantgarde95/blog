@@ -21,6 +21,7 @@ const TitleButton = () => {
                 fontFamily: 'inherit',
                 fontWeight: 'bold',
                 fontSize: '1.8rem',
+                textAlign: 'left',
                 border: 'none',
                 color: theme.darkColor,
                 backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -86,6 +87,38 @@ const Search = () => {
     );
 };
 
+const sites = [
+    {name: 'Homepage', url: 'https://avantgarde95.github.io/'},
+    {name: 'Code', url: 'https://github.com/Avantgarde95/blog'}
+];
+
+const SiteLinks = () => {
+    const theme = useContext(ThemeContext);
+
+    return (
+        <span>
+            {sites.map(({name, url}) => (
+                <a
+                    css={{
+                        cursor: 'pointer',
+                        fontFamily: 'inherit',
+                        color: theme.darkColor,
+                        marginRight: '1rem',
+                        '&:hover, &:active, &:focus': {
+                            color: theme.lightColor
+                        }
+                    }}
+                    href={url}
+                    target={'_blank'}
+                    rel={'noopener noreferrer'}
+                >
+                    {name}
+                </a>
+            ))}
+        </span>
+    );
+};
+
 export const Header = () => {
     const theme = useContext(ThemeContext);
     const onWideScreen = '@media (min-width: 769px)';
@@ -108,7 +141,6 @@ export const Header = () => {
             <div css={{
                 boxSizing: 'border-box',
                 display: 'block',
-                //marginBottom: '2rem',
                 marginBottom: '1rem',
                 [onWideScreen]: {
                     display: 'inline-block',
@@ -117,6 +149,11 @@ export const Header = () => {
                 }
             }}>
                 <Search/>
+            </div>
+            <div css={{
+                marginBottom: '1rem'
+            }}>
+                <SiteLinks/>
             </div>
             <div css={{
                 color: theme.defaultColor,
