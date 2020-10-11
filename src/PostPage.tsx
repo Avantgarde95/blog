@@ -185,6 +185,7 @@ const Category = ({category = ''}) => {
                         color: theme.lightColor
                     }
                 }}
+                title={category}
                 onClick={() => {
                     navigate(`${basename}category/${category.toLowerCase()}`);
                 }}

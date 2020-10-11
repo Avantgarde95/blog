@@ -28,6 +28,7 @@ const Category = ({category = {} as Category, postCount = 0}) => {
                         color: theme.lightColor
                     }
                 }}
+                title={category}
                 onClick={() => {
                     navigate(`${basename}category/${category}`);
                 }}

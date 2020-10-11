@@ -30,6 +30,7 @@ const TitleButton = ({post = {} as Post}) => {
                     color: theme.lightColor
                 }
             }}
+            title={post.title}
             onClick={() => {
                 navigate(`${basename}post/${post.path}`);
             }}
@@ -145,6 +146,7 @@ const Category = ({category = ''}) => {
                         color: theme.lightColor
                     }
                 }}
+                title={category}
                 onClick={() => {
                     navigate(`${basename}category/${category.toLowerCase()}`);
                 }}

@@ -28,6 +28,7 @@ const RecentPost = ({post = {} as Post}) => {
                         color: theme.lightColor
                     }
                 }}
+                title={post.title}
                 onClick={() => {
                     navigate(`${basename}post/${post.path}`);
                 }}

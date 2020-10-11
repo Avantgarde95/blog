@@ -29,6 +29,7 @@ const TitleButton = () => {
                     color: theme.lightColor
                 }
             }}
+            title={'Home'}
             onClick={() => {
                 navigate(basename);
             }}
@@ -82,6 +83,7 @@ const Search = () => {
                         color: theme.lightColor
                     }
                 }}
+                title={`Search ${query}`}
                 onClick={() => {
                     navigate(`${basename}search/${query}`);
                 }}
@@ -113,6 +115,7 @@ const SiteLinks = () => {
                             color: theme.lightColor
                         }
                     }}
+                    title={name}
                     href={url}
                     target={'_blank'}
                     rel={'noopener noreferrer'}
