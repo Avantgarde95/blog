@@ -64,6 +64,11 @@ const Search = () => {
                 onChange={event => {
                     setQuery(event.target.value);
                 }}
+                onKeyPress={event => {
+                    if (event.key === 'Enter') {
+                        navigate(`${basename}search/${query}`);
+                    }
+                }}
             />
             <button
                 css={{
