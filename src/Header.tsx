@@ -29,7 +29,7 @@ const TitleButton = () => {
                 }
             }}
             onClick={() => {
-                navigate(basename, {replace: true});
+                navigate(basename);
             }}
         >
             Hunmin Park (Avantgarde95)
@@ -77,7 +77,7 @@ const Search = () => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`${basename}search/${query}`, {replace: true});
+                    navigate(`${basename}search/${query}`);
                 }}
             >
                 <Icon definition={faSearch}/>

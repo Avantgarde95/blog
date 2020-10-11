@@ -186,7 +186,7 @@ const Category = ({category = ''}) => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`${basename}category/${category.toLowerCase()}`, {replace: true});
+                    navigate(`${basename}category/${category.toLowerCase()}`);
                 }}
             >
                 {category}

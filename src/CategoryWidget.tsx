@@ -29,7 +29,7 @@ const Category = ({category = {} as Category, postCount = 0}) => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`${basename}category/${category}`, {replace: true});
+                    navigate(`${basename}category/${category}`);
                 }}
             >
                 {category}

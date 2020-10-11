@@ -31,7 +31,7 @@ const TitleButton = ({post = {} as Post}) => {
                 }
             }}
             onClick={() => {
-                navigate(`${basename}post/${post.path}`, {replace: true});
+                navigate(`${basename}post/${post.path}`);
             }}
         >
             {post.title}
@@ -146,7 +146,7 @@ const Category = ({category = ''}) => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`${basename}category/${category.toLowerCase()}`, {replace: true});
+                    navigate(`${basename}category/${category.toLowerCase()}`);
                 }}
             >
                 {category}

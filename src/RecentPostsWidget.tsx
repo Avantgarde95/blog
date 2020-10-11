@@ -29,7 +29,7 @@ const RecentPost = ({post = {} as Post}) => {
                     }
                 }}
                 onClick={() => {
-                    navigate(`${basename}post/${post.path}`, {replace: true});
+                    navigate(`${basename}post/${post.path}`);
                 }}
             >
                 {post.title}
