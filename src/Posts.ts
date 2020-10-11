@@ -12,6 +12,13 @@ export interface Post {
 
 export const posts: Post[] = [
     {
+        path: 'custommarkedrenderer',
+        title: 'Customize marked.js renderer',
+        date: new Date('2020-10-11'),
+        category: 'Computer',
+        load: () => import('./post/CustomMarkedRenderer.md')
+    },
+    {
         path: 'myguitars',
         title: 'My Guitars',
         date: new Date('2020-10-11'),
