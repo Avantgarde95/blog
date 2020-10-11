@@ -12,11 +12,11 @@ export interface Post {
 
 export const posts: Post[] = [
     {
-        path: 'sieve',
-        title: 'Sieve of Eratosthenes',
-        date: new Date('2020-10-05'),
-        category: 'Computer',
-        load: () => import('./post/Sieve.md')
+        path: 'myguitars',
+        title: 'My Guitars',
+        date: new Date('2020-10-11'),
+        category: 'Music',
+        load: () => import('./post/MyGuitars.md')
     },
     {
         path: 'busantrip',
@@ -24,13 +24,6 @@ export const posts: Post[] = [
         date: new Date('2020-10-05'),
         category: 'Misc',
         load: () => import('./post/BusanTrip.md')
-    },
-    {
-        path: 'myguitars',
-        title: 'My Guitars',
-        date: new Date('2020-10-04'),
-        category: 'Music',
-        load: () => import('./post/MyGuitars.md')
     },
     {
         path: 'markdowntest',
@@ -42,7 +35,7 @@ export const posts: Post[] = [
     {
         path: 'welcome',
         title: 'Welcome',
-        date: new Date('2020-09-15'),
+        date: new Date('2020-09-21'),
         category: 'Misc',
         load: () => import('./post/Welcome.md')
     }
