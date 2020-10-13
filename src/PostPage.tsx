@@ -224,7 +224,7 @@ export const PostPage = ({post = {} as Post}) => {
 
     useEffect(() => {
         post.load().then(result => {
-            setHTML(result.default.html);
+            setHTML(result.html);
         }).catch(() => {
             setHTML('Failed to load the post!');
         });
