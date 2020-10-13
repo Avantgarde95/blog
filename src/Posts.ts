@@ -20,17 +20,10 @@ export const posts: Post[] = [
     },
     {
         path: 'myguitars',
-        title: 'My Guitars',
+        title: 'My guitars',
         date: new Date('2020-10-11'),
         category: 'Music',
         load: () => import('./post/MyGuitars.md')
-    },
-    {
-        path: 'busantrip',
-        title: 'Busan trip',
-        date: new Date('2020-10-05'),
-        category: 'Misc',
-        load: () => import('./post/BusanTrip.md')
     },
     {
         path: 'markdowntest',
