@@ -18,7 +18,10 @@ const TitleButton = ({post = {} as Post}) => {
         <button
             css={{
                 cursor: 'pointer',
+                wordBreak: 'break-all',
+                textAlign: 'left',
                 padding: '0',
+                marginRight: '0.5rem',
                 marginBottom: '0.5rem',
                 fontFamily: 'inherit',
                 fontWeight: 'bold',
@@ -48,7 +51,8 @@ const PostDate = ({date = {} as Date}) => {
 
     return (
         <span css={{
-            marginLeft: '0.5rem',
+            display: 'inline-block',
+            marginBottom: '0.5rem',
             fontSize: '1rem',
             color: theme.defaultColor
         }}>

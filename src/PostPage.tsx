@@ -49,6 +49,10 @@ const Title = ({title = ''}) => {
 
     return (
         <span css={{
+            display: 'inline-block',
+            wordBreak: 'break-all',
+            marginRight: '0.5rem',
+            marginBottom: '0.5rem',
             color: theme.defaultColor,
             fontSize: '1.8rem',
             fontWeight: 'bold'
@@ -66,8 +70,9 @@ const PostDate = ({date = {} as Date}) => {
 
     return (
         <span css={{
-            marginLeft: '0.5rem',
+            display: 'inline-block',
             fontSize: '1rem',
+            marginBottom: '0.5rem',
             color: theme.defaultColor
         }}>
             {year}.{month}.{day}
