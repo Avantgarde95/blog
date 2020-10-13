@@ -4,6 +4,7 @@ const highlight = require('highlight.js');
 function parseYouTubeURL(url) {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     const match = url.match(regExp);
+
     return (match && match[7].length === 11) ? match[7] : null;
 }
 
@@ -34,7 +35,9 @@ class PostRenderer extends marked.Renderer {
             return (
                 '<div class="PostYouTubeOuterContainer">'
                 + '<div class="PostYouTubeInnerContainer">'
-                + `<iframe class="PostYouTube" width="560" height="315" frameBorder="0" allowFullScreen="true" src="https://www.youtube.com/embed/${youTubeID}">`
+                + '<iframe class="PostYouTube"'
+                + ' width="560" height="315" frameBorder="0" allowFullScreen="true"'
+                + ` src="https://www.youtube.com/embed/${youTubeID}">`
                 + '</iframe>'
                 + '</div>'
                 + '</div>'
@@ -53,5 +56,8 @@ const postRenderer = new PostRenderer();
 module.exports = function (markdown) {
     this.cacheable(true);
     marked.setOptions();
-    return marked(markdown, {renderer: postRenderer});
+    const html = marked(markdown, {renderer: postRenderer});
+    const out = JSON.stringify(html).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
+
+    return `export default ${out}`;
 };

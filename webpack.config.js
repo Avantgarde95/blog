@@ -49,7 +49,7 @@ module.exports = (env, argv) => {
                 },
                 {
                     test: /\.md$/,
-                    use: [{loader: 'html-loader'}, {loader: getAbsolutePath('PostLoader.js')}]
+                    use: {loader: getAbsolutePath('PostLoader.js')}
                 }
             ]
         },
