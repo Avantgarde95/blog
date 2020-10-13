@@ -54,7 +54,7 @@ export const SearchPage = ({posts = [] as Post[]}) => {
             for (let i = 0; i < results.length; i++) {
                 if (
                     processString(posts[i].title).includes(processedQuery)
-                    || processString(results[i].default).includes(processedQuery)
+                    || processString(results[i].default.html).includes(processedQuery)
                 ) {
                     matchingPosts.push(posts[i]);
                 }

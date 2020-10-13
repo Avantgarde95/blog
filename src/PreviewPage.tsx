@@ -109,7 +109,9 @@ const Preview = ({post = {} as Post}) => {
 
     useEffect(() => {
         post.load().then(result => {
-            setPreview(getAbbreviation(getTextFromHTML(result.default), 100));
+            console.log(result.default.title);
+
+            setPreview(getAbbreviation(getTextFromHTML(result.default.html), 100));
         }).catch(() => {
             setPreview('Failed to load the post!');
         });

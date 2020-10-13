@@ -59,5 +59,5 @@ module.exports = function (markdown) {
     const html = marked(markdown, {renderer: postRenderer});
     const out = JSON.stringify(html).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
 
-    return `export default ${out}`;
+    return `export default {title: '', html: ${out}}`;
 };
