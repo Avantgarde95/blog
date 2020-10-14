@@ -5,7 +5,7 @@ import {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
-import {Post} from './Posts';
+import {Post} from './Post';
 import {Icon} from './Icon';
 import {PathContext} from './Path';
 

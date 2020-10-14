@@ -3,7 +3,7 @@
 import {jsx} from '@emotion/core';
 import {useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {Category, Post} from './Posts';
+import {Category, Post} from './Post';
 import {ThemeContext} from './Theme';
 import {PathContext} from './Path';
 

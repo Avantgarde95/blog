@@ -7,7 +7,7 @@ import {DiscussionEmbed} from 'disqus-react';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
-import {Post} from './Posts';
+import {Post} from './Post';
 import {PathContext} from './Path';
 
 const Luminous = require('luminous-lightbox').Luminous;

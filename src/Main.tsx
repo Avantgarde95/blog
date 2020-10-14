@@ -9,25 +9,23 @@ import {BrowserRouter, useRoutes} from 'react-router-dom';
 import {Header} from './Header';
 import {PostPage} from './PostPage';
 import {ThemeContext, ThemeProvider} from './Theme';
-import {categories, posts} from './Posts';
+import {allPosts, allCategories, Category, Post} from './Post';
 import {PreviewPage} from './PreviewPage';
 import {CategoryWidget} from './CategoryWidget';
 import {SearchPage} from './SearchPage';
 import {PathContext, PathProvider} from './Path';
 import {RecentPostsWidget} from './RecentPostsWidget';
 
-const DefaultPage = () => <PreviewPage posts={posts}/>;
-
 const NotFoundPage = () => {
     const theme = useContext(ThemeContext);
     return <div css={{color: theme.defaultColor}}>Wrong URL!</div>;
 };
 
-const AppRoutes = () => {
+const AppRoutes = ({posts = [] as Post[], categories = [] as readonly Category[]}) => {
     const {basename} = useContext(PathContext);
 
     return useRoutes([
-        {path: '/', element: <DefaultPage/>},
+        {path: '/', element: <PreviewPage posts={posts}/>},
         ...posts.map(post => ({
             path: `post/${post.path}`,
             element: <PostPage post={post}/>
@@ -57,9 +55,9 @@ const App = () => (
                     padding: '1.5rem'
                 }}>
                     <Header/>
-                    <CategoryWidget categories={categories} posts={posts}/>
-                    <RecentPostsWidget posts={posts}/>
-                    <AppRoutes/>
+                    <CategoryWidget categories={allCategories} posts={allPosts}/>
+                    <RecentPostsWidget posts={allPosts}/>
+                    <AppRoutes posts={allPosts} categories={allCategories}/>
                 </div>
             </ThemeProvider>
         </PathProvider>

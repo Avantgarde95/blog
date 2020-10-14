@@ -1,6 +1,6 @@
-export const categories = ['Computer', 'Music', 'Misc'] as const;
+export const allCategories = ['Computer', 'Music', 'Misc'] as const;
 
-export type Category = (typeof categories)[number];
+export type Category = (typeof allCategories)[number];
 
 export interface Post {
     path: string;
@@ -10,7 +10,7 @@ export interface Post {
     load: () => Promise<{ title: string, html: string }>;
 }
 
-export const posts: Post[] = [
+export const allPosts: Post[] = [
     {
         path: 'custommarkedrenderer',
         title: 'Customize marked.js renderer',

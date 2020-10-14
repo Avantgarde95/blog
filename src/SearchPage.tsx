@@ -4,7 +4,7 @@ import {jsx, keyframes} from '@emotion/core';
 import {useContext, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
-import {Post} from './Posts';
+import {Post} from './Post';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
 import {PreviewPage} from './PreviewPage';
