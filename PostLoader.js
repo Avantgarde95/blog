@@ -1,6 +1,8 @@
 const marked = require('marked');
+const yaml = require('js-yaml');
 const highlight = require('highlight.js');
 
+// Modified the code at https://stackoverflow.com/a/8260383.
 function parseYouTubeURL(url) {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     const match = url.match(regExp);
@@ -53,11 +55,32 @@ class PostRenderer extends marked.Renderer {
 
 const postRenderer = new PostRenderer();
 
-module.exports = function (markdown) {
-    this.cacheable(true);
-    marked.setOptions();
-    const html = marked(markdown, {renderer: postRenderer});
-    const out = JSON.stringify(html).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
+// Modified the code from https://github.com/j201/meta-marked.
+function splitInput(str) {
+    if (str.slice(0, 3) !== '---') {
+        return null;
+    }
 
-    return `module.exports = {title: '', html: ${out}};`;
+    const matcher = /\n(\.{3}|-{3})/g;
+    const metaEnd = matcher.exec(str);
+
+    return metaEnd && [str.slice(3, metaEnd.index), str.slice(matcher.lastIndex)];
+}
+
+module.exports = function (input) {
+    this.cacheable(true);
+
+    const inputParts = splitInput(input);
+    const meta = yaml.safeLoad(inputParts[0]);
+    const markdown = inputParts[1];
+    const html = marked(markdown, {renderer: postRenderer});
+
+    const out = {
+        title: meta.Title,
+        date: meta.Date,
+        category: meta.Category,
+        html: html.replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029')
+    };
+
+    return `module.exports = ${JSON.stringify(out)};`;
 };

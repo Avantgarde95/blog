@@ -7,7 +7,12 @@ export interface Post {
     title: string;
     date: Date;
     category: Category;
-    load: () => Promise<{ title: string, html: string }>;
+    load: () => Promise<{
+        title: string,
+        date: Date,
+        category: Category,
+        html: string
+    }>;
 }
 
 export const posts: Post[] = [

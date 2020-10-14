@@ -1,3 +1,9 @@
+---
+Title: My guitars  
+Date: 2020-10-11  
+Category: Music 
+---
+
 ![Guitars](https://imgur.com/vmvAa5V.jpg)
 
 ## (1) Charvel Pro-Mod San Dimas Style 2-7 HH

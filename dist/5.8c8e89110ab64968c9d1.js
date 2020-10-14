@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{30:function(e,o){e.exports={title:"Welcome",date:"2020-09-21T00:00:00.000Z",category:"Misc",html:"<p>환영합니다! Welcome!</p>\n"}}}]);

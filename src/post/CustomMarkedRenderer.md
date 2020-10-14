@@ -1,3 +1,9 @@
+---
+Title: Customize marked.js renderer  
+Date: 2020-10-11  
+Category: Computer  
+---
+
 [marked.js](https://marked.js.org/) 라이브러리를 사용하면 마크다운 문서를 HTML로 변환할 수 있다.
 이 블로그도 마크다운으로 포스트를 작성하고 해당 라이브러리로 포스트를 HTML로 변환해서 렌더링하는 방식으로 작동한다.
 
