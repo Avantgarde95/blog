@@ -55,7 +55,6 @@ const postRenderer = new PostRenderer();
 
 module.exports = function (markdown) {
     this.cacheable(true);
-    marked.setOptions();
     const html = marked(markdown, {renderer: postRenderer});
     const out = JSON.stringify(html).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
 
