@@ -4,6 +4,11 @@ My blog!
 
 **Still in development**: The development is not finished yet. There are some bugs and many things can be changed.
 
+### How does the blog work
+- Write the posts in [Markdown](https://en.wikipedia.org/wiki/Markdown) at the directory `src/post`.
+- When building the website (`npm run debug` or `npm run build`), `PostLoader.js` (built on [marked.js](https://marked.js.org/)) converts the posts to HTML.
+- The results are wrapped to JS module and loaded in the blog code by using [dynamic import](https://webpack.js.org/guides/code-splitting/#dynamic-imports).
+
 ### Technologies
 #### [React.js](https://reactjs.org/) ([Preact.js](https://preactjs.com/))
 - For re-using the components such as app button, app template, etc.
@@ -36,11 +41,12 @@ My blog!
 #### [Typescript](https://www.typescriptlang.org/)
 - For writing & debugging the code easier
 
-### How to build
+### How to deploy
 - Run `npm install` to install the dependencies.
-- Run `npm run debug` to build & debug the website.
-- Run `npm run build` to build & deploy the website.
+- Run `npm run build` to build the website.
 
 ### How to test
+- Run `npm install` to install the dependencies.
+- Run `npm run debug` to build the website.
 - Run `npm run server` to run the test server.
 - Open <http://localhost:8080> or <http://your-ip:8080> on the web browser.
