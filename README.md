@@ -2,7 +2,8 @@
 
 My blog!
 
-**Still in development**: The development is not finished yet. There are some bugs and many things can be changed.
+- **Still in development**: The development is not finished yet. There are some bugs and many things can be changed.
+- Also look at [my homepage](https://avantgarde95.github.io) and [its code](https://github.com/Avantgarde95/Avantgarde95.github.io) :)
 
 ### How does the blog work
 - Write the posts in [Markdown](https://en.wikipedia.org/wiki/Markdown) at the directory `src/post`.
