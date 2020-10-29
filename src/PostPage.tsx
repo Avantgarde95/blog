@@ -127,6 +127,9 @@ const Content = ({html = ''}) => {
                         border: `1px solid ${theme.darkColor}`
                     }
                 },
+                '& pre': {
+                    margin: '1.5rem 0'
+                },
                 '& .PostImage': {
                     cursor: 'zoom-in',
                     maxWidth: '100%',
