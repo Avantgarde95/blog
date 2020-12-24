@@ -5,6 +5,10 @@ My blog!
 - **Still in development**: The development is not finished yet. There are some bugs and many things can be changed.
 - Also look at [my homepage](https://avantgarde95.github.io) and [its code](https://github.com/Avantgarde95/Avantgarde95.github.io) :)
 
+### Screenshot(s)
+
+![Post](https://raw.githubusercontent.com/Avantgarde95/blog/master/Screenshot.png)
+
 ### How does the blog work
 - Write the posts in [Markdown](https://en.wikipedia.org/wiki/Markdown) at the directory `src/post`.
 - When building the website (`npm run debug` or `npm run build`), `PostLoader.js` (built on [marked.js](https://marked.js.org/)) converts the posts to HTML.
