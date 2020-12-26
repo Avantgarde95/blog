@@ -16,6 +16,9 @@ import {SearchPage} from './SearchPage';
 import {PathContext, PathProvider} from './Path';
 import {RecentPostsWidget} from './RecentPostsWidget';
 
+import './Luminous';
+import './Highlight';
+
 const NotFoundPage = () => {
     const theme = useContext(ThemeContext);
     return <div css={{color: theme.defaultColor}}>Wrong URL!</div>;
