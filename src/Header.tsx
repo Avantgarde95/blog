@@ -163,14 +163,6 @@ export const Header = () => {
             }}>
                 <SiteLinks/>
             </div>
-            <div css={{
-                color: theme.defaultColor,
-                marginBottom: '1rem'
-            }}>
-                블로그 - 아직 개발중입니다!
-                <br/>
-                Blog - Still in development!
-            </div>
         </div>
     );
 };
