@@ -12,6 +12,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'christmas2020',
+        title: 'Merry Christmas!',
+        date: new Date('2020-12-29'),
+        category: 'Computer',
+        load: () => import('./post/Christmas2020.md')
+    },
+    {
         path: 'custommarkedrenderer',
         title: 'Customize marked.js renderer',
         date: new Date('2020-10-11'),
