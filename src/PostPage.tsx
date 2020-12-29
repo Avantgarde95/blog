@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import {jsx, keyframes} from '@emotion/core';
-import {Component, createRef, ErrorInfo, useContext, useEffect, useState} from 'react';
+import {createRef, useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {DiscussionEmbed} from 'disqus-react';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
@@ -205,23 +205,6 @@ const CategoryButton = ({category = '' as Category}) => {
     );
 };
 
-class Comments extends Component<{ post: Post }> {
-    componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-        console.error(error?.toString());
-        console.error(errorInfo?.componentStack);
-    }
-
-    render() {
-        return (
-            <DiscussionEmbed shortname={'Avantgarde95'} config={{
-                url: `https://avantgarde95.github.io/blog/${this.props.post.path}`,
-                identifier: this.props.post.title,
-                title: this.props.post.title
-            }}/>
-        );
-    }
-}
-
 export const PostPage = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
     const [html, setHTML] = useState<string | null>(null);
@@ -245,7 +228,11 @@ export const PostPage = ({post = {} as Post}) => {
             </div>
             {(html === null) ? <Loading/> : <Content html={html}/>}
             <CategoryButton category={post.category}/>
-            <Comments post={post}/>
+            <DiscussionEmbed shortname={'Avantgarde95'} config={{
+                url: `https://avantgarde95.github.io/blog/${post.path}`,
+                identifier: post.title,
+                title: post.title
+            }}/>
         </div>
     );
 };
