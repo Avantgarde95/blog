@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'reactiframehistory',
+        title: 'Preventing iframe from affecting the history',
+        date: new Date('2020-12-29'),
+        category: 'Computer',
+        load: () => import('./post/IframeHistory.md')
+    },
+    {
         path: 'githubpagesrouting',
         title: 'Routing in GitHub Pages',
         date: new Date('2020-12-29'),

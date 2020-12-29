@@ -18,7 +18,7 @@ corresponding to each route.
 ([타입스크립트](https://www.typescriptlang.org/)로 작성하였다.)
 
 In [React](https://reactjs.org/), you can create an error handler like this:
-(The code is written in [Typescript](https://www.typescriptlang.org/).)
+(The code is written in [TypeScript](https://www.typescriptlang.org/).)
 
 ```typescript jsx
 import {Component, ErrorInfo, ReactNode} from 'react';
