@@ -3,7 +3,7 @@
 import './Polyfill';
 
 import {jsx} from '@emotion/core';
-import {ReactNode, useContext} from 'react';
+import {Component, ErrorInfo, ReactNode, useContext} from 'react';
 import {render} from 'react-dom';
 import {BrowserRouter, useRoutes} from 'react-router-dom';
 import {Header} from './Header';
@@ -24,22 +24,47 @@ const NotFoundPage = () => {
     return <div css={{color: theme.defaultColor}}>Wrong URL!</div>;
 };
 
+class ErrorHandler extends Component<{ children: ReactNode }, { hasError: boolean }> {
+    constructor({children = {}}) {
+        super({children});
+        this.state = {hasError: false};
+    }
+
+    componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+        console.error(error?.toString());
+        console.error(errorInfo?.componentStack);
+    }
+
+    render() {
+        return this.props.children;
+    }
+}
+
+const SafeRoutes = (
+    {basename = '/', routes = [] as { path: string, element: ReactNode }[]}
+) => useRoutes(routes.map(({path, element}, index) => (
+    {path: path, element: <ErrorHandler key={index}>{element}</ErrorHandler>}
+)), basename);
+
 const AppRoutes = ({posts = [] as Post[], categories = [] as readonly Category[]}) => {
     const {basename} = useContext(PathContext);
 
-    return useRoutes([
-        {path: '/', element: <PreviewPage posts={posts}/>},
-        ...posts.map(post => ({
-            path: `post/${post.path}`,
-            element: <PostPage post={post}/>
-        })),
-        ...categories.map(category => ({
-            path: `category/${category.toLowerCase()}`,
-            element: <PreviewPage posts={posts.filter(post => post.category === category)}/>
-        })),
-        {path: 'search/:query', element: <SearchPage posts={posts}/>},
-        {path: '*', element: <NotFoundPage/>}
-    ], basename);
+    return <SafeRoutes
+        basename={basename}
+        routes={[
+            {path: '/', element: <PreviewPage posts={posts}/>},
+            ...posts.map(post => ({
+                path: `post/${post.path}`,
+                element: <PostPage post={post}/>
+            })),
+            ...categories.map(category => ({
+                path: `category/${category.toLowerCase()}`,
+                element: <PreviewPage posts={posts.filter(post => post.category === category)}/>
+            })),
+            {path: 'search/:query', element: <SearchPage posts={posts}/>},
+            {path: '*', element: <NotFoundPage/>}
+        ]}
+    />;
 }
 
 const AppArea = ({children = {} as ReactNode}) => {
