@@ -3,11 +3,12 @@
 import {jsx} from '@emotion/core';
 import {useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {Category, Post} from './Post';
+import {Post} from './Post';
+import {Category} from './Category';
 import {ThemeContext} from './Theme';
 import {PathContext} from './Path';
 
-const Category = ({category = {} as Category, postCount = 0}) => {
+const CategoryButton = ({category = {} as Category, postCount = 0}) => {
     const theme = useContext(ThemeContext);
     const {basename} = useContext(PathContext);
     const navigate = useNavigate();
@@ -56,7 +57,7 @@ export const CategoryWidget = ({categories = [] as readonly Category[], posts = 
                 Category
             </div>
             {categories.map(category => (
-                <Category
+                <CategoryButton
                     category={category}
                     postCount={posts.filter(post => post.category === category).length}
                 />

@@ -9,6 +9,7 @@ import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
 import {Post} from './Post';
 import {PathContext} from './Path';
+import {Category} from './Category';
 
 const Luminous = require('luminous-lightbox').Luminous;
 
@@ -169,7 +170,7 @@ const Content = ({html = ''}) => {
     );
 };
 
-const Category = ({category = ''}) => {
+const CategoryButton = ({category = '' as Category}) => {
     const theme = useContext(ThemeContext);
     const {basename} = useContext(PathContext);
     const navigate = useNavigate();
@@ -243,7 +244,7 @@ export const PostPage = ({post = {} as Post}) => {
                 <PostDate date={post.date}/>
             </div>
             {(html === null) ? <Loading/> : <Content html={html}/>}
-            <Category category={post.category}/>
+            <CategoryButton category={post.category}/>
             <Comments post={post}/>
         </div>
     );

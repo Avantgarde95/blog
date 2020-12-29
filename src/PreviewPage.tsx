@@ -8,6 +8,7 @@ import {ThemeContext} from './Theme';
 import {Post} from './Post';
 import {Icon} from './Icon';
 import {PathContext} from './Path';
+import {Category} from './Category';
 
 const TitleButton = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
@@ -124,7 +125,7 @@ const Preview = ({post = {} as Post}) => {
     );
 };
 
-const Category = ({category = ''}) => {
+const CategoryButton = ({category = '' as Category}) => {
     const theme = useContext(ThemeContext);
     const {basename} = useContext(PathContext);
     const navigate = useNavigate();
@@ -178,7 +179,7 @@ export const PreviewPage = ({posts = [] as Post[]}) => {
                             <TitleButton post={post}/>
                             <PostDate date={post.date}/>
                             <Preview post={post}/>
-                            <Category category={post.category}/>
+                            <CategoryButton category={post.category}/>
                         </div>
                     ))
             }

@@ -1,6 +1,4 @@
-export const allCategories = ['Computer', 'Music', 'Misc'] as const;
-
-export type Category = (typeof allCategories)[number];
+import {Category} from './Category';
 
 export interface Post {
     path: string;
