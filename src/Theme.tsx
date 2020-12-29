@@ -16,7 +16,7 @@ export const ThemeProvider = (
         defaultColor = '#ffffff',
         lightColor = '#ffffff',
         darkColor = '#ffffff',
-        children = {} as ReactNode
+        children = null as ReactNode
     }
 ) => (
     <ThemeContext.Provider value={{

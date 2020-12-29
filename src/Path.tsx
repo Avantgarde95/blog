@@ -9,7 +9,7 @@ interface PathSettings {
 
 export const PathContext = createContext({} as PathSettings);
 
-export const PathProvider = ({basename = '/', children = {} as ReactNode}) => (
+export const PathProvider = ({basename = '/', children = null as ReactNode}) => (
     <PathContext.Provider value={{
         basename: basename
     }}>

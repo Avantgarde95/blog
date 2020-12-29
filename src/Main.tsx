@@ -26,7 +26,7 @@ const NotFoundPage = () => {
 };
 
 class ErrorHandler extends Component<{ children: ReactNode }, { hasError: boolean }> {
-    constructor({children = {}}) {
+    constructor({children = null}) {
         super({children});
         this.state = {hasError: false};
     }
@@ -68,7 +68,7 @@ const AppRoutes = ({posts = [] as Post[], categories = [] as readonly Category[]
     />;
 }
 
-const AppArea = ({children = {} as ReactNode}) => {
+const AppArea = ({children = null as ReactNode}) => {
     const theme = useContext(ThemeContext);
     const onWideScreen = '@media (min-width: 769px)';
 
