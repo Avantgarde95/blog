@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'githubpagesrouting',
+        title: 'Routing in GitHub Pages',
+        date: new Date('2020-12-29'),
+        category: 'Computer',
+        load: () => import('./post/GitHubPagesRouting.md')
+    },
+    {
         path: 'reacterrorhandling',
         title: 'Error handling in React.js',
         date: new Date('2020-12-29'),
