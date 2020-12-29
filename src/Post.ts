@@ -10,9 +10,16 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'reacterrorhandling',
+        title: 'Error handling in React.js',
+        date: new Date('2020-12-29'),
+        category: 'Computer',
+        load: () => import('./post/ReactErrorHandling.md')
+    },
+    {
         path: 'christmas2020',
         title: 'Merry Christmas!',
-        date: new Date('2020-12-29'),
+        date: new Date('2020-12-28'),
         category: 'Computer',
         load: () => import('./post/Christmas2020.md')
     },
