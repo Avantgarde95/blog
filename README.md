@@ -55,3 +55,8 @@ My blog!
 - Run `npm run debug` to build the website.
 - Run `npm run server` to run the test server.
 - Open <http://localhost:8080> or <http://your-ip:8080> on the web browser.
+
+### How to add a post
+- Write a post in Markdown and save the file in `src/post`.
+- Add the post's information on `src/Post.ts`.
+- Run `npm run debug` or `npm run build`.
