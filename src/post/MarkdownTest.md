@@ -13,9 +13,9 @@ Markdown test
 - [YouTube](https://www.youtube.com/)
 
 ## Image
-![Size100](https://via.placeholder.com/100)
-![Size150](https://via.placeholder.com/150)
-![Size200](https://via.placeholder.com/200)
+![Size100](http://via.placeholder.com/100)
+![Size150](http://via.placeholder.com/150)
+![Size200](http://via.placeholder.com/200)
 
 ## Video (YouTube)
 <https://youtu.be/-_7HwAXKycU>

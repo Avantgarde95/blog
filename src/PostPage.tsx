@@ -132,7 +132,7 @@ const Content = ({html = ''}) => {
                     margin: '1.5rem 0'
                 },
                 '& .PostImage': {
-                    cursor: 'zoom-in',
+                    cursor: 'pointer',
                     maxWidth: '100%',
                     border: `1px solid ${theme.darkColor}`,
                     '&:hover, &:active, &:focus': {
