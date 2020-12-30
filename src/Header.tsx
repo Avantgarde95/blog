@@ -49,6 +49,7 @@ const Search = () => {
         <Fragment>
             <input
                 css={{
+                    width: 'calc(100% - 3rem)',
                     fontFamily: 'inherit',
                     fontSize: '1rem',
                     color: theme.defaultColor,
@@ -141,7 +142,7 @@ export const Header = () => {
                 marginBottom: '1rem',
                 [onWideScreen]: {
                     display: 'inline-block',
-                    width: '50%'
+                    width: '70%'
                 }
             }}>
                 <TitleButton/>
@@ -152,7 +153,7 @@ export const Header = () => {
                 marginBottom: '1rem',
                 [onWideScreen]: {
                     display: 'inline-block',
-                    width: '50%',
+                    width: '30%',
                     textAlign: 'right'
                 }
             }}>
