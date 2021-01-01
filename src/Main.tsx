@@ -78,12 +78,14 @@ const AppArea = ({children = null as ReactNode}) => {
             width: '100%',
             height: '100%',
             [onWideScreen]: {
-                paddingTop: '1.5rem'
+                paddingTop: '1.5rem',
+                paddingBottom: '1.5rem'
             }
         })}>
             <div className={css({
                 boxSizing: 'border-box',
                 maxWidth: '769px',
+                minHeight: '100%',
                 margin: '0 auto',
                 padding: '1.5rem',
                 [onWideScreen]: {
