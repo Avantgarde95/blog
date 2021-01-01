@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Fragment, useContext, useState} from 'react';
+import {useContext, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {css} from '@emotion/css';
 import {faSearch} from '@fortawesome/free-solid-svg-icons/faSearch';
@@ -45,7 +45,7 @@ const Search = () => {
     const navigate = useNavigate();
 
     return (
-        <Fragment>
+        <>
             <input
                 className={css({
                     width: 'calc(100% - 3rem)',
@@ -90,7 +90,7 @@ const Search = () => {
             >
                 <Icon definition={faSearch}/>
             </button>
-        </Fragment>
+        </>
     );
 };
 
