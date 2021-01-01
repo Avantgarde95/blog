@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
-import {jsx} from '@emotion/core';
+import * as React from 'react';
 import {Fragment, useContext, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {css} from '@emotion/css';
 import {faSearch} from '@fortawesome/free-solid-svg-icons/faSearch';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
@@ -15,7 +14,7 @@ const TitleButton = () => {
 
     return (
         <button
-            css={{
+            className={css({
                 cursor: 'pointer',
                 padding: 0,
                 fontFamily: 'inherit',
@@ -28,7 +27,7 @@ const TitleButton = () => {
                 '&:hover, &:active, &:focus': {
                     color: theme.lightColor
                 }
-            }}
+            })}
             title={'Home'}
             onClick={() => {
                 navigate(basename);
@@ -48,7 +47,7 @@ const Search = () => {
     return (
         <Fragment>
             <input
-                css={{
+                className={css({
                     width: 'calc(100% - 3rem)',
                     fontFamily: 'inherit',
                     fontSize: '1rem',
@@ -60,7 +59,7 @@ const Search = () => {
                     '&:hover, &:active, &:focus': {
                         border: `solid 1px ${theme.lightColor}`,
                     }
-                }}
+                })}
                 type={'text'}
                 placeholder={'Search'}
                 onChange={event => {
@@ -73,7 +72,7 @@ const Search = () => {
                 }}
             />
             <button
-                css={{
+                className={css({
                     cursor: 'pointer',
                     fontFamily: 'inherit',
                     fontSize: '1rem',
@@ -83,7 +82,7 @@ const Search = () => {
                     '&:hover, &:active, &:focus': {
                         color: theme.lightColor
                     }
-                }}
+                })}
                 title={`Search ${query}`}
                 onClick={() => {
                     navigate(`${basename}search/${query}`);
@@ -107,7 +106,7 @@ const SiteLinks = () => {
         <span>
             {sites.map(({name, url}) => (
                 <a
-                    css={{
+                    className={css({
                         cursor: 'pointer',
                         fontFamily: 'inherit',
                         color: theme.darkColor,
@@ -115,7 +114,7 @@ const SiteLinks = () => {
                         '&:hover, &:active, &:focus': {
                             color: theme.lightColor
                         }
-                    }}
+                    })}
                     title={name}
                     href={url}
                     target={'_blank'}
@@ -133,21 +132,21 @@ export const Header = () => {
     const onWideScreen = '@media (min-width: 769px)';
 
     return (
-        <div css={{
+        <div className={css({
             width: '100%',
             color: theme.defaultColor
-        }}>
-            <div css={{
+        })}>
+            <div className={css({
                 display: 'block',
                 marginBottom: '1rem',
                 [onWideScreen]: {
                     display: 'inline-block',
                     width: '70%'
                 }
-            }}>
+            })}>
                 <TitleButton/>
             </div>
-            <div css={{
+            <div className={css({
                 boxSizing: 'border-box',
                 display: 'block',
                 marginBottom: '1rem',
@@ -156,12 +155,12 @@ export const Header = () => {
                     width: '30%',
                     textAlign: 'right'
                 }
-            }}>
+            })}>
                 <Search/>
             </div>
-            <div css={{
+            <div className={css({
                 marginBottom: '1rem'
-            }}>
+            })}>
                 <SiteLinks/>
             </div>
         </div>

@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
-import {jsx, keyframes} from '@emotion/core';
+import * as React from 'react';
 import {createRef, useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {css, keyframes} from '@emotion/css';
 import {DiscussionEmbed} from 'disqus-react';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
@@ -29,18 +28,21 @@ const Loading = () => {
     const theme = useContext(ThemeContext);
 
     return (
-        <div css={{
+        <div className={css({
             paddingBottom: '1rem',
             marginBottom: '1rem',
             borderBottom: `1px solid ${theme.darkColor}`,
             fontSize: '1.3rem',
             fontWeight: 'bold',
             color: theme.defaultColor
-        }}>
+        })}>
             Loading...&nbsp;
-            <Icon css={{
-                animation: `${loadingAnimation} 0.5s infinite`
-            }} definition={faClock}/>
+            <Icon
+                className={css({
+                    animation: `${loadingAnimation} 0.5s infinite`
+                })}
+                definition={faClock}
+            />
         </div>
     );
 };
@@ -49,7 +51,7 @@ const Title = ({title = ''}) => {
     const theme = useContext(ThemeContext);
 
     return (
-        <span css={{
+        <span className={css({
             display: 'inline-block',
             wordBreak: 'break-all',
             marginRight: '0.5rem',
@@ -57,7 +59,7 @@ const Title = ({title = ''}) => {
             color: theme.defaultColor,
             fontSize: '1.8rem',
             fontWeight: 'bold'
-        }}>
+        })}>
             {title}
         </span>
     );
@@ -70,12 +72,12 @@ const PostDate = ({date = {} as Date}) => {
     const day = date.getDate().toString().padStart(2, '0');
 
     return (
-        <span css={{
+        <span className={css({
             display: 'inline-block',
             fontSize: '1rem',
             marginBottom: '0.5rem',
             color: theme.defaultColor
-        }}>
+        })}>
             {year}.{month}.{day}
         </span>
     );
@@ -99,7 +101,7 @@ const Content = ({html = ''}) => {
 
     return (
         <div
-            css={{
+            className={css({
                 paddingBottom: '1rem',
                 marginBottom: '0.5rem',
                 borderBottom: `1px solid ${theme.darkColor}`,
@@ -165,7 +167,7 @@ const Content = ({html = ''}) => {
                     border: `1px solid ${theme.darkColor}`,
                     background: 'none'
                 }
-            }}
+            })}
             ref={ref}
             dangerouslySetInnerHTML={{__html: html}}
         />
@@ -178,13 +180,13 @@ const CategoryButton = ({category = '' as Category}) => {
     const navigate = useNavigate();
 
     return (
-        <div css={{
+        <div className={css({
             marginBottom: '1rem',
             color: theme.defaultColor
-        }}>
+        })}>
             Category:&nbsp;
             <button
-                css={{
+                className={css({
                     cursor: 'pointer',
                     padding: '0',
                     fontSize: '1rem',
@@ -195,7 +197,7 @@ const CategoryButton = ({category = '' as Category}) => {
                     '&:hover, &:active, &:focus': {
                         color: theme.lightColor
                     }
-                }}
+                })}
                 title={category}
                 onClick={() => {
                     navigate(`${basename}category/${category.toLowerCase()}`);
@@ -221,10 +223,10 @@ export const PostPage = ({post = {} as Post}) => {
 
     return (
         <div>
-            <div css={{
+            <div className={css({
                 paddingBottom: '0.5rem',
                 borderBottom: `1px solid ${theme.darkColor}`,
-            }}>
+            })}>
                 <Title title={post.title}/>
                 <PostDate date={post.date}/>
             </div>

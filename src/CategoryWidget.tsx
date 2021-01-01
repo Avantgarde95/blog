@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
-import {jsx} from '@emotion/core';
+import * as React from 'react';
 import {useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {css} from '@emotion/css';
 import {Post} from './Post';
 import {Category} from './Category';
 import {ThemeContext} from './Theme';
@@ -17,7 +16,7 @@ const CategoryButton = ({category = {} as Category, postCount = 0}) => {
         <div>
             -&nbsp;
             <button
-                css={{
+                className={css({
                     cursor: 'pointer',
                     padding: '0',
                     fontSize: '1rem',
@@ -28,7 +27,7 @@ const CategoryButton = ({category = {} as Category, postCount = 0}) => {
                     '&:hover, &:active, &:focus': {
                         color: theme.lightColor
                     }
-                }}
+                })}
                 title={category}
                 onClick={() => {
                     navigate(`${basename}category/${category}`);
@@ -45,15 +44,15 @@ export const CategoryWidget = ({categories = [] as readonly Category[], posts = 
     const theme = useContext(ThemeContext);
 
     return (
-        <div css={{
+        <div className={css({
             display: 'inline-block',
             marginRight: '1rem',
             marginBottom: '1rem',
             color: theme.defaultColor
-        }}>
-            <div css={{
+        })}>
+            <div className={css({
                 fontWeight: 'bold'
-            }}>
+            })}>
                 Category
             </div>
             {categories.map(category => (

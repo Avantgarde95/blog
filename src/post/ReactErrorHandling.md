@@ -1,13 +1,9 @@
-[리액트 라우터](https://reactrouter.com/)를 사용할 때, 만약 웹페이지 내부에서
-예외가 발생하면 라우팅이 정상적으로 작동하지 않는 경우가 있다.
-라우팅을 방해하지 않으면서 예외가 콘솔에 출력되게 하려면, 에러를 처리하는 컴포넌트를 만들어서
-각 경로(route)에 해당하는 컴포넌트를 덮어주면 된다.
+[리액트 라우터](https://reactrouter.com/)를 사용할 때, 만약 웹페이지 내부에서 예외가 발생하면 라우팅이 정상적으로 작동하지 않는 경우가 있다. 라우팅을 방해하지 않으면서 예외가 콘솔에 출력되게
+하려면, 에러를 처리하는 컴포넌트를 만들어서 각 경로(route)에 해당하는 컴포넌트를 덮어주면 된다.
 
-When using [React Router](https://reactrouter.com/),
-routing may not work properly if an exception occurs inside a web page.
-If you want the exceptions to be printed on the console without interfering routing,
-you can create an error handler and wrap the components
-corresponding to each route.
+When using [React Router](https://reactrouter.com/), routing may not work properly if an exception occurs inside a web
+page. If you want the exceptions to be printed on the console without interfering routing, you can create an error
+handler and wrap the components corresponding to each route.
 
 ```jsx
 {path: '/menu', element: <MenuPage/>}
@@ -43,8 +39,7 @@ class ErrorHandler extends Component<{ children: ReactNode }> {
 
 에러 발생시에 에러 페이지 등 다른 컴포넌트를 렌더링하고 싶다면, 아래와 같이 하면 된다.
 
-If you want to render other components such as error pages when an error occurs,
-you can do as follows.
+If you want to render other components such as error pages when an error occurs, you can do as follows.
 
 ```typescript jsx
 import {Component, ErrorInfo, ReactNode} from 'react';

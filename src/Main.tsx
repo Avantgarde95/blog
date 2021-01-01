@@ -1,11 +1,10 @@
-/** @jsx jsx */
-
 import './Polyfill';
 
-import {jsx} from '@emotion/core';
+import * as React from 'react';
 import {Component, ErrorInfo, ReactNode, useContext} from 'react';
 import {render} from 'react-dom';
 import {BrowserRouter, useRoutes} from 'react-router-dom';
+import {css} from '@emotion/css';
 import {Header} from './Header';
 import {PostPage} from './PostPage';
 import {ThemeContext, ThemeProvider} from './Theme';
@@ -22,7 +21,7 @@ import './Highlight';
 
 const NotFoundPage = () => {
     const theme = useContext(ThemeContext);
-    return <div css={{color: theme.defaultColor}}>Wrong URL!</div>;
+    return <div className={css({color: theme.defaultColor})}>Wrong URL!</div>;
 };
 
 class ErrorHandler extends Component<{ children: ReactNode }, { hasError: boolean }> {
@@ -73,7 +72,7 @@ const AppArea = ({children = null as ReactNode}) => {
     const onWideScreen = '@media (min-width: 769px)';
 
     return (
-        <div css={{
+        <div className={css({
             overflowY: 'auto',
             boxSizing: 'border-box',
             width: '100%',
@@ -81,8 +80,8 @@ const AppArea = ({children = null as ReactNode}) => {
             [onWideScreen]: {
                 paddingTop: '1.5rem'
             }
-        }}>
-            <div css={{
+        })}>
+            <div className={css({
                 boxSizing: 'border-box',
                 maxWidth: '769px',
                 margin: '0 auto',
@@ -90,7 +89,7 @@ const AppArea = ({children = null as ReactNode}) => {
                 [onWideScreen]: {
                     border: `1px solid ${theme.darkColor}`
                 }
-            }}>
+            })}>
                 {children}
             </div>
         </div>

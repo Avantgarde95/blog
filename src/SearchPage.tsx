@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
-import {jsx, keyframes} from '@emotion/core';
+import * as React from 'react';
 import {useContext, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
+import {css, keyframes} from '@emotion/css';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {Post} from './Post';
 import {ThemeContext} from './Theme';
@@ -25,15 +24,18 @@ const Searching = () => {
     const theme = useContext(ThemeContext);
 
     return (
-        <div css={{
+        <div className={css({
             fontSize: '1.3rem',
             fontWeight: 'bold',
             color: theme.defaultColor
-        }}>
+        })}>
             Searching...&nbsp;
-            <Icon css={{
-                animation: `${loadingAnimation} 0.5s infinite`
-            }} definition={faClock}/>
+            <Icon
+                className={css({
+                    animation: `${loadingAnimation} 0.5s infinite`
+                })}
+                definition={faClock}
+            />
         </div>
     );
 };

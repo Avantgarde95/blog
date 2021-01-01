@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
-import {jsx, keyframes} from '@emotion/core';
+import * as React from 'react';
 import {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {css, keyframes} from '@emotion/css';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
 import {Post} from './Post';
@@ -17,7 +16,7 @@ const TitleButton = ({post = {} as Post}) => {
 
     return (
         <button
-            css={{
+            className={css({
                 cursor: 'pointer',
                 wordBreak: 'break-all',
                 textAlign: 'left',
@@ -33,7 +32,7 @@ const TitleButton = ({post = {} as Post}) => {
                 '&:hover, &:active, &:focus': {
                     color: theme.lightColor
                 }
-            }}
+            })}
             title={post.title}
             onClick={() => {
                 navigate(`${basename}post/${post.path}`);
@@ -51,12 +50,12 @@ const PostDate = ({date = {} as Date}) => {
     const day = date.getDate().toString().padStart(2, '0');
 
     return (
-        <span css={{
+        <span className={css({
             display: 'inline-block',
             marginBottom: '0.5rem',
             fontSize: '1rem',
             color: theme.defaultColor
-        }}>
+        })}>
             {year}.{month}.{day}
         </span>
     );
@@ -78,14 +77,17 @@ const Loading = () => {
     const theme = useContext(ThemeContext);
 
     return (
-        <div css={{
+        <div className={css({
             fontWeight: 'bold',
             color: theme.defaultColor
-        }}>
+        })}>
             Loading...&nbsp;
-            <Icon css={{
-                animation: `${loadingAnimation} 0.5s infinite`
-            }} definition={faClock}/>
+            <Icon
+                className={css({
+                    animation: `${loadingAnimation} 0.5s infinite`
+                })}
+                definition={faClock}
+            />
         </div>
     );
 };
@@ -117,9 +119,9 @@ const Preview = ({post = {} as Post}) => {
     }, [preview]);
 
     return (
-        <div css={{
+        <div className={css({
             color: theme.defaultColor
-        }}>
+        })}>
             {(preview === null) ? <Loading/> : preview}
         </div>
     );
@@ -131,15 +133,15 @@ const CategoryButton = ({category = '' as Category}) => {
     const navigate = useNavigate();
 
     return (
-        <div css={{
+        <div className={css({
             marginTop: '0.5rem',
             marginBottom: '1rem',
             color: theme.defaultColor
-        }}>
+        })}>
             Category:&nbsp;
 
             <button
-                css={{
+                className={css({
                     cursor: 'pointer',
                     padding: '0',
                     fontSize: '1rem',
@@ -150,7 +152,7 @@ const CategoryButton = ({category = '' as Category}) => {
                     '&:hover, &:active, &:focus': {
                         color: theme.lightColor
                     }
-                }}
+                })}
                 title={category}
                 onClick={() => {
                     navigate(`${basename}category/${category.toLowerCase()}`);
@@ -169,13 +171,13 @@ export const PreviewPage = ({posts = [] as Post[]}) => {
         <div>
             {
                 (posts.length === 0)
-                    ? <span css={{color: theme.defaultColor}}>No posts!</span>
+                    ? <span className={css({color: theme.defaultColor})}>No posts!</span>
                     : posts.map(post => (
-                        <div css={{
+                        <div className={css({
                             paddingBottom: '0.5rem',
                             marginBottom: '1.5rem',
                             borderBottom: `1px solid ${theme.darkColor}`,
-                        }}>
+                        })}>
                             <TitleButton post={post}/>
                             <PostDate date={post.date}/>
                             <Preview post={post}/>
