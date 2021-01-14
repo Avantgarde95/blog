@@ -7,7 +7,7 @@ import {ThemeContext} from './Theme';
 import {Post} from './Post';
 import {Icon} from './Icon';
 import {PathContext} from './Path';
-import {Category} from './Category';
+import {CategoryButton} from './CategoryButton';
 
 const TitleButton = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
@@ -127,43 +127,6 @@ const Preview = ({post = {} as Post}) => {
     );
 };
 
-const CategoryButton = ({category = '' as Category}) => {
-    const theme = useContext(ThemeContext);
-    const {basename} = useContext(PathContext);
-    const navigate = useNavigate();
-
-    return (
-        <div className={css({
-            marginTop: '0.5rem',
-            marginBottom: '1rem',
-            color: theme.defaultColor
-        })}>
-            Category:&nbsp;
-
-            <button
-                className={css({
-                    cursor: 'pointer',
-                    padding: '0',
-                    fontSize: '1rem',
-                    fontFamily: 'inherit',
-                    border: 'none',
-                    color: theme.darkColor,
-                    backgroundColor: 'rgba(0, 0, 0, 0)',
-                    '&:hover, &:active, &:focus': {
-                        color: theme.lightColor
-                    }
-                })}
-                title={category}
-                onClick={() => {
-                    navigate(`${basename}category/${category.toLowerCase()}`);
-                }}
-            >
-                {category}
-            </button>
-        </div>
-    );
-};
-
 export const PreviewPage = ({posts = [] as Post[]}) => {
     const theme = useContext(ThemeContext);
 
@@ -181,7 +144,13 @@ export const PreviewPage = ({posts = [] as Post[]}) => {
                             <TitleButton post={post}/>
                             <PostDate date={post.date}/>
                             <Preview post={post}/>
-                            <CategoryButton category={post.category}/>
+                            <div className={css({
+                                marginTop: '0.5rem',
+                                marginBottom: '1rem',
+                                color: theme.defaultColor
+                            })}>
+                                Category: <CategoryButton category={post.category}/>
+                            </div>
                         </div>
                     ))
             }

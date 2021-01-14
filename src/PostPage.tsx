@@ -1,14 +1,12 @@
 import * as React from 'react';
 import {createRef, useContext, useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 import {css, keyframes} from '@emotion/css';
 import {DiscussionEmbed} from 'disqus-react';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
 import {Post} from './Post';
-import {PathContext} from './Path';
-import {Category} from './Category';
+import {CategoryButton} from './CategoryButton';
 
 const Luminous = require('luminous-lightbox').Luminous;
 
@@ -174,41 +172,6 @@ const Content = ({html = ''}) => {
     );
 };
 
-const CategoryButton = ({category = '' as Category}) => {
-    const theme = useContext(ThemeContext);
-    const {basename} = useContext(PathContext);
-    const navigate = useNavigate();
-
-    return (
-        <div className={css({
-            marginBottom: '1rem',
-            color: theme.defaultColor
-        })}>
-            Category:&nbsp;
-            <button
-                className={css({
-                    cursor: 'pointer',
-                    padding: '0',
-                    fontSize: '1rem',
-                    fontFamily: 'inherit',
-                    border: 'none',
-                    color: theme.darkColor,
-                    backgroundColor: 'rgba(0, 0, 0, 0)',
-                    '&:hover, &:active, &:focus': {
-                        color: theme.lightColor
-                    }
-                })}
-                title={category}
-                onClick={() => {
-                    navigate(`${basename}category/${category.toLowerCase()}`);
-                }}
-            >
-                {category}
-            </button>
-        </div>
-    );
-};
-
 export const PostPage = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
     const [html, setHTML] = useState<string | null>(null);
@@ -231,7 +194,12 @@ export const PostPage = ({post = {} as Post}) => {
                 <PostDate date={post.date}/>
             </div>
             {(html === null) ? <Loading/> : <Content html={html}/>}
-            <CategoryButton category={post.category}/>
+            <div className={css({
+                marginBottom: '1rem',
+                color: theme.defaultColor
+            })}>
+                Category: <CategoryButton category={post.category}/>
+            </div>
             <DiscussionEmbed shortname={'Avantgarde95'} config={{
                 url: `https://avantgarde95.github.io/blog/${post.path}`,
                 identifier: post.title,
