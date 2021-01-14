@@ -13,6 +13,7 @@ import {allCategories, Category} from './Category';
 import {PreviewPage} from './PreviewPage';
 import {CategoryWidget} from './CategoryWidget';
 import {SearchPage} from './SearchPage';
+import {CategoryPage} from './CategoryPage';
 import {PathContext, PathProvider} from './Path';
 import {RecentPostsWidget} from './RecentPostsWidget';
 
@@ -59,7 +60,7 @@ const AppRoutes = ({posts = [] as Post[], categories = [] as readonly Category[]
             })),
             ...categories.map(category => ({
                 path: `category/${category.toLowerCase()}`,
-                element: <PreviewPage posts={posts.filter(post => post.category === category)}/>
+                element: <CategoryPage category={category} posts={posts}/>
             })),
             {path: 'search/:query', element: <SearchPage posts={posts}/>},
             {path: '*', element: <NotFoundPage/>}
