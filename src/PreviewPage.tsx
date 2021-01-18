@@ -106,7 +106,7 @@ function getAbbreviation(value: string, maxLength: number) {
     }
 }
 
-const Preview = ({post = {} as Post}) => {
+const Abbreviation = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
     const [preview, setPreview] = useState<string | null>(null);
 
@@ -127,33 +127,87 @@ const Preview = ({post = {} as Post}) => {
     );
 };
 
-export const PreviewPage = ({posts = [] as Post[]}) => {
+const Preview = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
 
     return (
+        <div className={css({
+            paddingBottom: '0.5rem',
+            marginBottom: '1.5rem',
+            borderBottom: `1px solid ${theme.darkColor}`,
+        })}>
+            <TitleButton post={post}/>
+            <PostDate date={post.date}/>
+            <Abbreviation post={post}/>
+            <div className={css({
+                marginTop: '0.5rem',
+                marginBottom: '1rem',
+                color: theme.defaultColor
+            })}>
+                Category: <CategoryButton category={post.category}/>
+            </div>
+        </div>
+    );
+};
+
+export const PreviewPage = ({posts = [] as Post[]}) => {
+    const theme = useContext(ThemeContext);
+
+    if (posts.length === 0) {
+        return <div className={css({color: theme.defaultColor})}>No posts!</div>;
+    }
+
+    const [subpageIndex, setSubpageIndex] = useState(0);
+    const postCountPerSubpage = 4;
+    const subpageCount = Math.ceil(posts.length / postCountPerSubpage);
+    const postIndexStart = postCountPerSubpage * subpageIndex;
+    const atFirstSubpage = subpageIndex <= 0;
+    const atLastSubpage = subpageIndex >= subpageCount - 1;
+
+    const defaultButtonStyle = css({
+        padding: '0',
+        fontSize: '1rem',
+        fontFamily: 'inherit',
+        color: theme.defaultColor,
+        border: 'none',
+        backgroundColor: 'rgba(0, 0, 0, 0)'
+    });
+
+    const activeButtonStyle = css([defaultButtonStyle, {
+        color: theme.darkColor,
+        cursor: 'pointer',
+        '&:hover, &:active, &:focus': {
+            color: theme.lightColor
+        }
+    }]);
+
+    return (
         <div>
-            {
-                (posts.length === 0)
-                    ? <span className={css({color: theme.defaultColor})}>No posts!</span>
-                    : posts.map(post => (
-                        <div className={css({
-                            paddingBottom: '0.5rem',
-                            marginBottom: '1.5rem',
-                            borderBottom: `1px solid ${theme.darkColor}`,
-                        })}>
-                            <TitleButton post={post}/>
-                            <PostDate date={post.date}/>
-                            <Preview post={post}/>
-                            <div className={css({
-                                marginTop: '0.5rem',
-                                marginBottom: '1rem',
-                                color: theme.defaultColor
-                            })}>
-                                Category: <CategoryButton category={post.category}/>
-                            </div>
-                        </div>
-                    ))
-            }
+            {posts.slice(postIndexStart, postIndexStart + postCountPerSubpage).map(post => <Preview post={post}/>)}
+            <div>
+                <button
+                    className={atFirstSubpage ? defaultButtonStyle : activeButtonStyle}
+                    onClick={() => {
+                        if (!atFirstSubpage) {
+                            setSubpageIndex(subpageIndex - 1);
+                        }
+                    }}
+                >
+                    &#9664; Prev. page
+                </button>
+                <button
+                    className={css([atLastSubpage ? defaultButtonStyle : activeButtonStyle, {
+                        float: 'right'
+                    }])}
+                    onClick={() => {
+                        if (!atLastSubpage) {
+                            setSubpageIndex(subpageIndex + 1);
+                        }
+                    }}
+                >
+                    Next page &#9654;
+                </button>
+            </div>
         </div>
     );
 };
