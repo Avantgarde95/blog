@@ -23,7 +23,7 @@ export const CategoryWidget = ({categories = [] as readonly Category[], posts = 
             </div>
             {categories.map(category => {
                 const postCount = posts.filter(post => post.category === category).length;
-                return <div>-<CategoryButton category={category}/> ({postCount})</div>;
+                return <div>- <CategoryButton category={category}/> ({postCount})</div>;
             })}
         </div>
     );

@@ -12,7 +12,7 @@ export const PostButton = ({post = {} as Post}) => {
     const navigate = useNavigate();
 
     return (
-        <button
+        <span
             className={css({
                 cursor: 'pointer',
                 padding: '0',
@@ -25,12 +25,13 @@ export const PostButton = ({post = {} as Post}) => {
                     color: theme.lightColor
                 }
             })}
+            tabIndex={0}
             title={post.title}
             onClick={() => {
                 navigate(`${basename}post/${post.path}`);
             }}
         >
             {post.title}
-        </button>
+        </span>
     );
 };

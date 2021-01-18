@@ -12,7 +12,7 @@ export const CategoryButton = ({category = '' as Category}) => {
     const navigate = useNavigate();
 
     return (
-        <button
+        <span
             className={css({
                 cursor: 'pointer',
                 padding: '0',
@@ -25,12 +25,13 @@ export const CategoryButton = ({category = '' as Category}) => {
                     color: theme.lightColor
                 }
             })}
+            tabIndex={0}
             title={category}
             onClick={() => {
                 navigate(`${basename}category/${category.toLowerCase()}`);
             }}
         >
             {category}
-        </button>
+        </span>
     );
 };
