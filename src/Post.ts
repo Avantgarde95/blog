@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'impressiveslipknotliveperformances',
+        title: 'Impressive Slipknot live performances',
+        date: new Date('2021-01-18'),
+        category: 'Music',
+        load: () => import('./post/ImpressiveSlipknotLivePerformances.md')
+    },
+    {
         path: 'reactiframehistory',
         title: 'Preventing iframe from affecting the history',
         date: new Date('2020-12-29'),
