@@ -3,12 +3,12 @@ import {createRef, useContext, useEffect, useState} from 'react';
 import {css, keyframes} from '@emotion/css';
 import {DiscussionEmbed} from 'disqus-react';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
+import {Luminous} from 'luminous-lightbox';
+import 'luminous-lightbox/dist/luminous-basic.min.css';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
 import {Post} from './Post';
 import {CategoryLink} from './CategoryLink';
-
-const Luminous = require('luminous-lightbox').Luminous;
 
 const loadingAnimation = keyframes({
     '0%': {

@@ -16,9 +16,7 @@ import {SearchPage} from './SearchPage';
 import {CategoryPage} from './CategoryPage';
 import {PathContext, PathProvider} from './Path';
 import {RecentPostsWidget} from './RecentPostsWidget';
-
-import './Luminous';
-import './Highlight';
+import './Highlight.css';
 
 const NotFoundPage = () => {
     const theme = useContext(ThemeContext);
