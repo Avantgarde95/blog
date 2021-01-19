@@ -9,13 +9,14 @@ import {Icon} from './Icon';
 import {PathContext} from './Path';
 import {CategoryLink} from './CategoryLink';
 
-const TitleButton = ({post = {} as Post}) => {
+const TitleLink = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
     const {basename} = useContext(PathContext);
 
     return (
         <Link
             className={css({
+                display: 'inline-block',
                 cursor: 'pointer',
                 textDecoration: 'none',
                 wordBreak: 'break-all',
@@ -122,7 +123,7 @@ const Preview = ({post = {} as Post}) => {
             marginBottom: '1.5rem',
             borderBottom: `1px solid ${theme.darkColor}`,
         })}>
-            <TitleButton post={post}/>
+            <TitleLink post={post}/>
             <PostDate date={post.date}/>
             <div className={css({
                 color: theme.defaultColor
