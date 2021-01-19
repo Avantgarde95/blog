@@ -106,7 +106,7 @@ function getAbbreviation(value: string, maxLength: number) {
     }
 }
 
-const Abbreviation = ({post = {} as Post}) => {
+const Preview = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
     const [preview, setPreview] = useState<string | null>(null);
 
@@ -116,19 +116,7 @@ const Abbreviation = ({post = {} as Post}) => {
         }).catch(() => {
             setPreview('Failed to load the post!');
         });
-    }, [preview]);
-
-    return (
-        <div className={css({
-            color: theme.defaultColor
-        })}>
-            {(preview === null) ? <Loading/> : preview}
-        </div>
-    );
-};
-
-const Preview = ({post = {} as Post}) => {
-    const theme = useContext(ThemeContext);
+    }, [preview, post]);
 
     return (
         <div className={css({
@@ -138,7 +126,11 @@ const Preview = ({post = {} as Post}) => {
         })}>
             <TitleButton post={post}/>
             <PostDate date={post.date}/>
-            <Abbreviation post={post}/>
+            <div className={css({
+                color: theme.defaultColor
+            })}>
+                {(preview === null) ? <Loading/> : preview}
+            </div>
             <div className={css({
                 marginTop: '0.5rem',
                 marginBottom: '1rem',
