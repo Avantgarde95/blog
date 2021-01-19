@@ -1,20 +1,21 @@
 import * as React from 'react';
 import {useContext} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {css} from '@emotion/css';
-import {Category} from './Category';
+import {Post} from './Post';
 import {ThemeContext} from './Theme';
 import {PathContext} from './Path';
 
-export const CategoryButton = ({category = '' as Category}) => {
+export const PostLink = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
     const {basename} = useContext(PathContext);
-    const navigate = useNavigate();
 
     return (
-        <span
+        <Link
             className={css({
                 cursor: 'pointer',
+                textDecoration: 'none',
+                wordBreak: 'break-all',
                 padding: '0',
                 fontSize: '1rem',
                 fontFamily: 'inherit',
@@ -26,12 +27,10 @@ export const CategoryButton = ({category = '' as Category}) => {
                 }
             })}
             tabIndex={0}
-            title={category}
-            onClick={() => {
-                navigate(`${basename}category/${category.toLowerCase()}`);
-            }}
+            title={post.title}
+            to={`${basename}post/${post.path}`}
         >
-            {category}
-        </span>
+            {post.title}
+        </Link>
     );
 };

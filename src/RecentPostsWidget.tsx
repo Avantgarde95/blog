@@ -3,7 +3,7 @@ import {useContext} from 'react';
 import {css} from '@emotion/css';
 import {Post} from './Post';
 import {ThemeContext} from './Theme';
-import {PostButton} from './PostButton';
+import {PostLink} from './PostLink';
 
 export const RecentPostsWidget = ({posts = [] as Post[]}) => {
     const theme = useContext(ThemeContext);
@@ -23,7 +23,7 @@ export const RecentPostsWidget = ({posts = [] as Post[]}) => {
             })}>
                 Recent posts
             </div>
-            {sortedPosts.slice(0, 3).map(post => <div>- <PostButton post={post}/></div>)}
+            {sortedPosts.slice(0, 3).map(post => <div>- <PostLink post={post}/></div>)}
         </div>
     );
 };

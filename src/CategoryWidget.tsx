@@ -4,7 +4,7 @@ import {css} from '@emotion/css';
 import {Post} from './Post';
 import {Category} from './Category';
 import {ThemeContext} from './Theme';
-import {CategoryButton} from './CategoryButton';
+import {CategoryLink} from './CategoryLink';
 
 export const CategoryWidget = ({categories = [] as readonly Category[], posts = [] as Post[]}) => {
     const theme = useContext(ThemeContext);
@@ -23,7 +23,7 @@ export const CategoryWidget = ({categories = [] as readonly Category[], posts = 
             </div>
             {categories.map(category => {
                 const postCount = posts.filter(post => post.category === category).length;
-                return <div>- <CategoryButton category={category}/> ({postCount})</div>;
+                return <div>- <CategoryLink category={category}/> ({postCount})</div>;
             })}
         </div>
     );

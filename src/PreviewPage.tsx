@@ -1,23 +1,23 @@
 import * as React from 'react';
 import {useContext, useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {css, keyframes} from '@emotion/css';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
 import {Post} from './Post';
 import {Icon} from './Icon';
 import {PathContext} from './Path';
-import {CategoryButton} from './CategoryButton';
+import {CategoryLink} from './CategoryLink';
 
 const TitleButton = ({post = {} as Post}) => {
     const theme = useContext(ThemeContext);
     const {basename} = useContext(PathContext);
-    const navigate = useNavigate();
 
     return (
-        <button
+        <Link
             className={css({
                 cursor: 'pointer',
+                textDecoration: 'none',
                 wordBreak: 'break-all',
                 textAlign: 'left',
                 padding: '0',
@@ -34,12 +34,10 @@ const TitleButton = ({post = {} as Post}) => {
                 }
             })}
             title={post.title}
-            onClick={() => {
-                navigate(`${basename}post/${post.path}`);
-            }}
+            to={`${basename}post/${post.path}`}
         >
             {post.title}
-        </button>
+        </Link>
     );
 };
 
@@ -136,7 +134,7 @@ const Preview = ({post = {} as Post}) => {
                 marginBottom: '1rem',
                 color: theme.defaultColor
             })}>
-                Category: <CategoryButton category={post.category}/>
+                Category: <CategoryLink category={post.category}/>
             </div>
         </div>
     );

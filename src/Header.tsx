@@ -1,21 +1,21 @@
 import * as React from 'react';
 import {useContext, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {css} from '@emotion/css';
 import {faSearch} from '@fortawesome/free-solid-svg-icons/faSearch';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
 import {PathContext} from './Path';
 
-const TitleButton = () => {
+const TitleLink = () => {
     const theme = useContext(ThemeContext);
     const {basename} = useContext(PathContext);
-    const navigate = useNavigate();
 
     return (
-        <button
+        <Link
             className={css({
                 cursor: 'pointer',
+                textDecoration: 'none',
                 padding: 0,
                 fontFamily: 'inherit',
                 fontWeight: 'bold',
@@ -29,12 +29,10 @@ const TitleButton = () => {
                 }
             })}
             title={'Home'}
-            onClick={() => {
-                navigate(basename);
-            }}
+            to={basename}
         >
             Hunmin Park (Avantgarde95)
-        </button>
+        </Link>
     );
 };
 
@@ -144,7 +142,7 @@ export const Header = () => {
                     width: '70%'
                 }
             })}>
-                <TitleButton/>
+                <TitleLink/>
             </div>
             <div className={css({
                 boxSizing: 'border-box',

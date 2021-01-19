@@ -6,7 +6,7 @@ import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {ThemeContext} from './Theme';
 import {Icon} from './Icon';
 import {Post} from './Post';
-import {CategoryButton} from './CategoryButton';
+import {CategoryLink} from './CategoryLink';
 
 const Luminous = require('luminous-lightbox').Luminous;
 
@@ -198,7 +198,7 @@ export const PostPage = ({post = {} as Post}) => {
                 marginBottom: '1rem',
                 color: theme.defaultColor
             })}>
-                Category: <CategoryButton category={post.category}/>
+                Category: <CategoryLink category={post.category}/>
             </div>
             <DiscussionEmbed shortname={'Avantgarde95'} config={{
                 url: `https://avantgarde95.github.io/blog/${post.path}`,
