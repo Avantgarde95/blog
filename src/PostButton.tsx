@@ -15,6 +15,7 @@ export const PostButton = ({post = {} as Post}) => {
         <span
             className={css({
                 cursor: 'pointer',
+                wordBreak: 'break-all',
                 padding: '0',
                 fontSize: '1rem',
                 fontFamily: 'inherit',
