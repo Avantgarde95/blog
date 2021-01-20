@@ -1,21 +1,21 @@
 import * as React from 'react';
-import {icon, IconDefinition} from '@fortawesome/fontawesome-svg-core';
+import {IconDefinition} from '@fortawesome/fontawesome-common-types';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
-export const Icon = (
-    {
-        definition = {} as IconDefinition,
-        className = ''
-    }
-) => {
-    const abstract = icon(definition).abstract[0];
-    const svgAttributes = abstract.attributes;
-    const pathAttributes = abstract.children!![0].attributes;
-
-    svgAttributes.class += ' ' + className;
-
+export const Icon = ({definition = {} as IconDefinition, className = ''}) => {
     return (
-        <svg {...svgAttributes}>
-            <path {...pathAttributes}/>
+        <svg
+            aria-hidden={true}
+            focusable={false}
+            className={`${className} svg-inline--fa fa-${definition.iconName}`}
+            role={'img'}
+            xmlns={'http://www.w3.org/2000/svg'}
+            viewBox={`0 0 ${definition.icon[0]} ${definition.icon[1]}`}
+        >
+            <path
+                fill={'currentColor'}
+                d={definition.icon[4] as string}
+            />
         </svg>
     );
 };

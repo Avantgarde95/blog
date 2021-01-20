@@ -28,6 +28,7 @@ const Loading = () => {
     return (
         <div className={css({
             paddingBottom: '1rem',
+            marginTop: '1rem',
             marginBottom: '1rem',
             borderBottom: `1px solid ${theme.darkColor}`,
             fontSize: '1.3rem',
