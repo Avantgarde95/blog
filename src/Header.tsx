@@ -74,6 +74,8 @@ const Search = () => {
                     cursor: 'pointer',
                     fontFamily: 'inherit',
                     fontSize: '1rem',
+                    textAlign: 'right',
+                    width: '2rem',
                     border: 'none',
                     color: theme.darkColor,
                     backgroundColor: 'rgba(0, 0, 0, 0)',
