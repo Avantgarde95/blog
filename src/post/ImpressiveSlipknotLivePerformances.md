@@ -13,7 +13,7 @@ Impressive Slipknot live performances
 (sic) / Dynamo 2000
 <br/><br/>
 
-<https://youtu.be/RDI5gMSpOO4>
+<https://youtu.be/fO1ebT0XnlE>
 
 The heretic anthem / Conan O'Brien Show 2001
 <br/><br/>
@@ -48,7 +48,7 @@ Wait And Bleed / Download 2009
 Eyeless / Download 2009
 <br/><br/>
 
-<https://youtu.be/hJDqrjdnTu8>
+<https://youtu.be/S9fcSqi4j9g>
 
 (sic) / Knotfest 2012
 <br/><br/>

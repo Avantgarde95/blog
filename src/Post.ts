@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'smartpointertree',
+        title: 'Creating a tree using the smart pointer',
+        date: new Date('2021-04-12'),
+        category: 'Computer',
+        load: () => import('./post/SmartPointerTree.md')
+    },
+    {
         path: 'impressiveslipknotliveperformances',
         title: 'Impressive Slipknot live performances',
         date: new Date('2021-01-18'),
