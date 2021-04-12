@@ -105,6 +105,17 @@ function getAbbreviation(value: string, maxLength: number) {
     }
 }
 
+const previewAnimation = keyframes({
+    '0%': {
+        marginLeft: '-5rem',
+        opacity: 0
+    },
+    '100%': {
+        marginLeft: 0,
+        opacity: 1
+    }
+});
+
 const Preview = ({ post = {} as Post }) => {
     const theme = useContext(ThemeContext);
     const [preview, setPreview] = useState<string | null>(null);
@@ -122,6 +133,7 @@ const Preview = ({ post = {} as Post }) => {
             paddingBottom: '0.5rem',
             marginBottom: '1.5rem',
             borderBottom: `1px solid ${theme.darkColor}`,
+            animation: `${previewAnimation} 0.5s 1`
         })}>
             <TitleLink post={post} />
             <PostDate date={post.date} />
@@ -173,7 +185,9 @@ export const PreviewPage = ({ posts = [] as Post[] }) => {
     }]);
 
     return (
-        <div>
+        <div className={css({
+            overflowX: 'hidden'
+        })}>
             {posts.slice(postIndexStart, postIndexStart + postCountPerSubpage).map(post => <Preview post={post} />)}
             <div>
                 <button
