@@ -105,14 +105,21 @@ function getAbbreviation(value: string, maxLength: number) {
     }
 }
 
-const previewAnimation = keyframes({
+const areaAnimation = keyframes({
     '0%': {
-        marginLeft: '-5rem',
         opacity: 0
     },
     '100%': {
-        marginLeft: 0,
         opacity: 1
+    }
+});
+
+const previewAnimation = keyframes({
+    '0%': {
+        transform: 'translateX(-5rem)'
+    },
+    '100%': {
+        transform: 'translateX(0)'
     }
 });
 
@@ -133,21 +140,25 @@ const Preview = ({ post = {} as Post }) => {
             paddingBottom: '0.5rem',
             marginBottom: '1.5rem',
             borderBottom: `1px solid ${theme.darkColor}`,
-            animation: `${previewAnimation} 0.5s 1`
+            animation: `${areaAnimation} 0.5s 1`
         })}>
-            <TitleLink post={post} />
-            <PostDate date={post.date} />
             <div className={css({
-                color: theme.defaultColor
+                animation: `${previewAnimation} 0.5s 1`
             })}>
-                {(preview === null) ? <Loading /> : preview}
-            </div>
-            <div className={css({
-                marginTop: '0.5rem',
-                marginBottom: '1rem',
-                color: theme.defaultColor
-            })}>
-                Category: <CategoryLink category={post.category} />
+                <TitleLink post={post} />
+                <PostDate date={post.date} />
+                <div className={css({
+                    color: theme.defaultColor
+                })}>
+                    {(preview === null) ? <Loading /> : preview}
+                </div>
+                <div className={css({
+                    marginTop: '0.5rem',
+                    marginBottom: '1rem',
+                    color: theme.defaultColor
+                })}>
+                    Category: <CategoryLink category={post.category} />
+                </div>
             </div>
         </div>
     );
@@ -188,7 +199,9 @@ export const PreviewPage = ({ posts = [] as Post[] }) => {
         <div className={css({
             overflowX: 'hidden'
         })}>
-            {posts.slice(postIndexStart, postIndexStart + postCountPerSubpage).map(post => <Preview post={post} />)}
+            {posts.slice(postIndexStart, postIndexStart + postCountPerSubpage).map((post, index) =>
+                <Preview key={postIndexStart + index} post={post} />
+            )}
             <div>
                 <button
                     className={atFirstSubpage ? defaultButtonStyle : activeButtonStyle}
