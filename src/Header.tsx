@@ -1,15 +1,15 @@
 import * as React from 'react';
-import {useContext, useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
-import {css} from '@emotion/css';
-import {faSearch} from '@fortawesome/free-solid-svg-icons/faSearch';
-import {ThemeContext} from './Theme';
-import {Icon} from './Icon';
-import {PathContext} from './Path';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { css } from '@emotion/css';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
+import { ThemeContext } from './Theme';
+import { Icon } from './Icon';
+import { PathContext } from './Path';
 
 const TitleLink = () => {
     const theme = useContext(ThemeContext);
-    const {basename} = useContext(PathContext);
+    const { basename } = useContext(PathContext);
 
     return (
         <Link
@@ -38,7 +38,7 @@ const TitleLink = () => {
 
 const Search = () => {
     const theme = useContext(ThemeContext);
-    const {basename} = useContext(PathContext);
+    const { basename } = useContext(PathContext);
     const [query, setQuery] = useState('');
     const navigate = useNavigate();
 
@@ -86,15 +86,15 @@ const Search = () => {
                     navigate(`${basename}search/${query}`);
                 }}
             >
-                <Icon definition={faSearch}/>
+                <Icon definition={faSearch} />
             </button>
         </>
     );
 };
 
 const sites = [
-    {name: 'Homepage', url: 'https://avantgarde95.github.io/'},
-    {name: 'Code', url: 'https://github.com/Avantgarde95/blog'}
+    { name: 'Homepage', url: 'https://avantgarde95.github.io/' },
+    { name: 'Code', url: 'https://github.com/Avantgarde95/blog' }
 ];
 
 const SiteLinks = () => {
@@ -102,7 +102,7 @@ const SiteLinks = () => {
 
     return (
         <span>
-            {sites.map(({name, url}) => (
+            {sites.map(({ name, url }) => (
                 <a
                     className={css({
                         cursor: 'pointer',
@@ -142,7 +142,7 @@ export const Header = () => {
                     width: '70%'
                 }
             })}>
-                <TitleLink/>
+                <TitleLink />
             </div>
             <div className={css({
                 boxSizing: 'border-box',
@@ -154,12 +154,12 @@ export const Header = () => {
                     textAlign: 'right'
                 }
             })}>
-                <Search/>
+                <Search />
             </div>
             <div className={css({
                 marginBottom: '1rem'
             })}>
-                <SiteLinks/>
+                <SiteLinks />
             </div>
         </div>
     );

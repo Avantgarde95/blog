@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {useContext, useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
-import {css, keyframes} from '@emotion/css';
-import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
-import {Post} from './Post';
-import {ThemeContext} from './Theme';
-import {Icon} from './Icon';
-import {PreviewPage} from './PreviewPage';
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { css, keyframes } from '@emotion/css';
+import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
+import { Post } from './Post';
+import { ThemeContext } from './Theme';
+import { Icon } from './Icon';
+import { PreviewPage } from './PreviewPage';
 
 const loadingAnimation = keyframes({
     '0%': {
@@ -44,8 +44,8 @@ function processString(value: string) {
     return value.trim().toLowerCase();
 }
 
-export const SearchPage = ({posts = [] as Post[]}) => {
-    const {query} = useParams();
+export const SearchPage = ({ posts = [] as Post[] }) => {
+    const { query } = useParams();
     const [postsToPreview, setPostsToPreview] = useState<Post[] | null>(null);
 
     useEffect(() => {
@@ -66,5 +66,5 @@ export const SearchPage = ({posts = [] as Post[]}) => {
         });
     }, [postsToPreview]);
 
-    return (postsToPreview === null) ? <Searching/> : <PreviewPage posts={postsToPreview}/>;
+    return (postsToPreview === null) ? <Searching /> : <PreviewPage posts={postsToPreview} />;
 };

@@ -1,14 +1,14 @@
 import * as React from 'react';
-import {useContext} from 'react';
-import {Link} from 'react-router-dom';
-import {css} from '@emotion/css';
-import {Category} from './Category';
-import {ThemeContext} from './Theme';
-import {PathContext} from './Path';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { css } from '@emotion/css';
+import { Category } from './Category';
+import { ThemeContext } from './Theme';
+import { PathContext } from './Path';
 
-export const CategoryLink = ({category = '' as Category}) => {
+export const CategoryLink = ({ category = '' as Category }) => {
     const theme = useContext(ThemeContext);
-    const {basename} = useContext(PathContext);
+    const { basename } = useContext(PathContext);
 
     return (
         <Link

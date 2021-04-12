@@ -1,14 +1,14 @@
 import * as React from 'react';
-import {createRef, useContext, useEffect, useState} from 'react';
-import {css, keyframes} from '@emotion/css';
-import {DiscussionEmbed} from 'disqus-react';
-import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
-import {Luminous} from 'luminous-lightbox';
+import { createRef, useContext, useEffect, useState } from 'react';
+import { css, keyframes } from '@emotion/css';
+import { DiscussionEmbed } from 'disqus-react';
+import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
+import { Luminous } from 'luminous-lightbox';
 import 'luminous-lightbox/dist/luminous-basic.min.css';
-import {ThemeContext} from './Theme';
-import {Icon} from './Icon';
-import {Post} from './Post';
-import {CategoryLink} from './CategoryLink';
+import { ThemeContext } from './Theme';
+import { Icon } from './Icon';
+import { Post } from './Post';
+import { CategoryLink } from './CategoryLink';
 
 const loadingAnimation = keyframes({
     '0%': {
@@ -46,7 +46,7 @@ const Loading = () => {
     );
 };
 
-const Title = ({title = ''}) => {
+const Title = ({ title = '' }) => {
     const theme = useContext(ThemeContext);
 
     return (
@@ -64,7 +64,7 @@ const Title = ({title = ''}) => {
     );
 }
 
-const PostDate = ({date = {} as Date}) => {
+const PostDate = ({ date = {} as Date }) => {
     const theme = useContext(ThemeContext);
     const year = date.getFullYear().toString().padStart(4, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -82,7 +82,7 @@ const PostDate = ({date = {} as Date}) => {
     );
 };
 
-const Content = ({html = ''}) => {
+const Content = ({ html = '' }) => {
     const theme = useContext(ThemeContext);
     const ref = createRef<HTMLDivElement>();
 
@@ -93,7 +93,7 @@ const Content = ({html = ''}) => {
             const images = root.querySelectorAll('.PostImage');
 
             for (let i = 0; i < images.length; i++) {
-                new Luminous(images[i], {sourceAttribute: 'src'});
+                new Luminous(images[i], { sourceAttribute: 'src' });
             }
         }
     });
@@ -168,12 +168,12 @@ const Content = ({html = ''}) => {
                 }
             })}
             ref={ref}
-            dangerouslySetInnerHTML={{__html: html}}
+            dangerouslySetInnerHTML={{ __html: html }}
         />
     );
 };
 
-export const PostPage = ({post = {} as Post}) => {
+export const PostPage = ({ post = {} as Post }) => {
     const theme = useContext(ThemeContext);
     const [html, setHTML] = useState<string | null>(null);
 
@@ -191,21 +191,21 @@ export const PostPage = ({post = {} as Post}) => {
                 paddingBottom: '0.5rem',
                 borderBottom: `1px solid ${theme.darkColor}`,
             })}>
-                <Title title={post.title}/>
-                <PostDate date={post.date}/>
+                <Title title={post.title} />
+                <PostDate date={post.date} />
             </div>
-            {(html === null) ? <Loading/> : <Content html={html}/>}
+            {(html === null) ? <Loading /> : <Content html={html} />}
             <div className={css({
                 marginBottom: '1rem',
                 color: theme.defaultColor
             })}>
-                Category: <CategoryLink category={post.category}/>
+                Category: <CategoryLink category={post.category} />
             </div>
             <DiscussionEmbed shortname={'Avantgarde95'} config={{
                 url: `https://avantgarde95.github.io/blog/${post.path}`,
                 identifier: post.title,
                 title: post.title
-            }}/>
+            }} />
         </div>
     );
 };

@@ -1,14 +1,14 @@
 import * as React from 'react';
-import {useContext} from 'react';
-import {Link} from 'react-router-dom';
-import {css} from '@emotion/css';
-import {Post} from './Post';
-import {ThemeContext} from './Theme';
-import {PathContext} from './Path';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { css } from '@emotion/css';
+import { Post } from './Post';
+import { ThemeContext } from './Theme';
+import { PathContext } from './Path';
 
-export const PostLink = ({post = {} as Post}) => {
+export const PostLink = ({ post = {} as Post }) => {
     const theme = useContext(ThemeContext);
-    const {basename} = useContext(PathContext);
+    const { basename } = useContext(PathContext);
 
     return (
         <Link

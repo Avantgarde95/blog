@@ -1,17 +1,17 @@
 import * as React from 'react';
-import {useContext, useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
-import {css, keyframes} from '@emotion/css';
-import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
-import {ThemeContext} from './Theme';
-import {Post} from './Post';
-import {Icon} from './Icon';
-import {PathContext} from './Path';
-import {CategoryLink} from './CategoryLink';
+import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { css, keyframes } from '@emotion/css';
+import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
+import { ThemeContext } from './Theme';
+import { Post } from './Post';
+import { Icon } from './Icon';
+import { PathContext } from './Path';
+import { CategoryLink } from './CategoryLink';
 
-const TitleLink = ({post = {} as Post}) => {
+const TitleLink = ({ post = {} as Post }) => {
     const theme = useContext(ThemeContext);
-    const {basename} = useContext(PathContext);
+    const { basename } = useContext(PathContext);
 
     return (
         <Link
@@ -42,7 +42,7 @@ const TitleLink = ({post = {} as Post}) => {
     );
 };
 
-const PostDate = ({date = {} as Date}) => {
+const PostDate = ({ date = {} as Date }) => {
     const theme = useContext(ThemeContext);
     const year = date.getFullYear().toString().padStart(4, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -105,7 +105,7 @@ function getAbbreviation(value: string, maxLength: number) {
     }
 }
 
-const Preview = ({post = {} as Post}) => {
+const Preview = ({ post = {} as Post }) => {
     const theme = useContext(ThemeContext);
     const [preview, setPreview] = useState<string | null>(null);
 
@@ -123,29 +123,29 @@ const Preview = ({post = {} as Post}) => {
             marginBottom: '1.5rem',
             borderBottom: `1px solid ${theme.darkColor}`,
         })}>
-            <TitleLink post={post}/>
-            <PostDate date={post.date}/>
+            <TitleLink post={post} />
+            <PostDate date={post.date} />
             <div className={css({
                 color: theme.defaultColor
             })}>
-                {(preview === null) ? <Loading/> : preview}
+                {(preview === null) ? <Loading /> : preview}
             </div>
             <div className={css({
                 marginTop: '0.5rem',
                 marginBottom: '1rem',
                 color: theme.defaultColor
             })}>
-                Category: <CategoryLink category={post.category}/>
+                Category: <CategoryLink category={post.category} />
             </div>
         </div>
     );
 };
 
-export const PreviewPage = ({posts = [] as Post[]}) => {
+export const PreviewPage = ({ posts = [] as Post[] }) => {
     const theme = useContext(ThemeContext);
 
     if (posts.length === 0) {
-        return <div className={css({color: theme.defaultColor})}>No posts!</div>;
+        return <div className={css({ color: theme.defaultColor })}>No posts!</div>;
     }
 
     const [subpageIndex, setSubpageIndex] = useState(0);
@@ -174,7 +174,7 @@ export const PreviewPage = ({posts = [] as Post[]}) => {
 
     return (
         <div>
-            {posts.slice(postIndexStart, postIndexStart + postCountPerSubpage).map(post => <Preview post={post}/>)}
+            {posts.slice(postIndexStart, postIndexStart + postCountPerSubpage).map(post => <Preview post={post} />)}
             <div>
                 <button
                     className={atFirstSubpage ? defaultButtonStyle : activeButtonStyle}
