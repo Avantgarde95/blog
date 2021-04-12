@@ -173,6 +173,15 @@ const Content = ({ html = '' }) => {
     );
 };
 
+const postAnimation = keyframes({
+    '0%': {
+        opacity: 0
+    },
+    '100%': {
+        opacity: 1
+    }
+});
+
 export const PostPage = ({ post = {} as Post }) => {
     const theme = useContext(ThemeContext);
     const [html, setHTML] = useState<string | null>(null);
@@ -186,7 +195,9 @@ export const PostPage = ({ post = {} as Post }) => {
     }, [html, post]);
 
     return (
-        <div>
+        <div className={css({
+            animation: `${postAnimation} 0.5s 1`
+        })}>
             <div className={css({
                 paddingBottom: '0.5rem',
                 borderBottom: `1px solid ${theme.darkColor}`,
