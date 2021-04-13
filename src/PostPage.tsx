@@ -5,7 +5,7 @@ import { DiscussionEmbed } from 'disqus-react';
 import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
 import { Luminous } from 'luminous-lightbox';
 import 'luminous-lightbox/dist/luminous-basic.min.css';
-import { ThemeContext } from './Theme';
+import { darkTheme, ThemeContext } from './Theme';
 import { Icon } from './Icon';
 import { Post } from './Post';
 import { CategoryLink } from './CategoryLink';
@@ -132,7 +132,8 @@ const Content = ({ html = '' }) => {
                 '& pre': {
                     margin: '1.5rem 0',
                     fontFamily: 'inherit',
-                    fontSize: 'inherit'
+                    fontSize: 'inherit',
+                    backgroundColor: darkTheme.backgroundColor
                 },
                 '& .PostImage': {
                     cursor: 'pointer',

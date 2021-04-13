@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { css } from '@emotion/css';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
-import { ThemeContext } from './Theme';
+import { darkTheme, lightTheme, ThemeContext } from './Theme';
 import { Icon } from './Icon';
 import { PathContext } from './Path';
 
@@ -125,6 +125,35 @@ const SiteLinks = () => {
     );
 };
 
+const ThemeButton = () => {
+    const theme = useContext(ThemeContext);
+    const isDarkTheme = theme.backgroundColor === darkTheme.backgroundColor;
+
+    return (
+        <button
+            className={css({
+                boxSizing: 'border-box',
+                cursor: 'pointer',
+                float: 'right',
+                padding: '0 0.2rem 0 0.2rem',
+                fontSize: '1rem',
+                fontFamily: 'inherit',
+                color: theme.darkColor,
+                border: 'none',
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                '&:hover, &:active, &:focus': {
+                    color: theme.lightColor
+                }
+            })}
+            onClick={() => {
+                theme.changeTheme(isDarkTheme ? lightTheme : darkTheme);
+            }}
+        >
+            {isDarkTheme ? 'Light mode' : 'Dark mode'}
+        </button>
+    );
+};
+
 export const Header = () => {
     const theme = useContext(ThemeContext);
     const onWideScreen = '@media (min-width: 769px)';
@@ -160,6 +189,7 @@ export const Header = () => {
                 marginBottom: '1rem'
             })}>
                 <SiteLinks />
+                <ThemeButton />
             </div>
         </div>
     );

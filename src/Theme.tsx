@@ -1,25 +1,49 @@
 import * as React from 'react';
-import { createContext, ReactNode } from 'react';
+import { createContext, useState, ReactNode } from 'react';
 
 export interface Theme {
+    backgroundColor: string;
     defaultColor: string;
     lightColor: string;
     darkColor: string;
 }
 
-export const ThemeContext = createContext({} as Theme);
+export const ThemeContext = createContext({} as {
+    backgroundColor: string,
+    defaultColor: string,
+    lightColor: string,
+    darkColor: string,
+    changeTheme: (theme: Theme) => any
+});
+
+export const darkTheme: Theme = {
+    backgroundColor: '#222222',
+    defaultColor: '#ffffff',
+    lightColor: '#00f6ff',
+    darkColor: '#00d3dc'
+};
+
+export const lightTheme: Theme = {
+    backgroundColor: '#ffffff',
+    defaultColor: '#000000',
+    lightColor: '#82d7ff',
+    darkColor: '#2188ff'
+};
 
 export const ThemeProvider = ({
-    defaultColor = '#ffffff',
-    lightColor = '#ffffff',
-    darkColor = '#ffffff',
+    theme = darkTheme,
     children = null as ReactNode
-}) => (
-    <ThemeContext.Provider value={{
-        defaultColor: defaultColor,
-        lightColor: lightColor,
-        darkColor: darkColor
-    }}>
-        {children}
-    </ThemeContext.Provider>
-);
+}) => {
+    const [currentTheme, setTheme] = useState(theme);
+
+    return (
+        <ThemeContext.Provider value={{
+            changeTheme: newTheme => {
+                setTheme(newTheme);
+            },
+            ...currentTheme
+        }}>
+            {children}
+        </ThemeContext.Provider>
+    );
+};

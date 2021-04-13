@@ -7,7 +7,7 @@ import { BrowserRouter, useRoutes } from 'react-router-dom';
 import { css } from '@emotion/css';
 import { Header } from './Header';
 import { PostPage } from './PostPage';
-import { ThemeContext, ThemeProvider } from './Theme';
+import { darkTheme, ThemeContext, ThemeProvider } from './Theme';
 import { allPosts, Post } from './Post';
 import { allCategories, Category } from './Category';
 import { PreviewPage } from './PreviewPage';
@@ -76,6 +76,7 @@ const AppArea = ({ children = null as ReactNode }) => {
             boxSizing: 'border-box',
             width: '100%',
             height: '100%',
+            backgroundColor: theme.backgroundColor,
             [onWideScreen]: {
                 paddingTop: '1.5rem',
                 paddingBottom: '1.5rem'
@@ -100,11 +101,7 @@ const AppArea = ({ children = null as ReactNode }) => {
 const App = () => (
     <BrowserRouter>
         <PathProvider basename={document.getElementsByTagName('base')[0].getAttribute('href')!}>
-            <ThemeProvider
-                defaultColor={'#ffffff'}
-                lightColor={'#00f6ff'}
-                darkColor={'#00d3dc'}
-            >
+            <ThemeProvider theme={darkTheme}>
                 <AppArea>
                     <Header />
                     <CategoryWidget categories={allCategories} posts={allPosts} />
