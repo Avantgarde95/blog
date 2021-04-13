@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { css, keyframes } from '@emotion/css';
 import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import { ThemeContext } from './Theme';
 import { Post } from './Post';
 import { Icon } from './Icon';
@@ -211,7 +213,7 @@ export const PreviewPage = ({ posts = [] as Post[] }) => {
                         }
                     }}
                 >
-                    &#9664; Prev. page
+                    <Icon definition={faCaretLeft} /> Prev. page
                 </button>
                 <button
                     className={css([atLastSubpage ? defaultButtonStyle : activeButtonStyle, {
@@ -223,7 +225,7 @@ export const PreviewPage = ({ posts = [] as Post[] }) => {
                         }
                     }}
                 >
-                    Next page &#9654;
+                    Next page <Icon definition={faCaretRight} />
                 </button>
             </div>
         </div>
