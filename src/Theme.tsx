@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { createContext, useState, ReactNode } from 'react';
 
+const themeNames = ['Dark', 'Light'] as const;
+
+export type ThemeName = (typeof themeNames)[number];
+
 export interface Theme {
     backgroundColor: string;
     defaultColor: string;
@@ -8,36 +12,39 @@ export interface Theme {
     darkColor: string;
 }
 
+export const themeMap: { [name: string]: Theme } = {
+    Dark: {
+        backgroundColor: '#222222',
+        defaultColor: '#ffffff',
+        lightColor: '#00f6ff',
+        darkColor: '#00d3dc'
+    },
+    Light: {
+        backgroundColor: '#ffffff',
+        defaultColor: '#000000',
+        lightColor: '#82d7ff',
+        darkColor: '#2188ff'
+    }
+};
+
 export const ThemeContext = createContext({} as {
     theme: Theme,
-    changeTheme: (theme: Theme) => any
+    themeName: ThemeName,
+    changeTheme: (name: ThemeName) => any
 });
 
-export const darkTheme: Theme = {
-    backgroundColor: '#222222',
-    defaultColor: '#ffffff',
-    lightColor: '#00f6ff',
-    darkColor: '#00d3dc'
-};
-
-export const lightTheme: Theme = {
-    backgroundColor: '#ffffff',
-    defaultColor: '#000000',
-    lightColor: '#82d7ff',
-    darkColor: '#2188ff'
-};
-
 export const ThemeProvider = ({
-    theme = darkTheme,
+    defaultThemeName = 'Dark' as ThemeName,
     children = null as ReactNode
 }) => {
-    const [currentTheme, setTheme] = useState(theme);
+    const [currentThemeName, setTheme] = useState(defaultThemeName);
 
     return (
         <ThemeContext.Provider value={{
-            theme: currentTheme,
-            changeTheme: newTheme => {
-                setTheme(newTheme);
+            theme: themeMap[currentThemeName],
+            themeName: currentThemeName,
+            changeTheme: name => {
+                setTheme(name);
             },
         }}>
             {children}

@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { css } from '@emotion/css';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
-import { darkTheme, lightTheme, ThemeContext } from './Theme';
+import { ThemeContext } from './Theme';
 import { Icon } from './Icon';
 import { PathContext } from './Path';
 
@@ -126,8 +126,8 @@ const SiteLinks = () => {
 };
 
 const ThemeButton = () => {
-    const { theme, changeTheme } = useContext(ThemeContext);
-    const isDarkTheme = theme.backgroundColor === darkTheme.backgroundColor;
+    const { theme, themeName, changeTheme } = useContext(ThemeContext);
+    const isDarkTheme = themeName === 'Dark';
 
     return (
         <button
@@ -146,7 +146,7 @@ const ThemeButton = () => {
                 }
             })}
             onClick={() => {
-                changeTheme(isDarkTheme ? lightTheme : darkTheme);
+                changeTheme(isDarkTheme ? 'Light' : 'Dark');
             }}
         >
             {isDarkTheme ? 'Light mode' : 'Dark mode'}
