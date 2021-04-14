@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'typescriptstringuniontype',
+        title: 'Generate a union type from an array in TypeScript',
+        date: new Date('2021-04-14'),
+        category: 'Computer',
+        load: () => import('./post/TypeScriptStringUnionType.md')
+    },
+    {
         path: 'smartpointertree',
         title: 'Creating a tree using the smart pointer',
         date: new Date('2021-04-12'),
