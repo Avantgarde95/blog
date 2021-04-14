@@ -3,7 +3,9 @@ import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { css } from '@emotion/css';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
-import { ThemeContext } from './Theme';
+import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
+import { faMoon } from '@fortawesome/free-solid-svg-icons/faMoon';
+import { Theme, ThemeContext, themeMap } from './Theme';
 import { Icon } from './Icon';
 import { PathContext } from './Path';
 
@@ -129,27 +131,48 @@ const ThemeButton = () => {
     const { theme, themeName, changeTheme } = useContext(ThemeContext);
     const isDarkTheme = themeName === 'Dark';
 
+    const buttonStyle = (isOn: boolean, buttonTheme: Theme) => css(
+        {
+            boxSizing: 'border-box',
+            padding: '0.2rem',
+            transition: 'color 0.5s, border-color 0.5s'
+        },
+        isOn ? {
+            color: buttonTheme.darkColor,
+            border: `1px solid ${buttonTheme.darkColor}`,
+            '&:hover, &:active, &:focus': {
+                color: buttonTheme.lightColor,
+                border: `1px solid ${buttonTheme.lightColor}`
+            }
+        } : {
+            color: '#aaaaaa',
+            border: `1px solid #aaaaaa`
+        }
+    );
+
     return (
         <button
             className={css({
-                boxSizing: 'border-box',
+                display: 'block',
                 cursor: 'pointer',
-                float: 'right',
-                padding: '0 0.2rem 0 0.2rem',
+                padding: 0,
+                marginTop: '1rem',
+                //float: 'right',
                 fontSize: '1rem',
                 fontFamily: 'inherit',
-                color: theme.darkColor,
                 border: 'none',
-                backgroundColor: 'rgba(0, 0, 0, 0)',
-                '&:hover, &:active, &:focus': {
-                    color: theme.lightColor
-                }
+                backgroundColor: 'rgba(0, 0, 0, 0)'
             })}
             onClick={() => {
                 changeTheme(isDarkTheme ? 'Light' : 'Dark');
             }}
         >
-            {isDarkTheme ? 'Light mode' : 'Dark mode'}
+            <span className={buttonStyle(isDarkTheme, themeMap['Dark'])}>
+                <Icon definition={faMoon} /> Dark
+            </span>
+            <span className={buttonStyle(!isDarkTheme, themeMap['Light'])}>
+                <Icon definition={faSun} /> Light
+            </span>
         </button>
     );
 };
