@@ -8,7 +8,7 @@ import { Icon } from './Icon';
 import { PathContext } from './Path';
 
 const TitleLink = () => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const { basename } = useContext(PathContext);
 
     return (
@@ -37,7 +37,7 @@ const TitleLink = () => {
 };
 
 const Search = () => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const { basename } = useContext(PathContext);
     const [query, setQuery] = useState('');
     const navigate = useNavigate();
@@ -98,7 +98,7 @@ const sites = [
 ];
 
 const SiteLinks = () => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
     return (
         <span>
@@ -126,7 +126,7 @@ const SiteLinks = () => {
 };
 
 const ThemeButton = () => {
-    const theme = useContext(ThemeContext);
+    const { theme, changeTheme } = useContext(ThemeContext);
     const isDarkTheme = theme.backgroundColor === darkTheme.backgroundColor;
 
     return (
@@ -146,7 +146,7 @@ const ThemeButton = () => {
                 }
             })}
             onClick={() => {
-                theme.changeTheme(isDarkTheme ? lightTheme : darkTheme);
+                changeTheme(isDarkTheme ? lightTheme : darkTheme);
             }}
         >
             {isDarkTheme ? 'Light mode' : 'Dark mode'}
@@ -155,7 +155,7 @@ const ThemeButton = () => {
 };
 
 export const Header = () => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const onWideScreen = '@media (min-width: 769px)';
 
     return (

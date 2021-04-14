@@ -6,7 +6,7 @@ import { ThemeContext } from './Theme';
 import { PostLink } from './PostLink';
 
 export const RecentPostsWidget = ({ posts = [] as Post[] }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const sortedPosts = posts.slice(0);
 
     sortedPosts.sort((post1, post2) => (-post1.date.getTime() + post2.date.getTime()));

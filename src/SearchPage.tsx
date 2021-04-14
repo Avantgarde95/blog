@@ -21,7 +21,7 @@ const loadingAnimation = keyframes({
 });
 
 const Searching = () => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
     return (
         <div className={css({

@@ -12,7 +12,7 @@ import { PathContext } from './Path';
 import { CategoryLink } from './CategoryLink';
 
 const TitleLink = ({ post = {} as Post }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const { basename } = useContext(PathContext);
 
     return (
@@ -45,7 +45,7 @@ const TitleLink = ({ post = {} as Post }) => {
 };
 
 const PostDate = ({ date = {} as Date }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const year = date.getFullYear().toString().padStart(4, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const day = date.getDate().toString().padStart(2, '0');
@@ -75,7 +75,7 @@ const loadingAnimation = keyframes({
 });
 
 const Loading = () => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
     return (
         <div className={css({
@@ -126,7 +126,7 @@ const previewAnimation = keyframes({
 });
 
 const Preview = ({ post = {} as Post }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const [preview, setPreview] = useState<string | null>(null);
 
     useEffect(() => {
@@ -167,7 +167,7 @@ const Preview = ({ post = {} as Post }) => {
 };
 
 export const PreviewPage = ({ posts = [] as Post[] }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
     if (posts.length === 0) {
         return <div className={css({ color: theme.defaultColor })}>No posts!</div>;

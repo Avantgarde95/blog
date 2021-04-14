@@ -7,7 +7,7 @@ import { ThemeContext } from './Theme';
 import { CategoryLink } from './CategoryLink';
 
 export const CategoryWidget = ({ categories = [] as readonly Category[], posts = [] as Post[] }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
     return (
         <div className={css({

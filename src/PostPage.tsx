@@ -23,7 +23,7 @@ const loadingAnimation = keyframes({
 });
 
 const Loading = () => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
     return (
         <div className={css({
@@ -47,7 +47,7 @@ const Loading = () => {
 };
 
 const Title = ({ title = '' }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
     return (
         <span className={css({
@@ -65,7 +65,7 @@ const Title = ({ title = '' }) => {
 }
 
 const PostDate = ({ date = {} as Date }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const year = date.getFullYear().toString().padStart(4, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const day = date.getDate().toString().padStart(2, '0');
@@ -83,7 +83,7 @@ const PostDate = ({ date = {} as Date }) => {
 };
 
 const Content = ({ html = '' }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const ref = createRef<HTMLDivElement>();
 
     useEffect(() => {
@@ -184,7 +184,7 @@ const postAnimation = keyframes({
 });
 
 export const PostPage = ({ post = {} as Post }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const [html, setHTML] = useState<string | null>(null);
 
     useEffect(() => {

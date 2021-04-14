@@ -9,10 +9,7 @@ export interface Theme {
 }
 
 export const ThemeContext = createContext({} as {
-    backgroundColor: string,
-    defaultColor: string,
-    lightColor: string,
-    darkColor: string,
+    theme: Theme,
     changeTheme: (theme: Theme) => any
 });
 
@@ -38,10 +35,10 @@ export const ThemeProvider = ({
 
     return (
         <ThemeContext.Provider value={{
+            theme: currentTheme,
             changeTheme: newTheme => {
                 setTheme(newTheme);
             },
-            ...currentTheme
         }}>
             {children}
         </ThemeContext.Provider>

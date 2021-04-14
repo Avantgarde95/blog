@@ -7,7 +7,7 @@ import { ThemeContext } from './Theme';
 import { PathContext } from './Path';
 
 export const CategoryLink = ({ category = '' as Category }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const { basename } = useContext(PathContext);
 
     return (

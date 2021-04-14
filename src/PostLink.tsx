@@ -7,7 +7,7 @@ import { ThemeContext } from './Theme';
 import { PathContext } from './Path';
 
 export const PostLink = ({ post = {} as Post }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const { basename } = useContext(PathContext);
 
     return (

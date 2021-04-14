@@ -19,7 +19,7 @@ import { RecentPostsWidget } from './RecentPostsWidget';
 import './Highlight.css';
 
 const NotFoundPage = () => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     return <div className={css({ color: theme.defaultColor })}>Wrong URL!</div>;
 };
 
@@ -67,7 +67,7 @@ const AppRoutes = ({ posts = [] as Post[], categories = [] as readonly Category[
 }
 
 const AppArea = ({ children = null as ReactNode }) => {
-    const theme = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const onWideScreen = '@media (min-width: 769px)';
 
     return (
