@@ -134,8 +134,7 @@ const ThemeButton = () => {
     const buttonStyle = (isOn: boolean, buttonTheme: Theme) => css(
         {
             boxSizing: 'border-box',
-            padding: '0.2rem',
-            transition: 'color 0.5s, border-color 0.5s'
+            padding: '0.2rem'
         },
         isOn ? {
             color: buttonTheme.darkColor,
