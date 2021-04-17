@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Component, ErrorInfo, ReactNode, useContext } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, useRoutes } from 'react-router-dom';
-import { css } from '@emotion/css';
+import { css, cx } from '@emotion/css';
 import { Header } from './Header';
 import { PostPage } from './PostPage';
 import { ThemeContext, ThemeProvider } from './Theme';
@@ -67,25 +67,29 @@ const AppRoutes = ({ posts = [] as Post[], categories = [] as readonly Category[
 }
 
 const AppArea = ({ children = null as ReactNode }) => {
-    const { theme } = useContext(ThemeContext);
+    const { theme, themeWillChange } = useContext(ThemeContext);
     const onWideScreen = '@media (min-width: 769px)';
 
     return (
-        <div className={css({
-            overflowY: 'auto',
-            boxSizing: 'border-box',
-            width: '100%',
-            height: '100%',
-            backgroundColor: theme.backgroundColor,
-            transition: 'color 0.5s, background-color 0.5s',
-            [onWideScreen]: {
-                paddingTop: '1.5rem',
-                paddingBottom: '1.5rem'
-            },
-            '& *': {
-                transition: 'color 0.5s, background-color 0.5s, border-color 0.5s'
-            }
-        })}>
+        <div className={cx([
+            css({
+                overflowY: 'auto',
+                boxSizing: 'border-box',
+                width: '100%',
+                height: '100%',
+                backgroundColor: theme.backgroundColor,
+                transition: 'color 0.5s, background-color 0.5s',
+                [onWideScreen]: {
+                    paddingTop: '1.5rem',
+                    paddingBottom: '1.5rem'
+                }
+            }),
+            themeWillChange && css({
+                '& *': {
+                    transition: 'color 0.5s, background-color 0.5s, border-color 0.5s'
+                }
+            })
+        ])}>
             <div className={css({
                 boxSizing: 'border-box',
                 maxWidth: '769px',

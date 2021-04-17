@@ -30,6 +30,7 @@ export const themeMap: { [name: string]: Theme } = {
 export const ThemeContext = createContext({} as {
     theme: Theme,
     themeName: ThemeName,
+    themeWillChange: boolean,
     changeTheme: (name: ThemeName) => any
 });
 
@@ -38,13 +39,17 @@ export const ThemeProvider = ({
     children = null as ReactNode
 }) => {
     const [currentThemeName, setTheme] = useState(defaultThemeName);
+    const [currentThemeWillChange, setThemeWillChange] = useState(false);
 
     return (
         <ThemeContext.Provider value={{
             theme: themeMap[currentThemeName],
             themeName: currentThemeName,
+            themeWillChange: currentThemeWillChange,
             changeTheme: name => {
+                setThemeWillChange(true);
                 setTheme(name);
+                setTimeout(() => { setThemeWillChange(false); }, 500);
             },
         }}>
             {children}
