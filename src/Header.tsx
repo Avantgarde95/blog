@@ -131,47 +131,32 @@ const ThemeButton = () => {
     const { theme, themeName, changeTheme } = useContext(ThemeContext);
     const isDarkTheme = themeName === 'Dark';
 
-    const buttonStyle = (isOn: boolean, buttonTheme: Theme) => css(
-        {
-            boxSizing: 'border-box',
-            padding: '0.2rem'
-        },
-        isOn ? {
-            color: buttonTheme.darkColor,
-            border: `1px solid ${buttonTheme.darkColor}`,
-            '&:hover, &:active, &:focus': {
-                color: buttonTheme.lightColor,
-                border: `1px solid ${buttonTheme.lightColor}`
-            }
-        } : {
-            color: '#aaaaaa',
-            border: `1px solid #aaaaaa`
-        }
-    );
-
     return (
         <button
             className={css({
-                display: 'block',
                 cursor: 'pointer',
-                padding: 0,
-                marginTop: '1rem',
-                //float: 'right',
+                boxSizing: 'border-box',
+                padding: '0.2rem',
+                float: 'right',
                 fontSize: '1rem',
                 fontFamily: 'inherit',
-                border: 'none',
-                backgroundColor: 'rgba(0, 0, 0, 0)'
+                color: theme.darkColor,
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                border: `1px solid ${theme.darkColor}`,
+                '&:hover, &:active, &:focus': {
+                    color: theme.lightColor,
+                    border: `1px solid ${theme.lightColor}`
+                }
             })}
             onClick={() => {
                 changeTheme(isDarkTheme ? 'Light' : 'Dark');
             }}
         >
-            <span className={buttonStyle(isDarkTheme, themeMap['Dark'])}>
-                <Icon definition={faMoon} /> Dark
-            </span>
-            <span className={buttonStyle(!isDarkTheme, themeMap['Light'])}>
-                <Icon definition={faSun} /> Light
-            </span>
+            {
+                isDarkTheme
+                    ? <><Icon definition={faMoon} /> Dark</>
+                    : <><Icon definition={faSun} /> Light</>
+            }
         </button>
     );
 };
