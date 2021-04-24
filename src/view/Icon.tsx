@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
-import '@fortawesome/fontawesome-svg-core/styles.css';
 
 export const Icon = ({ definition = {} as IconDefinition, className = '' }) => {
     return (
