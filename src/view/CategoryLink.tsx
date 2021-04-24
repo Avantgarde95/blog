@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/css';
-import { Category } from './Category';
+import { Category } from '../common/Category';
 import { ThemeContext } from './Theme';
 import { PathContext } from './Path';
 

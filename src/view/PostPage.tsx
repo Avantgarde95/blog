@@ -7,7 +7,7 @@ import { Luminous } from 'luminous-lightbox';
 import 'luminous-lightbox/dist/luminous-basic.min.css';
 import { themeMap, ThemeContext } from './Theme';
 import { Icon } from './Icon';
-import { Post } from './Post';
+import { Post } from '../common/Post';
 import { CategoryLink } from './CategoryLink';
 
 const loadingAnimation = keyframes({

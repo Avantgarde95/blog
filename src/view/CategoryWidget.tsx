@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import { css } from '@emotion/css';
-import { Post } from './Post';
+import { Post } from '../common/Post';
+import { Category } from '../common/Category';
 import { ThemeContext } from './Theme';
-import { PostLink } from './PostLink';
+import { CategoryLink } from './CategoryLink';
 
-export const RecentPostsWidget = ({ posts = [] as Post[] }) => {
+export const CategoryWidget = ({ categories = [] as readonly Category[], posts = [] as Post[] }) => {
     const { theme } = useContext(ThemeContext);
-    const sortedPosts = posts.slice(0);
-
-    sortedPosts.sort((post1, post2) => (-post1.date.getTime() + post2.date.getTime()));
 
     return (
         <div className={css({
@@ -21,9 +19,12 @@ export const RecentPostsWidget = ({ posts = [] as Post[] }) => {
             <div className={css({
                 fontWeight: 'bold'
             })}>
-                Recent posts
+                Category
             </div>
-            {sortedPosts.slice(0, 3).map(post => <div>- <PostLink post={post} /></div>)}
+            {categories.map(category => {
+                const postCount = posts.filter(post => post.category === category).length;
+                return <div>- <CategoryLink category={category} /> ({postCount})</div>;
+            })}
         </div>
     );
 };

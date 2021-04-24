@@ -47,7 +47,7 @@ module.exports = (env, argv) => {
             new MiniCSSExtractPlugin(),
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
-                template: getAbsolutePath(srcDir, 'Page.html'),
+                template: getAbsolutePath(srcDir, 'Template.html'),
                 filename: getAbsolutePath('index.html'),
                 base: isDebugMode ? '/' : '/blog/'
             })

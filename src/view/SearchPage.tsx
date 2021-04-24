@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { css, keyframes } from '@emotion/css';
 import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
-import { Post } from './Post';
+import { Post } from '../common/Post';
 import { ThemeContext } from './Theme';
 import { Icon } from './Icon';
 import { PreviewPage } from './PreviewPage';
