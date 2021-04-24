@@ -35,9 +35,14 @@ export const ThemeContext = createContext({} as {
 });
 
 export const ThemeProvider = ({
-    defaultThemeName = 'Dark' as ThemeName,
     children = null as ReactNode
 }) => {
+    const storedThemeName = localStorage.getItem('themeName');
+
+    const defaultThemeName: ThemeName = ((storedThemeName === null) || (storedThemeName === 'Dark'))
+        ? 'Dark'
+        : 'Light';
+
     const [currentThemeName, setTheme] = useState(defaultThemeName);
     const [currentThemeWillChange, setThemeWillChange] = useState(false);
 
@@ -46,9 +51,10 @@ export const ThemeProvider = ({
             theme: themeMap[currentThemeName],
             themeName: currentThemeName,
             themeWillChange: currentThemeWillChange,
-            changeTheme: name => {
+            changeTheme: themeName => {
                 setThemeWillChange(true);
-                setTheme(name);
+                setTheme(themeName);
+                localStorage.setItem('themeName', themeName);
                 setTimeout(() => { setThemeWillChange(false); }, 500);
             },
         }}>

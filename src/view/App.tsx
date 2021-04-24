@@ -105,7 +105,7 @@ const AppArea = ({ children = null as ReactNode }) => {
 export const App = () => (
     <BrowserRouter>
         <PathProvider basename={document.getElementsByTagName('base')[0].getAttribute('href')!}>
-            <ThemeProvider defaultThemeName={'Dark'}>
+            <ThemeProvider>
                 <AppArea>
                     <Header />
                     <CategoryWidget categories={allCategories} posts={allPosts} />
@@ -116,4 +116,3 @@ export const App = () => (
         </PathProvider>
     </BrowserRouter>
 );
-
