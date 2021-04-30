@@ -5,8 +5,7 @@ import { css, cx } from '@emotion/css';
 import { Header } from './Header';
 import { PostPage } from './PostPage';
 import { ThemeContext, ThemeProvider } from './Theme';
-import { allPosts, Post } from '../common/Post';
-import { allCategories, Category } from '../common/Category';
+import { PostContext, PostProvider } from '../common/PostContext';
 import { PreviewPage } from './PreviewPage';
 import { CategoryWidget } from './CategoryWidget';
 import { SearchPage } from './SearchPage';
@@ -41,8 +40,9 @@ const SafeRoutes = (
     { path: path, element: <ErrorHandler key={index}>{element}</ErrorHandler> }
 )), basename);
 
-const AppRoutes = ({ posts = [] as Post[], categories = [] as readonly Category[] }) => {
+const AppRoutes = () => {
     const { basename } = useContext(PathContext);
+    const { posts, categories } = useContext(PostContext);
 
     return <SafeRoutes
         basename={basename}
@@ -54,9 +54,9 @@ const AppRoutes = ({ posts = [] as Post[], categories = [] as readonly Category[
             })),
             ...categories.map(category => ({
                 path: `category/${category.toLowerCase()}`,
-                element: <CategoryPage category={category} posts={posts} />
+                element: <CategoryPage category={category} />
             })),
-            { path: 'search/:query', element: <SearchPage posts={posts} /> },
+            { path: 'search/:query', element: <SearchPage /> },
             { path: '*', element: <NotFoundPage /> }
         ]}
     />;
@@ -106,12 +106,14 @@ export const App = () => (
     <BrowserRouter>
         <PathProvider basename={document.getElementsByTagName('base')[0].getAttribute('href')!}>
             <ThemeProvider>
-                <AppArea>
-                    <Header />
-                    <CategoryWidget categories={allCategories} posts={allPosts} />
-                    <RecentPostsWidget posts={allPosts} />
-                    <AppRoutes posts={allPosts} categories={allCategories} />
-                </AppArea>
+                <PostProvider>
+                    <AppArea>
+                        <Header />
+                        <CategoryWidget />
+                        <RecentPostsWidget />
+                        <AppRoutes />
+                    </AppArea>
+                </PostProvider>
             </ThemeProvider>
         </PathProvider>
     </BrowserRouter>

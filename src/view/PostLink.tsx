@@ -2,9 +2,9 @@ import * as React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/css';
-import { Post } from '../common/Post';
 import { ThemeContext } from './Theme';
 import { PathContext } from './Path';
+import { Post } from '../common/Post';
 
 export const PostLink = ({ post = {} as Post }) => {
     const { theme } = useContext(ThemeContext);

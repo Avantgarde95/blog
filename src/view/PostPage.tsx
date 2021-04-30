@@ -6,8 +6,8 @@ import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
 import { Luminous } from 'luminous-lightbox';
 import { themeMap, ThemeContext } from './Theme';
 import { Icon } from './Icon';
-import { Post } from '../common/Post';
 import { CategoryLink } from './CategoryLink';
+import { Post } from '../common/Post';
 
 const loadingAnimation = keyframes({
     '0%': {

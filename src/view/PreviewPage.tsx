@@ -6,10 +6,10 @@ import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import { ThemeContext } from './Theme';
-import { Post } from '../common/Post';
 import { Icon } from './Icon';
 import { PathContext } from './Path';
 import { CategoryLink } from './CategoryLink';
+import { Post } from '../common/Post';
 
 const TitleLink = ({ post = {} as Post }) => {
     const { theme } = useContext(ThemeContext);
@@ -166,7 +166,7 @@ const Preview = ({ post = {} as Post }) => {
     );
 };
 
-export const PreviewPage = ({ posts = [] as Post[] }) => {
+export const PreviewPage = ({ posts = [] as readonly Post[] }) => {
     const { theme } = useContext(ThemeContext);
 
     if (posts.length === 0) {

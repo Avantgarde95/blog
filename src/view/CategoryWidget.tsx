@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import { css } from '@emotion/css';
-import { Post } from '../common/Post';
-import { Category } from '../common/Category';
 import { ThemeContext } from './Theme';
 import { CategoryLink } from './CategoryLink';
+import { PostContext } from '../common/PostContext';
 
-export const CategoryWidget = ({ categories = [] as readonly Category[], posts = [] as Post[] }) => {
+export const CategoryWidget = () => {
     const { theme } = useContext(ThemeContext);
+    const { categories, filterPostsByCategory } = useContext(PostContext);
 
     return (
         <div className={css({
@@ -22,8 +22,7 @@ export const CategoryWidget = ({ categories = [] as readonly Category[], posts =
                 Category
             </div>
             {categories.map(category => {
-                const postCount = posts.filter(post => post.category === category).length;
-                return <div>- <CategoryLink category={category} /> ({postCount})</div>;
+                return <div>- <CategoryLink category={category} /> ({filterPostsByCategory(category).length})</div>;
             })}
         </div>
     );
