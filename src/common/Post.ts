@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'htmltext',
+        title: 'Get the pure text from a HTML text',
+        date: new Date('2021-05-01'),
+        category: 'Computer',
+        load: () => import('../post/HTMLText.md')
+    },
+    {
         path: 'typescriptstringuniontype',
         title: 'Generate a union type from an array in TypeScript',
         date: new Date('2021-04-14'),
