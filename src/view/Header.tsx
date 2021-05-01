@@ -5,9 +5,9 @@ import { css } from '@emotion/css';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
 import { faMoon } from '@fortawesome/free-solid-svg-icons/faMoon';
-import { Theme, ThemeContext, themeMap } from './Theme';
+import { Theme, ThemeContext, themeMap } from '../common/Theme';
 import { Icon } from './Icon';
-import { PathContext } from './Path';
+import { PathContext } from '../common/Path';
 
 const TitleLink = () => {
     const { theme } = useContext(ThemeContext);

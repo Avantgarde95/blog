@@ -3,8 +3,8 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/css';
 import { Category } from '../common/Category';
-import { ThemeContext } from './Theme';
-import { PathContext } from './Path';
+import { ThemeContext } from '../common/Theme';
+import { PathContext } from '../common/Path';
 
 export const CategoryLink = ({ category = '' as Category }) => {
     const { theme } = useContext(ThemeContext);

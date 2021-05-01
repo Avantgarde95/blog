@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import { css } from '@emotion/css';
-import { ThemeContext } from './Theme';
+import { ThemeContext } from '../common/Theme';
 import { PostLink } from './PostLink';
-import { PostContext } from '../common/PostContext';
+import { DataContext } from '../common/Data';
 
 export const RecentPostsWidget = () => {
     const { theme } = useContext(ThemeContext);
-    const { posts } = useContext(PostContext);
+    const { posts } = useContext(DataContext);
 
     return (
         <div className={css({

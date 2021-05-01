@@ -5,9 +5,9 @@ import { css, keyframes } from '@emotion/css';
 import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
-import { ThemeContext } from './Theme';
+import { ThemeContext } from '../common/Theme';
 import { Icon } from './Icon';
-import { PathContext } from './Path';
+import { PathContext } from '../common/Path';
 import { CategoryLink } from './CategoryLink';
 import { Post } from '../common/Post';
 

@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { createContext, ReactNode } from 'react';
 import { allCategories, Category } from './Category';
-import { Post } from './Post';
-import { allPosts } from './Posts';
+import { Post, allPosts } from './Post';
 
-export const PostContext = createContext({} as {
+export const DataContext = createContext({} as {
     posts: readonly Post[],
     categories: readonly Category[],
     filterPostsByCategory: (category: Category) => Post[],
@@ -15,14 +14,14 @@ function toSearchableString(value: string) {
     return value.trim().toLowerCase();
 }
 
-export const PostProvider = ({ children = null as ReactNode }) => {
+export const DataProvider = ({ children = null as ReactNode }) => {
     const currentPosts = allPosts.slice(0);
     currentPosts.sort((post1, post2) => (-post1.date.getTime() + post2.date.getTime()));
 
     const currentCategories = allCategories;
 
     return (
-        <PostContext.Provider value={{
+        <DataContext.Provider value={{
             posts: currentPosts,
             categories: currentCategories,
             filterPostsByCategory: category =>
@@ -44,7 +43,7 @@ export const PostProvider = ({ children = null as ReactNode }) => {
                     return matchingPosts;
                 })
         }}>
-            { children}
-        </PostContext.Provider >
+            {children}
+        </DataContext.Provider>
     );
 };

@@ -4,7 +4,7 @@ import { css, keyframes } from '@emotion/css';
 import { DiscussionEmbed } from 'disqus-react';
 import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
 import { Luminous } from 'luminous-lightbox';
-import { themeMap, ThemeContext } from './Theme';
+import { themeMap, ThemeContext } from '../common/Theme';
 import { Icon } from './Icon';
 import { CategoryLink } from './CategoryLink';
 import { Post } from '../common/Post';

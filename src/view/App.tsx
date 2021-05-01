@@ -4,13 +4,13 @@ import { BrowserRouter, useRoutes } from 'react-router-dom';
 import { css, cx } from '@emotion/css';
 import { Header } from './Header';
 import { PostPage } from './PostPage';
-import { ThemeContext, ThemeProvider } from './Theme';
-import { PostContext, PostProvider } from '../common/PostContext';
+import { ThemeContext, ThemeProvider } from '../common/Theme';
+import { DataContext, DataProvider } from '../common/Data';
 import { PreviewPage } from './PreviewPage';
 import { CategoryWidget } from './CategoryWidget';
 import { SearchPage } from './SearchPage';
 import { CategoryPage } from './CategoryPage';
-import { PathContext, PathProvider } from './Path';
+import { PathContext, PathProvider } from '../common/Path';
 import { RecentPostsWidget } from './RecentPostsWidget';
 
 const NotFoundPage = () => {
@@ -42,7 +42,7 @@ const SafeRoutes = (
 
 const AppRoutes = () => {
     const { basename } = useContext(PathContext);
-    const { posts, categories } = useContext(PostContext);
+    const { posts, categories } = useContext(DataContext);
 
     return <SafeRoutes
         basename={basename}
@@ -106,14 +106,14 @@ export const App = () => (
     <BrowserRouter>
         <PathProvider basename={document.getElementsByTagName('base')[0].getAttribute('href')!}>
             <ThemeProvider>
-                <PostProvider>
+                <DataProvider>
                     <AppArea>
                         <Header />
                         <CategoryWidget />
                         <RecentPostsWidget />
                         <AppRoutes />
                     </AppArea>
-                </PostProvider>
+                </DataProvider>
             </ThemeProvider>
         </PathProvider>
     </BrowserRouter>

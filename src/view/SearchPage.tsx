@@ -3,10 +3,10 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { css, keyframes } from '@emotion/css';
 import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
-import { ThemeContext } from './Theme';
+import { ThemeContext } from '../common/Theme';
 import { Icon } from './Icon';
 import { PreviewPage } from './PreviewPage';
-import { PostContext } from '../common/PostContext';
+import { DataContext } from '../common/Data';
 import { Post } from '../common/Post';
 
 const loadingAnimation = keyframes({
@@ -44,7 +44,7 @@ const Searching = () => {
 export const SearchPage = () => {
     const { query } = useParams();
     const [postsToPreview, setPostsToPreview] = useState<Post[] | null>(null);
-    const { filterPostsByQuery } = useContext(PostContext);
+    const { filterPostsByQuery } = useContext(DataContext);
 
     useEffect(() => {
         filterPostsByQuery(query).then(posts => {

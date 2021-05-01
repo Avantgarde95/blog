@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import { css } from '@emotion/css';
-import { ThemeContext } from './Theme';
+import { ThemeContext } from '../common/Theme';
 import { CategoryLink } from './CategoryLink';
-import { PostContext } from '../common/PostContext';
+import { DataContext } from '../common/Data';
 
 export const CategoryWidget = () => {
     const { theme } = useContext(ThemeContext);
-    const { categories, filterPostsByCategory } = useContext(PostContext);
+    const { categories, filterPostsByCategory } = useContext(DataContext);
 
     return (
         <div className={css({
