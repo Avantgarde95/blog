@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'crtp',
+        title: 'CRTP (Curiously Recurring Template Pattern)',
+        date: new Date('2021-06-10'),
+        category: 'Computer',
+        load: () => import('../post/CRTP.md')
+    },
+    {
         path: 'htmltext',
         title: 'Get the pure text from a HTML text',
         date: new Date('2021-05-01'),
