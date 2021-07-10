@@ -37,7 +37,7 @@ class ErrorHandler extends Component<{ children: ReactNode }, { hasError: boolea
 const SafeRoutes = (
     { basename = '/', routes = [] as { path: string, element: ReactNode }[] }
 ) => useRoutes(routes.map(({ path, element }, index) => (
-    { path: path, element: <ErrorHandler key={index}>{element}</ErrorHandler> }
+    { path: path, element: <ErrorHandler key={`${index}-${path}`}>{element}</ErrorHandler> }
 )), basename);
 
 const AppRoutes = () => {

@@ -1,5 +1,9 @@
 import './Polyfill';
 
+if (process.env.NODE_ENV === 'development') {
+    require('preact/debug');
+}
+
 import * as React from 'react';
 import { render } from 'react-dom';
 import { App } from './view/App';
