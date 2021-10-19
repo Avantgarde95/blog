@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'customjesttransformer',
+        title: 'Custom Jest transformer',
+        date: new Date('2021-10-19'),
+        category: 'Computer',
+        load: () => import('../post/CustomJestTransformer.md')
+    },
+    {
         path: 'crtp',
         title: 'CRTP (Curiously Recurring Template Pattern)',
         date: new Date('2021-06-10'),
