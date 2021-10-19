@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'typescriptenumandstringuniontype',
+        title: 'enum vs string union type in TypeScript',
+        date: new Date('2021-10-19'),
+        category: 'Computer',
+        load: () => import('../post/TypeScriptEnumAndStringUnionType.md')
+    },
+    {
         path: 'customjesttransformer',
         title: 'Custom Jest transformer',
         date: new Date('2021-10-19'),
