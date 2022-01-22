@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'flexminheight',
+        title: 'Fix flexbox overflow using min-height',
+        date: new Date('2022-01-22'),
+        category: 'Computer',
+        load: () => import('../post/FlexMinHeight.md')
+    },
+    {
         path: 'cssbordertriangle',
         title: 'Drawing a triangle using CSS border',
         date: new Date('2022-01-22'),
