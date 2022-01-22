@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'cssbordertriangle',
+        title: 'Drawing a triangle using CSS border',
+        date: new Date('2022-01-22'),
+        category: 'Computer',
+        load: () => import('../post/CSSBorderTriangle.md')
+    },
+    {
         path: 'ssrwindow',
         title: 'window object when using SSR (ex. Next.js)',
         date: new Date('2022-01-22'),
