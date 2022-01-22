@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'ssrwindow',
+        title: 'window object when using SSR (ex. Next.js)',
+        date: new Date('2022-01-22'),
+        category: 'Computer',
+        load: () => import('../post/SSRWindow.md')
+    },
+    {
         path: 'typescriptenumandstringuniontype',
         title: 'enum vs string union type in TypeScript',
         date: new Date('2021-10-19'),

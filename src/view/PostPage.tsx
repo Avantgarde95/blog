@@ -131,8 +131,7 @@ const Content = ({ html = '' }) => {
                 '& pre': {
                     margin: '1.5rem 0',
                     fontFamily: 'inherit',
-                    fontSize: 'inherit',
-                    backgroundColor: themeMap['Dark'].backgroundColor
+                    fontSize: 'inherit'
                 },
                 '& .PostImage': {
                     cursor: 'pointer',
@@ -164,7 +163,7 @@ const Content = ({ html = '' }) => {
                 },
                 '& .hljs': {
                     border: `1px solid ${theme.darkColor}`,
-                    background: 'none'
+                    backgroundColor: themeMap['Dark'].backgroundColor
                 }
             })}
             ref={ref}
