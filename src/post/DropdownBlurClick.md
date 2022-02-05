@@ -20,7 +20,7 @@ and you want to close the dropdown by clicking outside the dropdown by attaching
 Sometimes the value does not change when you click the option in the dropdown.
 This is because `onBlur()` closes the dropdown **before** `onClick()` is called.
 
-이는 하위의 `onMouseDown()`으로 `preventDefault()`을 날려서 상위에 마우스 이벤트가 안 가게 하는 방법으로 막을 수 있다.
+이는 하위의 `onMouseDown()`으로 `preventDefault()`를 날려서 상위에 마우스 이벤트가 안 가게 하는 방법으로 막을 수 있다.
 
 You can prevent that issue by attaching `onMouseDown()` to the option buttons and let them call `preventDefault()` to prevent the mouse event from going to the upper level.
 

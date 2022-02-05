@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'storybookstyle',
+        title: 'Loader conflict in Storybook Webpack configuration',
+        date: new Date('2022-02-05'),
+        category: 'Computer',
+        load: () => import('../post/StorybookStyle.md')
+    },
+    {
         path: 'dropdownblurclick',
         title: 'Mixing blur event and click event',
         date: new Date('2022-01-28'),
