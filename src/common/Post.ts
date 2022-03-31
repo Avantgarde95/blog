@@ -10,6 +10,13 @@ export interface Post {
 
 export const allPosts: Post[] = [
     {
+        path: 'wslgdisplayissue',
+        title: 'Solving "Cannot open display" issue in WSLg',
+        date: new Date('2022-03-31'),
+        category: 'Computer',
+        load: () => import('../post/WSLgDisplayIssue.md')
+    },
+    {
         path: 'storybookstyle',
         title: 'Loader conflict in Storybook Webpack configuration',
         date: new Date('2022-02-05'),
