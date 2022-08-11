@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import styled from "@emotion/styled";
 import { css, useTheme } from "@emotion/react";
 import { FaSearch, FaMoon, FaSun } from "react-icons/fa";
@@ -40,6 +40,7 @@ const Bottom = styled.div`
   flex-direction: row;
 
   width: 100%;
+  margin-bottom: 16px;
 `;
 
 const Title = styled(Link)`

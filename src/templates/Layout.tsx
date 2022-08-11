@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { ReactNode } from "react";
 
 import Header from "templates/Header";
+import Stats from "templates/Stats";
 import { onWideScreen } from "styles/Mixins";
 
 interface LayoutProps {
@@ -12,6 +13,7 @@ const Layout = ({ children }: LayoutProps) => (
   <Container>
     <Content>
       <Header />
+      <Stats />
       {children}
     </Content>
   </Container>

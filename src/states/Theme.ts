@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export type ThemeName = "Dark" | "Light";
+import { ThemeName } from "models/Theme";
 
 export const themeNameState = atom<ThemeName>({
   key: "themeName",
