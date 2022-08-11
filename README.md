@@ -1,27 +1,4 @@
-# avant-template
-
-Template for using...
-
-- React, Emotion, TypeScript, Recoil, Next.js, ESLint, Prettier, Yarn 1 or 2
-
-## How to use
-
-- Run `node create`
-- After you're done, you're free to delete "create.js".
-
-## Files
-
-- create.js: Setup script
-  - Configure Git
-  - Create package.json
-  - Install the dependencies
-- Other files (.vscode, src, ...): Project template. You can edit them freely.
-
----
-
-# README template
-
-## How to run
+# blog
 
 Must install
 
@@ -46,6 +23,11 @@ Run in the production mode
 
 - Run `yarn build`
 - Run `yarn start`
+
+Create static webpage
+
+- Run `yarn build`
+- Run `yarn export`
 
 Check the code
 
