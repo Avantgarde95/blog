@@ -7,8 +7,8 @@ export const globalStyle = css`
     margin: 0;
     padding: 0;
 
-    font-family: sans-serif;
-    font-size: 62.5%;
+    font-family: "Sunflower", sans-serif;
+    font-size: 16px;
   }
 
   body {

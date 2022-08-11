@@ -3,10 +3,10 @@ import "@emotion/react";
 declare module "@emotion/react" {
   interface Theme {
     color: {
-      primary: string;
-      secondary: string;
-      tertiary: string;
       background: string;
+      default: string;
+      light: string;
+      dark: string;
     };
   }
 }
