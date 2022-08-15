@@ -1,5 +1,10 @@
 # blog
 
+This is the **old version**!  
+New version is included in [homepage code](https://github.com/Avantgarde95/Avantgarde95.github.io). (See "blog" folder inside "src")
+
+-----
+
 My blog!
 
 - **Still in development**: The development is not finished yet. There are some bugs and many things can be changed.
